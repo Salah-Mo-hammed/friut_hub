@@ -74,6 +74,10 @@ class Assets {
   /// assets/png/splash2_green.png
   static const String pngSplash2Green = "assets/png/splash2_green.png";
 
+  /// Assets for pngWatermellonPng
+  /// assets/png/watermellon_png.png
+  static const String pngWatermellonPng = "assets/png/watermellon_png.png";
+
   /// Assets for svgAppleIcon
   /// assets/svg/apple_icon.svg
   static const String svgAppleIcon = "assets/svg/apple_icon.svg";
@@ -81,6 +85,10 @@ class Assets {
   /// Assets for svgChangePassSuccessed
   /// assets/svg/change_pass_successed.svg
   static const String svgChangePassSuccessed = "assets/svg/change_pass_successed.svg";
+
+  /// Assets for svgFarawlla
+  /// assets/svg/farawlla.svg
+  static const String svgFarawlla = "assets/svg/farawlla.svg";
 
   /// Assets for svgFilterNormal
   /// assets/svg/filter_normal.svg
@@ -105,5 +113,41 @@ class Assets {
   /// Assets for svgSearchNormal
   /// assets/svg/search-normal.svg
   static const String svgSearchNormal = "assets/svg/search-normal.svg";
+
+  /// Assets for svgSelectedHomeIcon
+  /// assets/svg/selected_home_icon.svg
+  static const String svgSelectedHomeIcon = "assets/svg/selected_home_icon.svg";
+
+  /// Assets for svgSelectedProductIcon
+  /// assets/svg/selected_product_icon.svg
+  static const String svgSelectedProductIcon = "assets/svg/selected_product_icon.svg";
+
+  /// Assets for svgSelectedShoppingCartIcon
+  /// assets/svg/selected_shopping-cart_icon.svg
+  static const String svgSelectedShoppingCartIcon = "assets/svg/selected_shopping-cart_icon.svg";
+
+  /// Assets for svgSelectedUserIcon
+  /// assets/svg/selected_user_icon.svg
+  static const String svgSelectedUserIcon = "assets/svg/selected_user_icon.svg";
+
+  /// Assets for svgUnselectedHomeIcon
+  /// assets/svg/unselected_home_icon.svg
+  static const String svgUnselectedHomeIcon = "assets/svg/unselected_home_icon.svg";
+
+  /// Assets for svgUnselectedProductsIcon
+  /// assets/svg/unselected_products_icon.svg
+  static const String svgUnselectedProductsIcon = "assets/svg/unselected_products_icon.svg";
+
+  /// Assets for svgUnselectedProfileIcon
+  /// assets/svg/unselected_profile_icon.svg
+  static const String svgUnselectedProfileIcon = "assets/svg/unselected_profile_icon.svg";
+
+  /// Assets for svgUnselectedShoppingCartIcon
+  /// assets/svg/unselected_shopping-cart_icon.svg
+  static const String svgUnselectedShoppingCartIcon = "assets/svg/unselected_shopping-cart_icon.svg";
+
+  /// Assets for svgWatermellon
+  /// assets/svg/watermellon.svg
+  static const String svgWatermellon = "assets/svg/watermellon.svg";
 }
 

@@ -1,8 +1,9 @@
 // import 'package:device_preview/device_preview.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:friut_hub/auth/presentation/pages/home_page.dart';
+import 'package:friut_hub/e_commerce/presintaion/pages/home_page.dart';
 import 'package:friut_hub/auth/presentation/pages/reset_pass_page.dart';
+import 'package:friut_hub/e_commerce/presintaion/pages/main_dashboard.dart';
 import 'package:friut_hub/features/pages/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:friut_hub/auth/presentation/pages/login_page.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
 
       // home: ResetPasswordPage(),
       // home: LoginPage(isRegister: false),
-      home: const HomePage(),
+      home: const MainDashboard(),
     );
   }
 }
