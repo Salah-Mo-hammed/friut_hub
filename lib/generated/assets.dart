@@ -33,9 +33,7 @@ class Assets {
   /// Assets for fontsCairoSemiBold
   /// assets/fonts/Cairo-SemiBold.ttf
   static const String fontsCairoSemiBold = "assets/fonts/Cairo-SemiBold.ttf";
-// ! ==================================
-// ! pngs
-// ! ==================================
+
   /// Assets for pngFreepikCirclesInject5Onboarding
   /// assets/png/freepik--Circles--inject-5_onboarding.png
   static const String pngFreepikCirclesInject5Onboarding = "assets/png/freepik--Circles--inject-5_onboarding.png";
@@ -63,5 +61,13 @@ class Assets {
   /// Assets for pngSplash2Green
   /// assets/png/splash2_green.png
   static const String pngSplash2Green = "assets/png/splash2_green.png";
+
+  /// Assets for svgAppleIcon
+  /// assets/svg/apple_icon.svg
+  static const String svgAppleIcon = "assets/svg/apple_icon.svg";
+
+  /// Assets for svgGoogleIcon
+  /// assets/svg/google_icon.svg
+  static const String svgGoogleIcon = "assets/svg/google_icon.svg";
 }
 

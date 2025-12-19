@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
-import 'package:friut_hub/features/widgets/on_boarding_view.dart';
+import 'package:friut_hub/features/pages/on_boarding_view.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class SplashPage extends StatefulWidget {

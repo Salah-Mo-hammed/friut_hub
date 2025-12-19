@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
-import 'package:friut_hub/features/login_page.dart';
+import 'package:friut_hub/auth/presentation/pages/login_page.dart';
 
 class OnBoardingWidget extends StatelessWidget {
   final bool isOnBoarding1;
@@ -147,7 +147,7 @@ class OnBoardingWidget extends StatelessWidget {
                           () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => LoginPage(isRegister: false,),
                             ),
                           ),
                       child: Center(

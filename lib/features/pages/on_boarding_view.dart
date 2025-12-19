@@ -61,7 +61,7 @@ class _PageViewExampleState extends State<PageViewExample>
               backgroundImagePath: Assets.pngSplash1Orange,
             ),
 
-            //* first splash page
+            //* seconde splash page
             OnBoardingWidget(
               logoImagePath: Assets.pngPineappleCuate1Png,
               isOnBoarding1: false,

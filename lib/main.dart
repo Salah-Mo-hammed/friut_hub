@@ -1,9 +1,9 @@
 // import 'package:device_preview/device_preview.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:friut_hub/core/splash_page.dart';
+import 'package:friut_hub/features/pages/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:friut_hub/features/login_page.dart';
+import 'package:friut_hub/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/generated/l10n.dart';
 
 void main() {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
 
-      home: LoginPage(),
+      home: LoginPage(isRegister: false),
       // home: const SplashPage(),
     );
   }

@@ -10,7 +10,8 @@ class PasswordField extends StatefulWidget {
   const PasswordField({
     super.key,
     required this.controller,
-    this.hint = "كلمة المرور", required this.validator,
+    this.hint = "كلمة المرور",
+    required this.validator,
   });
 
   @override
@@ -25,7 +26,11 @@ class _PasswordFieldState extends State<PasswordField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: TextFormField(
-        validator:widget.validator,
+        style: AppTextStyles.bodyBaseBold.copyWith(
+          color: Colors.black,
+        ),
+
+        validator: widget.validator,
         controller: widget.controller,
         obscureText: _obscureText,
         decoration: InputDecoration(
