@@ -50,6 +50,18 @@ class Assets {
   /// assets/png/fruit_hub_onboarding.png
   static const String pngFruitHubOnboarding = "assets/png/fruit_hub_onboarding.png";
 
+  /// Assets for pngFruitOfferPng
+  /// assets/png/fruit_offer_png.png
+  static const String pngFruitOfferPng = "assets/png/fruit_offer_png.png";
+
+  /// Assets for pngOrangeCircle
+  /// assets/png/orange_circle.png
+  static const String pngOrangeCircle = "assets/png/orange_circle.png";
+
+  /// Assets for pngOrangeOfferPng
+  /// assets/png/orange_offer_png.png
+  static const String pngOrangeOfferPng = "assets/png/orange_offer_png.png";
+
   /// Assets for pngPineappleCuate1Png
   /// assets/png/pineapple-cuate_1_png.png
   static const String pngPineappleCuate1Png = "assets/png/pineapple-cuate_1_png.png";
@@ -70,8 +82,28 @@ class Assets {
   /// assets/svg/change_pass_successed.svg
   static const String svgChangePassSuccessed = "assets/svg/change_pass_successed.svg";
 
+  /// Assets for svgFilterNormal
+  /// assets/svg/filter_normal.svg
+  static const String svgFilterNormal = "assets/svg/filter_normal.svg";
+
   /// Assets for svgGoogleIcon
   /// assets/svg/google_icon.svg
   static const String svgGoogleIcon = "assets/svg/google_icon.svg";
+
+  /// Assets for svgNotificationRing
+  /// assets/svg/notification_ring.svg
+  static const String svgNotificationRing = "assets/svg/notification_ring.svg";
+
+  /// Assets for svgOrangeOffer
+  /// assets/svg/orange_offer.svg
+  static const String svgOrangeOffer = "assets/svg/orange_offer.svg";
+
+  /// Assets for svgPersonIcon
+  /// assets/svg/person_icon.svg
+  static const String svgPersonIcon = "assets/svg/person_icon.svg";
+
+  /// Assets for svgSearchNormal
+  /// assets/svg/search-normal.svg
+  static const String svgSearchNormal = "assets/svg/search-normal.svg";
 }
 
