@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:friut_hub/auth/presentation/pages/login_page.dart';
+import 'package:friut_hub/auth/presentation/widgets/app_bar_widget.dart';
 
 class PolicesPage extends StatelessWidget {
   const PolicesPage({super.key});

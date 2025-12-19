@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:friut_hub/core/colors/app_colors.dart';
+import 'package:friut_hub/auth/presentation/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/auth/presentation/pages/login_page.dart';
 

@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
 
-      home: ResetPasswordPage(),
+      // home: ResetPasswordPage(),
       // home: LoginPage(isRegister: false),
-      // home: const SplashPage(),
+      home: const SplashPage(),
     );
   }
 }
