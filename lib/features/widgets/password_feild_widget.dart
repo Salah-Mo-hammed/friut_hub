@@ -4,10 +4,10 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 
 class PasswordField extends StatefulWidget {
   final TextEditingController controller;
-  final String hint;
+  String hint;
   final String? Function(String?)? validator;
 
-  const PasswordField({
+  PasswordField({
     super.key,
     required this.controller,
     this.hint = "كلمة المرور",
@@ -48,7 +48,7 @@ class _PasswordFieldState extends State<PasswordField> {
             horizontal: 10,
             vertical: 15,
           ),
-          hintText: "كلمة المرور",
+          hintText: widget.hint,
           hintStyle: AppTextStyles.bodySmallBold.copyWith(
             color: AppColors.grayscale400,
             fontWeight: FontWeight.bold,

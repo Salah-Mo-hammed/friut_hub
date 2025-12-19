@@ -133,31 +133,17 @@ class OnBoardingWidget extends StatelessWidget {
               FadeIn(
                 duration: const Duration(seconds: 2),
                 delay: const Duration(milliseconds: 3500),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 370,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: AppColors.green1_500,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: InkWell(
-                      onTap:
-                          () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(isRegister: false,),
-                            ),
-                          ),
-                      child: Center(
-                        child: Text(
-                          "ابدأ الان",
-                          style: AppTextStyles.bodyBaseBold,
-                        ),
+                child: MyButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => LoginPage(isRegister: false),
                       ),
-                    ),
-                  ),
+                    );
+                  },
+                  buttonTitle: "ابدأ الان",
                 ),
               ),
           ],

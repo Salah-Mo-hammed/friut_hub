@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:friut_hub/auth/presentation/pages/login_page.dart';
+import 'package:friut_hub/auth/presentation/pages/pass_recovery_page.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 
@@ -20,18 +21,9 @@ class ForgetPasswordPage extends StatelessWidget {
           key: _formKey,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15.0,
-                  horizontal: 15,
-                ),
-                child: Text(
-                  "لا تقلق ، ما عليك سوى كتابة البريد الكتروني الخاص بك وسنرسل رمز التحقق.",
-
-                  style: AppTextStyles.bodyBaseBold.copyWith(
-                    color: AppColors.grayscale600,
-                  ),
-                ),
+              ForgetPasswordTexts(
+                title:
+                    "لا تقلق ، ما عليك سوى كتابة البريد الكتروني الخاص بك وسنرسل رمز التحقق.",
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -57,19 +49,39 @@ class ForgetPasswordPage extends StatelessWidget {
                     );
 
                     // ! go to NextPage OF forget password
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => isRegister?LoginPage() // Note: you can do register then sign in and also go HomePage
-                    // :HomePage(),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PasswoedRecoveryPage(),
+                      ),
+                    );
                   }
                 },
                 buttonTitle: "نسيت كلمة المرور",
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ForgetPasswordTexts extends StatelessWidget {
+  final String title;
+  const ForgetPasswordTexts({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 15.0,
+        horizontal: 15,
+      ),
+      child: Text(
+        title,
+        style: AppTextStyles.bodyBaseBold.copyWith(
+          color: AppColors.grayscale600,
         ),
       ),
     );

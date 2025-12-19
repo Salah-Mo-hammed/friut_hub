@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:friut_hub/auth/presentation/pages/fprget_pass_page.dart';
 import 'package:friut_hub/auth/presentation/pages/home_page.dart';
+import 'package:friut_hub/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/auth/presentation/pages/register_page.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
@@ -28,9 +29,37 @@ class LoginPage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: MyAppBar(
-          appBarTitle: !isRegister ? "تسجيل الدخول" : "حساب جديد",
+        appBar: AppBar(
+          leading:
+              isRegister
+                  ? Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: Color(0xFFF1F1F5),
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Icon(Icons.arrow_back_ios),
+                      ),
+                    ),
+                  )
+                  : null,
+          centerTitle: true,
+          title: Text(
+            !isRegister ? "تسجيل الدخول" : "حساب جديد",
+            style: AppTextStyles.bodyLarge.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
+
         body: Form(
           key: _formKey,
           child: Column(
@@ -95,6 +124,12 @@ class LoginPage extends StatelessWidget {
                         title2: 'الشروط والأحكام الخاصة بنا',
                         onTap: () {
                           // ! Polices page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PolicesPage(),
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -372,15 +407,6 @@ class RichTextWidget extends StatelessWidget {
           TextSpan(
             //! recognizer as gesture detector , but with some changes
             recognizer: TapGestureRecognizer()..onTap = onTap,
-
-            //() {
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => RegisterPage(),
-            //     ),
-            //   );
-            // },
             text: title2,
             style: AppTextStyles.bodySmall.copyWith(
               color: AppColors.green1_500,
