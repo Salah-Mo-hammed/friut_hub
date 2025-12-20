@@ -82,6 +82,10 @@ class Assets {
   /// assets/svg/apple_icon.svg
   static const String svgAppleIcon = "assets/svg/apple_icon.svg";
 
+  /// Assets for svgBigWatermellon
+  /// assets/svg/big_watermellon.svg
+  static const String svgBigWatermellon = "assets/svg/big_watermellon.svg";
+
   /// Assets for svgChangePassSuccessed
   /// assets/svg/change_pass_successed.svg
   static const String svgChangePassSuccessed = "assets/svg/change_pass_successed.svg";
@@ -149,5 +153,9 @@ class Assets {
   /// Assets for svgWatermellon
   /// assets/svg/watermellon.svg
   static const String svgWatermellon = "assets/svg/watermellon.svg";
+
+  /// Assets for svgWhiteCircle
+  /// assets/svg/white_circle.svg
+  static const String svgWhiteCircle = "assets/svg/white_circle.svg";
 }
 

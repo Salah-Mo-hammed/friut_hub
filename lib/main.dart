@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:friut_hub/e_commerce/presintaion/pages/home_page.dart';
 import 'package:friut_hub/auth/presentation/pages/reset_pass_page.dart';
+import 'package:friut_hub/e_commerce/presintaion/pages/item_details_page.dart';
 import 'package:friut_hub/e_commerce/presintaion/pages/main_dashboard.dart';
 import 'package:friut_hub/features/pages/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
 
       // home: ResetPasswordPage(),
       // home: LoginPage(isRegister: false),
-      home: const MainDashboard(),
+      home: ItemDetailsPage(),
     );
   }
 }

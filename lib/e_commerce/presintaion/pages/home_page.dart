@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/e_commerce/presintaion/pages/item_details_page.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
       children: [
         SizedBox(height: 50),
         //! AppBar Row
+        // ! Note: we didnt use MyAppBar here because there is somechanges in it here
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -154,7 +156,9 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     // ! same problem
-                    // SvgPicture.asset(Assets.svgFarawlla),
+                    // Center(
+                    // child: SvgPicture.asset(Assets.svgFarawlla),
+                    // ),
                     Positioned(
                       bottom: 20,
                       right: 10,
@@ -164,12 +168,27 @@ class HomePage extends StatelessWidget {
                           Text(
                             "بطيخ",
                             style: AppTextStyles.bodySmallBold
-                                .copyWith(color: AppColors.orange500),
+                                .copyWith(color: Colors.black),
                           ),
-                          Text(
-                            "20جنية / الكيلو",
-                            style: AppTextStyles.bodySmallBold
-                                .copyWith(color: AppColors.orange300),
+                          Row(
+                            children: [
+                              Text(
+                                "20جنية / ",
+                                style: AppTextStyles.bodySmallBold
+                                    .copyWith(
+                                      fontSize: 15,
+                                      color: AppColors.orange500,
+                                    ),
+                              ),
+                              Text(
+                                "الكيلو",
+                                style: AppTextStyles.bodySmallBold
+                                    .copyWith(
+                                      fontSize: 15,
+                                      color: AppColors.orange300,
+                                    ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -177,14 +196,14 @@ class HomePage extends StatelessWidget {
                     Positioned(
                       bottom: 20,
                       left: 10,
-                      child: CircleAvatar(
-                        radius: 22,
-                        backgroundColor: AppColors.green1_500,
-                        child: Icon(
-                          size: 35,
-                          Icons.add,
-                          color: Colors.white,
-                        ),
+                      child: ItemAddIcon(
+                        onTap:
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ItemDetailsPage(),
+                              ),
+                            ),
                       ),
                     ),
                   ],
@@ -194,6 +213,40 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ItemAddIcon extends StatelessWidget {
+  IconData icon;
+  void Function() onTap;
+  ItemAddIcon({
+    super.key,
+    this.icon = Icons.add,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: 22,
+      backgroundColor:
+          icon == Icons.add ? AppColors.green1_500 : Colors.white,
+      child: GestureDetector(
+        onTap: onTap,
+
+        child: Padding(
+          padding:
+              icon == Icons.add
+                  ? EdgeInsets.zero
+                  : EdgeInsets.only(bottom: 10.0),
+          child: Icon(
+            size: 35,
+            icon,
+            color: icon == Icons.add ? Colors.white : Colors.grey,
+          ),
+        ),
+      ),
     );
   }
 }
