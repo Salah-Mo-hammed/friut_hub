@@ -148,7 +148,9 @@ class HomePage extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.white),
                 child: Stack(
                   children: [
-                    Center(
+                    Positioned(
+                      top: 20,
+                      right: 40,
                       child: Image.asset(
                         height: 120,
                         width: 120,

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:friut_hub/auth/presentation/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
+import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/e_commerce/presintaion/pages/home_page.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class ItemDetailsPage extends StatelessWidget {
   int selectedQuantity = 1;
-   ItemDetailsPage({super.key});
+  ItemDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,56 +71,187 @@ class ItemDetailsPage extends StatelessWidget {
               top: 430,
               // left: 0,
               right: 20,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              bottom: 0,
+              child: SizedBox(
+                width: 342.w(context),
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      // ! Column item name nnd price
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "بطيخ",
-                            style: AppTextStyles.bodySmallBold
-                                .copyWith(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                ),
-                          ),
-                          SizedBox(height: 5),
-                          Row(
+                          // ! Column item name nnd price
+                          Column(
+                            crossAxisAlignment:
+                                CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "20جنية / ",
+                                "بطيخ",
                                 style: AppTextStyles.bodySmallBold
                                     .copyWith(
-                                      fontSize: 15,
-                                      color: AppColors.orange500,
+                                      fontSize: 20,
+                                      color: Colors.black,
                                     ),
                               ),
-                              Text(
-                                "الكيلو",
-                                style: AppTextStyles.bodySmallBold
-                                    .copyWith(
-                                      fontSize: 15,
-                                      color: AppColors.orange300,
-                                    ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Text(
+                                    "20جنية / ",
+                                    style: AppTextStyles.bodySmallBold
+                                        .copyWith(
+                                          fontSize: 15,
+                                          color: AppColors.orange500,
+                                        ),
+                                  ),
+                                  Text(
+                                    "الكيلو",
+                                    style: AppTextStyles.bodySmallBold
+                                        .copyWith(
+                                          fontSize: 15,
+                                          color: AppColors.orange300,
+                                        ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
+
+                          // ! for increase ,decrease ,and number of items
+                          ItemQuantityWidget(
+                            onQuantityChanged: (value) {
+                              selectedQuantity = value;
+                              debugPrint(
+                                'Quantity: $selectedQuantity',
+                              );
+                            },
+                          ),
                         ],
                       ),
-                      // ! bad way to make space , you should use mainAxsisAlingment , but something wrong in it
-                      SizedBox(width: 140),
-                      // ! for increase ,decrease ,and number of items
-                      ItemQuantityWidget(onQuantityChanged: (value) {
-    selectedQuantity = value;
-    debugPrint('Quantity: $selectedQuantity');
-  },),
+                      Row(
+                        children: [
+                          SizedBox(width: 5),
+                          Icon(Icons.star, color: Colors.amber),
+                          SizedBox(width: 5),
+
+                          Text("(+30)"),
+                          SizedBox(width: 5),
+
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "المراجعه",
+                                  style: AppTextStyles.bodyBaseBold
+                                      .copyWith(
+                                        color: AppColors.green1_500,
+                                        decoration:
+                                            TextDecoration.underline,
+                                        fontSize: 15,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        style: AppTextStyles.bodySmall.copyWith(
+                          color: AppColors.grayscale500,
+                          fontSize: 17,
+                        ),
+                        "ينتمي إلى الفصيلة القرعية ولثمرته لُب حلو المذاق وقابل للأكل، وبحسب علم النبات فهي تعتبر ثمار لبيّة، تستعمل لفظة البطيخ للإشارة إلى النبات نفسه أو إلى الثمرة تحديداً",
+                      ),
+                      SizedBox(height: 20),
+
+                      Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.spaceAround,
+                        children: [
+                          ItemDetailsRow(
+                            svgImage: Assets.svgItemDetails2,
+                            text1: "عام",
+                            text2: "الصلاحيه",
+                          ),
+                          ItemDetailsRow(
+                            svgImage: Assets.svgItemDetails1,
+                            text1: "100%",
+                            text2: "اوجانيك",
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 50),
+
+                      Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.spaceAround,
+                        children: [
+                          ItemDetailsRow(
+                            svgImage: Assets.svgItemDetails4,
+                            text1: "80 كالوري",
+                            text2: "100 جرام",
+                          ),
+
+                          ItemDetailsRow(
+                            svgImage: Assets.svgItemDetails3,
+                            text1: "4.8 (256)",
+                            text2: "Reviews",
+                          ),
+                        ],
+                      ),
+
+                      MyButton(
+                        onTap: () {},
+                        buttonTitle: "أضف الي السلة",
+                      ),
+                      // ! for later updates and adjastments (GridView)
+                      //   SizedBox(
+                      //     width: 200.w(context),
+                      //     height: 200.h(context),
+                      //     child: GridView.builder(
+                      //       padding: EdgeInsets.zero,
+                      //       itemCount: 4,
+                      //       gridDelegate:
+                      //           const SliverGridDelegateWithFixedCrossAxisCount(
+                      //             crossAxisCount: 2,
+                      //             crossAxisSpacing: 10,
+                      //             mainAxisSpacing: 10,
+                      //             // childAspectRatio: .7,
+                      //           ),
+
+                      //       itemBuilder:
+                      //           (context, index) => Container(
+                      //             decoration: BoxDecoration(
+                      //               color: AppColors.grayscale50,
+                      //               borderRadius: BorderRadius.circular(
+                      //                 25,
+                      //               ),
+                      //             ),
+                      //             child: Row(
+                      //               children: [
+                      //                 Column(
+                      //                   children: [
+                      //                     Text("100%"),
+                      //                     SizedBox(height: 5),
+                      //                     Text("organic"),
+                      //                   ],
+                      //                 ),
+                      //                 SvgPicture.asset(
+                      //                   width: 50,
+                      //                   height: 50,
+                      //                   Assets.svgItemDetails1,
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //     ),
+                      //   ),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
           ],
@@ -128,10 +261,59 @@ class ItemDetailsPage extends StatelessWidget {
   }
 }
 
-class ItemQuantityWidget extends StatefulWidget {
-    final ValueChanged<int> onQuantityChanged;
+class ItemDetailsRow extends StatelessWidget {
+  String svgImage;
+  String text1;
+  String text2;
+  ItemDetailsRow({
+    super.key,
+    required this.svgImage,
+    required this.text1,
+    required this.text2,
+  });
 
-  const ItemQuantityWidget({super.key, required this.onQuantityChanged,});
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              text1,
+              style: AppTextStyles.bodyBaseBold.copyWith(
+                color: AppColors.green1_600,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              text2,
+              style: AppTextStyles.bodySmall.copyWith(
+                color: AppColors.grayscale500,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(width: 10),
+        SvgPicture.asset(
+          svgImage,
+          height: 50.h(context),
+          width: 50.w(context),
+        ),
+      ],
+    );
+  }
+}
+
+class ItemQuantityWidget extends StatefulWidget {
+  final ValueChanged<int> onQuantityChanged;
+
+  const ItemQuantityWidget({
+    super.key,
+    required this.onQuantityChanged,
+  });
 
   @override
   State<ItemQuantityWidget> createState() =>
@@ -149,7 +331,6 @@ class _ItemQuantityWidgetState extends State<ItemQuantityWidget> {
           onTap: () {
             setState(() {
               quantity++;
-
             });
             widget.onQuantityChanged(quantity);
           },

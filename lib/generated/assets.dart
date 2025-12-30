@@ -54,6 +54,10 @@ class Assets {
   /// assets/png/fruit_offer_png.png
   static const String pngFruitOfferPng = "assets/png/fruit_offer_png.png";
 
+  /// Assets for pngItemDetailspng1
+  /// assets/png/itemDetailspng1.png
+  static const String pngItemDetailspng1 = "assets/png/itemDetailspng1.png";
+
   /// Assets for pngOrangeCircle
   /// assets/png/orange_circle.png
   static const String pngOrangeCircle = "assets/png/orange_circle.png";
@@ -101,6 +105,22 @@ class Assets {
   /// Assets for svgGoogleIcon
   /// assets/svg/google_icon.svg
   static const String svgGoogleIcon = "assets/svg/google_icon.svg";
+
+  /// Assets for svgItemDetails1
+  /// assets/svg/itemDetails1.svg
+  static const String svgItemDetails1 = "assets/svg/itemDetails1.svg";
+
+  /// Assets for svgItemDetails2
+  /// assets/svg/itemDetails2.svg
+  static const String svgItemDetails2 = "assets/svg/itemDetails2.svg";
+
+  /// Assets for svgItemDetails3
+  /// assets/svg/itemDetails3.svg
+  static const String svgItemDetails3 = "assets/svg/itemDetails3.svg";
+
+  /// Assets for svgItemDetails4
+  /// assets/svg/itemDetails4.svg
+  static const String svgItemDetails4 = "assets/svg/itemDetails4.svg";
 
   /// Assets for svgNotificationRing
   /// assets/svg/notification_ring.svg
