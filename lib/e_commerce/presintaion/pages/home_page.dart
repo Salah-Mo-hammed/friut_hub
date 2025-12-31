@@ -4,16 +4,24 @@ import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/e_commerce/presintaion/pages/item_details_page.dart';
+import 'package:friut_hub/e_commerce/presintaion/pages/notifications_page.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  bool noSearchResult = false;
+  final discountImages = [
+    Assets.pngDiscountImage1,
+    Assets.pngDicountImage2,
+    Assets.pngDicountImage3,
+  ];
+
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 50),
+        SizedBox(height: 40.h(context)),
         //! AppBar Row
         // ! Note: we didnt use MyAppBar here because there is somechanges in it here
         Padding(
@@ -23,10 +31,11 @@ class HomePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  SvgPicture.asset(
-                    Assets.svgPersonIcon,
-                    fit: BoxFit.fill,
-                  ),
+                  Image.asset(Assets.pngPersonIcon, fit: BoxFit.fill),
+                  // SvgPicture.asset(
+                  //   Assets.svgPersonIcon,
+                  //   fit: BoxFit.fill,
+                  // ),
                   SizedBox(width: 5),
                   Column(
                     children: [
@@ -50,12 +59,24 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: SvgPicture.asset(
-                  Assets.svgNotificationRing,
-                  height: 20.h(context),
-                  width: 20.w(context),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NotificationsPage(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                  ),
+                  child: SvgPicture.asset(
+                    Assets.svgNotificationRing,
+                    height: 20.h(context),
+                    width: 20.w(context),
+                  ),
                 ),
               ),
             ],
@@ -113,108 +134,194 @@ class HomePage extends StatelessWidget {
         //     ),
         //   ],
         // ),
-        Image.asset(Assets.pngOrangeOfferPng),
 
         // ! svg is the best but for now here is a problem in fetching image
         // SvgPicture.asset('assets/svg/orange_offer.svg'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "الأكثر مبيعًا",
-                style: AppTextStyles.bodyBaseBold.copyWith(
-                  color: Colors.black,
-                ),
-              ),
-              Text("المزيد", style: AppTextStyles.bodySmall),
-            ],
+        if (!noSearchResult) ...[
+          // ! problem here in svg discount images
+          // SvgPicture.asset(Assets.svgBigImageDiscount),
+          SizedBox(
+            height: 160.h(context),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: discountImages.length,
+              padding: EdgeInsets.symmetric(horizontal: 4.w(context)),
+
+              itemBuilder: (context, index) {
+                return DiscountBanner(
+                  discountImage: discountImages[index],
+                );
+              },
+            ),
           ),
-        ),
-        Expanded(
-          child: GridView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: 10,
-            gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 5,
-                  childAspectRatio: .9,
+          // ! old code dor dicsount banner
+          // SingleChildScrollView(
+          //   scrollDirection: Axis.horizontal,
+          //   child: Row(
+          //     children: [
+          //       SizedBox(width: 8.w(context)),
+
+          //       Image.asset(
+          //         Assets.pngDiscountImage1,
+          //         width: 342.w(context),
+          //         height: 158.h(context),
+          //         fit: BoxFit.contain,
+          //       ),
+          //       SizedBox(width: 8.w(context)),
+          //       Image.asset(
+          //         Assets.pngDicountImage2,
+          //         width: 342.w(context),
+          //         height: 158.h(context),
+          //         fit: BoxFit.contain,
+          //       ),
+          //       SizedBox(width: 8.w(context)),
+          //       Image.asset(
+          //         Assets.pngDicountImage3,
+          //         width: 342.w(context),
+          //         height: 158.h(context),
+          //         fit: BoxFit.contain,
+          //       ),
+          //       SizedBox(width: 8.w(context)),
+          //     ],
+          //   ),
+          // ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "الأكثر مبيعًا",
+                  style: AppTextStyles.bodyBaseBold.copyWith(
+                    color: Colors.black,
+                  ),
                 ),
-            itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(color: Colors.white),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 20,
-                      right: 40,
-                      child: Image.asset(
-                        height: 120,
-                        width: 120,
-                        Assets.pngFruitBasketAmico1Splash1,
+                Text("المزيد", style: AppTextStyles.bodySmall),
+              ],
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: 10,
+              gridDelegate:
+                  const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    childAspectRatio: .9,
+                  ),
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 20,
+                        right: 40,
+                        child: Image.asset(
+                          height: 120,
+                          width: 120,
+                          Assets.pngFruitBasketAmico1Splash1,
+                        ),
                       ),
-                    ),
-                    // ! same problem
-                    // Center(
-                    // child: SvgPicture.asset(Assets.svgFarawlla),
-                    // ),
-                    Positioned(
-                      bottom: 20,
-                      right: 10,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "بطيخ",
-                            style: AppTextStyles.bodySmallBold
-                                .copyWith(color: Colors.black),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "20جنية / ",
-                                style: AppTextStyles.bodySmallBold
-                                    .copyWith(
-                                      fontSize: 15,
-                                      color: AppColors.orange500,
-                                    ),
-                              ),
-                              Text(
-                                "الكيلو",
-                                style: AppTextStyles.bodySmallBold
-                                    .copyWith(
-                                      fontSize: 15,
-                                      color: AppColors.orange300,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 20,
-                      left: 10,
-                      child: ItemAddIcon(
-                        onTap:
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => ItemDetailsPage(),
-                              ),
+                      // ! same problem
+                      // Center(
+                      // child: SvgPicture.asset(Assets.svgFarawlla),
+                      // ),
+                      Positioned(
+                        bottom: 20,
+                        right: 10,
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "بطيخ",
+                              style: AppTextStyles.bodySmallBold
+                                  .copyWith(color: Colors.black),
                             ),
+                            Row(
+                              children: [
+                                Text(
+                                  "20جنية / ",
+                                  style: AppTextStyles.bodySmallBold
+                                      .copyWith(
+                                        fontSize: 15,
+                                        color: AppColors.orange500,
+                                      ),
+                                ),
+                                Text(
+                                  "الكيلو",
+                                  style: AppTextStyles.bodySmallBold
+                                      .copyWith(
+                                        fontSize: 15,
+                                        color: AppColors.orange300,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
+                      Positioned(
+                        bottom: 20,
+                        left: 10,
+                        child: ItemAddIcon(
+                          onTap:
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ItemDetailsPage(),
+                                ),
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
-        ),
+        ] else ...[
+          SizedBox(height: 140.h(context)),
+
+          SvgPicture.asset(Assets.svgNoResult),
+          SizedBox(height: 20.h(context)),
+          Text(
+            "البحث",
+            style: AppTextStyles.bodyBaseBold.copyWith(
+              color: AppColors.grayscale600,
+            ),
+          ),
+          SizedBox(height: 20.h(context)),
+          Text(
+            "عفوًا... هذه المعلومات غير متوفرة للحظة",
+            style: AppTextStyles.bodyBaseBold.copyWith(
+              color: AppColors.grayscale400,
+            ),
+          ),
+        ],
       ],
+    );
+  }
+}
+
+class DiscountBanner extends StatelessWidget {
+  const DiscountBanner({super.key, required this.discountImage});
+
+  final String discountImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 4.w(context)),
+      child: Image.asset(
+        discountImage,
+        width: 342.w(context),
+        height: 158.h(context),
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
