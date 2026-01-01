@@ -102,6 +102,10 @@ class Assets {
   /// assets/png/watermellon_png.png
   static const String pngWatermellonPng = "assets/png/watermellon_png.png";
 
+  /// Assets for pngWatermellonSmall
+  /// assets/png/watermellonSmall.png
+  static const String pngWatermellonSmall = "assets/png/watermellonSmall.png";
+
   /// Assets for svgAppleIcon
   /// assets/svg/apple_icon.svg
   static const String svgAppleIcon = "assets/svg/apple_icon.svg";
@@ -158,6 +162,10 @@ class Assets {
   /// assets/svg/itemDetails4.svg
   static const String svgItemDetails4 = "assets/svg/itemDetails4.svg";
 
+  /// Assets for svgMotagatna
+  /// assets/svg/motagatna.svg
+  static const String svgMotagatna = "assets/svg/motagatna.svg";
+
   /// Assets for svgNoResult
   /// assets/svg/noResult.svg
   static const String svgNoResult = "assets/svg/noResult.svg";
@@ -202,6 +210,10 @@ class Assets {
   /// assets/svg/selected_user_icon.svg
   static const String svgSelectedUserIcon = "assets/svg/selected_user_icon.svg";
 
+  /// Assets for svgTag
+  /// assets/svg/tag.svg
+  static const String svgTag = "assets/svg/tag.svg";
+
   /// Assets for svgUnselectedHomeIcon
   /// assets/svg/unselected_home_icon.svg
   static const String svgUnselectedHomeIcon = "assets/svg/unselected_home_icon.svg";
@@ -225,6 +237,10 @@ class Assets {
   /// Assets for svgWatermellon
   /// assets/svg/watermellon.svg
   static const String svgWatermellon = "assets/svg/watermellon.svg";
+
+  /// Assets for svgWatermellonSmall
+  /// assets/svg/watermellonSmall.svg
+  static const String svgWatermellonSmall = "assets/svg/watermellonSmall.svg";
 
   /// Assets for svgWhiteCircle
   /// assets/svg/white_circle.svg
