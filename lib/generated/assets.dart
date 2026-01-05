@@ -90,6 +90,10 @@ class Assets {
   /// assets/png/pineapple-cuate_1_png.png
   static const String pngPineappleCuate1Png = "assets/png/pineapple-cuate_1_png.png";
 
+  /// Assets for pngReviewIcon
+  /// assets/png/reviewIcon.png
+  static const String pngReviewIcon = "assets/png/reviewIcon.png";
+
   /// Assets for pngSplash1Orange
   /// assets/png/splash1_orange.png
   static const String pngSplash1Orange = "assets/png/splash1_orange.png";
@@ -190,6 +194,10 @@ class Assets {
   /// assets/svg/person_icon.svg
   static const String svgPersonIcon = "assets/svg/person_icon.svg";
 
+  /// Assets for svgReviewIcon
+  /// assets/svg/reviewIcon.svg
+  static const String svgReviewIcon = "assets/svg/reviewIcon.svg";
+
   /// Assets for svgSearchNormal
   /// assets/svg/search-normal.svg
   static const String svgSearchNormal = "assets/svg/search-normal.svg";
@@ -213,6 +221,10 @@ class Assets {
   /// Assets for svgTag
   /// assets/svg/tag.svg
   static const String svgTag = "assets/svg/tag.svg";
+
+  /// Assets for svgTrash
+  /// assets/svg/trash.svg
+  static const String svgTrash = "assets/svg/trash.svg";
 
   /// Assets for svgUnselectedHomeIcon
   /// assets/svg/unselected_home_icon.svg

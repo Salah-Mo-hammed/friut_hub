@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/auth/presentation/widgets/my_button_widget.dart';
@@ -73,94 +75,103 @@ class ProductsPage extends StatelessWidget {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return SizedBox(
-                      height: 314.h(context),
-                      width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-
-                          children: [
-                            SizedBox(height: 32.h(context)),
-                            Text(
-                              " : تصنيف حسب",
-                              style: AppTextStyles.bodyLarge.copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                    return Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: SizedBox(
+                        height: 314.h(context),
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0,
+                          ),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 32.h(context)),
+                              Text(
+                                " : تصنيف حسب",
+                                style: AppTextStyles.bodyLarge
+                                    .copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17,
+                                    ),
                               ),
-                            ),
-                            SizedBox(height: 11.h(context)),
-                            // : السعر
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  " : السعر",
-                                  style: AppTextStyles.bodyLarge
-                                      .copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13,
-                                      ),
-                                ),
-                                SvgPicture.asset(Assets.svgTag),
-                              ],
-                            ),
+                              SizedBox(height: 11.h(context)),
+                              // : السعر
+                              Row(
+                                children: [
+                                  SvgPicture.asset(Assets.svgTag),
 
-                            SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                              children: [
-                                _numberFeild(
-                                  priceController: minPriceController,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "الي",
-                                    style: AppTextStyles.bodySmallBold
-                                        .copyWith(fontSize: 15),
+                                  Text(
+                                    "  السعر :",
+                                    style: AppTextStyles.bodyLarge
+                                        .copyWith(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                        ),
                                   ),
-                                ),
-                                _numberFeild(
-                                  priceController: maxPriceController,
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            PriceRangeSlider(
-                              minPriceController: minPriceController,
-                              maxPriceController: maxPriceController,
-                            ),
-                            SizedBox(height: 10),
-                            MyButton(
-                              onTap: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return SizedBox(
-                                      height: 314.h(context),
-                                      width: double.infinity,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.symmetric(
-                                              horizontal: 12.0,
-                                            ),
-                                        child: tarteeb(),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                              buttonTitle: "تصفيه",
-                            ),
-                          ],
+                                ],
+                              ),
+
+                              SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                children: [
+                                  _numberFeild(
+                                    priceController:
+                                        minPriceController,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(
+                                      8.0,
+                                    ),
+                                    child: Text(
+                                      "الي",
+                                      style: AppTextStyles
+                                          .bodySmallBold
+                                          .copyWith(fontSize: 15),
+                                    ),
+                                  ),
+                                  _numberFeild(
+                                    priceController:
+                                        maxPriceController,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              PriceRangeSlider(
+                                minPriceController:
+                                    minPriceController,
+                                maxPriceController:
+                                    maxPriceController,
+                              ),
+                              SizedBox(height: 10),
+                              MyButton(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return SizedBox(
+                                        height: 314.h(context),
+                                        width: double.infinity,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.symmetric(
+                                                horizontal: 12.0,
+                                              ),
+                                          child:
+                                              TarteebModalBottomSheet(),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                buttonTitle: "تصفيه",
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -307,61 +318,86 @@ class ProductsPage extends StatelessWidget {
   }
 }
 
-class tarteeb extends StatefulWidget {
-  const tarteeb({super.key});
+class TarteebModalBottomSheet extends StatefulWidget {
+  const TarteebModalBottomSheet({super.key});
 
   @override
-  State<tarteeb> createState() => _tarteebState();
+  State<TarteebModalBottomSheet> createState() =>
+      _TarteebModalBottomSheetState();
 }
 
-class _tarteebState extends State<tarteeb> {
+class _TarteebModalBottomSheetState
+    extends State<TarteebModalBottomSheet> {
   int _selectedOption = 1;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        SizedBox(height: 32.h(context)),
-        Text(
-          " : ترتيب حسب",
-          style: AppTextStyles.bodyLarge.copyWith(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 17,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 32.h(context)),
+          Text(
+            " : ترتيب حسب",
+            style: AppTextStyles.bodyLarge.copyWith(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+            ),
           ),
-        ),
-        RadioListTile<int>(
-          title: Text('Option 1'),
-          value: 0,
-          groupValue: _selectedOption,
-          onChanged: (value) {
-            setState(() {
-              _selectedOption = value!;
-            });
-          },
-        ),
-        RadioListTile<int>(
-          title: Text('Option 1'),
-          value: 1,
-          groupValue: _selectedOption,
-          onChanged: (value) {
-            setState(() {
-              _selectedOption = value!;
-            });
-          },
-        ),
-        RadioListTile<int>(
-          title: Text('Option 1'),
-          value: 1,
-          groupValue: _selectedOption,
-          onChanged: (value) {
-            setState(() {
-              _selectedOption = value!;
-            });
-          },
-        ),
-      ],
+          SizedBox(height: 10),
+          RadioListTile<int>(
+            // controlAffinity:ListTileControlAffinity.trailing ,
+            title: Text(
+              'السعر: من الأقل للأعلى',
+              style: AppTextStyles.bodyBaseBold.copyWith(
+                color: Colors.black,
+              ),
+            ),
+            value: 0,
+            groupValue: _selectedOption,
+            onChanged: (value) {
+              setState(() => _selectedOption = value!);
+            },
+          ),
+
+          RadioListTile<int>(
+            title: Text(
+              'السعر: من الأعلى للأقل',
+              style: AppTextStyles.bodyBaseBold.copyWith(
+                color: Colors.black,
+              ),
+            ),
+            value: 1,
+            groupValue: _selectedOption,
+            onChanged: (value) {
+              setState(() => _selectedOption = value!);
+            },
+          ),
+          RadioListTile<int>(
+            title: Text(
+              'الأبجديه',
+              style: AppTextStyles.bodyBaseBold.copyWith(
+                color: Colors.black,
+              ),
+            ),
+            value: 2,
+            groupValue: _selectedOption,
+            onChanged: (value) {
+              setState(() => _selectedOption = value!);
+            },
+          ),
+          MyButton(
+            onTap: () {
+              // TODO:  SHOW THE FILTERED PRODUCTS
+              // ! FOR NOW WE WILL POP
+              Navigator.pop(context);
+            },
+            buttonTitle: "تصفيه",
+          ),
+        ],
+      ),
     );
   }
 }

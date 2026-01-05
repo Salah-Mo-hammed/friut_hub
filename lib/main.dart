@@ -9,6 +9,7 @@ import 'package:friut_hub/e_commerce/presintaion/pages/item_details_page.dart';
 // import 'package:friut_hub/features/pages/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:friut_hub/e_commerce/presintaion/pages/main_dashboard.dart';
+import 'package:friut_hub/e_commerce/presintaion/pages/reviews_page.dart';
 import 'package:friut_hub/features/pages/on_boarding_view.dart';
 import 'package:friut_hub/features/pages/splash_page.dart';
 // import 'package:friut_hub/auth/presentation/pages/login_page.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
 
-      home: MainDashboard(),
+      // home: MainDashboard(),
+      home: ReviewsPage(),
       // home: LoginPage(isRegister: false),
       // ! first page => SplashPage
       // home: SplashPage(),
