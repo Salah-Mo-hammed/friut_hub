@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/best_sellings_page.dart';
 
 class MainBestSellingWIdget extends StatelessWidget {
   const MainBestSellingWIdget({super.key});
@@ -18,7 +18,15 @@ class MainBestSellingWIdget extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          Text("المزيد", style: AppTextStyles.bodySmall),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                BestSellingsPage.routeName,
+              );
+            },
+            child: Text("المزيد", style: AppTextStyles.bodySmall),
+          ),
         ],
       ),
     );

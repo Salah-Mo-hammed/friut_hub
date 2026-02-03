@@ -66,11 +66,9 @@ class CustomItemCardWidget extends StatelessWidget {
             left: 10,
             child: ItemAddIcon(
               onTap:
-                  () => Navigator.push(
+                  () => Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => ItemDetailsPage(),
-                    ),
+                    ItemDetailsPage.routeName
                   ),
             ),
           ),

@@ -1,19 +1,18 @@
-
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 
-class TarteebModalBottomSheet extends StatefulWidget {
-  const TarteebModalBottomSheet({super.key});
+class ArrangeModalBottomSheet extends StatefulWidget {
+  const ArrangeModalBottomSheet({super.key});
 
   @override
-  State<TarteebModalBottomSheet> createState() =>
-      _TarteebModalBottomSheetState();
+  State<ArrangeModalBottomSheet> createState() =>
+      _ArrangeModalBottomSheetState();
 }
 
-class _TarteebModalBottomSheetState
-    extends State<TarteebModalBottomSheet> {
+class _ArrangeModalBottomSheetState
+    extends State<ArrangeModalBottomSheet> {
   int _selectedOption = 1;
 
   @override
@@ -77,6 +76,7 @@ class _TarteebModalBottomSheetState
             // TODO:  SHOW THE FILTERED PRODUCTS
             // ! FOR NOW WE WILL POP
             Navigator.pop(context);
+            Navigator.pop(context);
           },
           buttonTitle: "تصفيه",
         ),
@@ -84,4 +84,3 @@ class _TarteebModalBottomSheetState
     );
   }
 }
-

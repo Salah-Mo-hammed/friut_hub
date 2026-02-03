@@ -44,11 +44,9 @@ class MainDashboardAppBarWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => NotificationsPage(),
-                ),
+                NotificationsPage.routeName,
               );
             },
             child: Padding(

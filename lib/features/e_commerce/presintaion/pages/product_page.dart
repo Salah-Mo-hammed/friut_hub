@@ -25,39 +25,40 @@ class ProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF3F5F7),
-      body: Column(
-        children: [
-          SizedBox(height: 50.h(context)),
-          ProductsAppBar(),
-          CustomSearchBarWidget(),
-          SizedBox(height: 10.h(context)),
-          ProductRow(
-            text1: "منتجاتنا",
-            widget2: FilterBottomSheetButton(
-              minPriceController: minPriceController,
-              maxPriceController: maxPriceController,
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: SizedBox(height: 50.h(context))),
+          SliverToBoxAdapter(child: ProductsAppBar()),
+          SliverToBoxAdapter(child: CustomSearchBarWidget()),
+          SliverToBoxAdapter(child: SizedBox(height: 10.h(context))),
+          SliverToBoxAdapter(
+            child: ProductRow(
+              text1: "منتجاتنا",
+              widget2: FilterBottomSheetButton(
+                minPriceController: minPriceController,
+                maxPriceController: maxPriceController,
+              ),
             ),
           ),
-          ProductsHorizntalList(),
-          ProductRow(
-            text1: "الأكثر مبيعًا",
-            widget2: Text("المزيد", style: AppTextStyles.bodySmall),
-          ),
-          Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: 10,
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5,
-                    childAspectRatio: .9,
-                  ),
-              itemBuilder: (context, index) {
-                return CustomItemCardWidget();
-              },
+          SliverToBoxAdapter(child: ProductsHorizntalList()),
+          SliverToBoxAdapter(
+            child: ProductRow(
+              text1: "الأكثر مبيعًا",
+              widget2: Text("المزيد", style: AppTextStyles.bodySmall),
             ),
+          ),
+          SliverGrid.builder(
+            itemCount: 10,
+            gridDelegate:
+                const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
+                  childAspectRatio: .9,
+                ),
+            itemBuilder: (context, index) {
+              return CustomItemCardWidget();
+            },
           ),
         ],
       ),

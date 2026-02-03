@@ -104,11 +104,9 @@ class LoginPage extends StatelessWidget {
                       title2: 'الشروط والأحكام الخاصة بنا',
                       onTap: () {
                         // ! Polices page
-                        Navigator.push(
+                        Navigator.pushNamed(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => PolicesPage(),
-                          ),
+                          PolicesPage.routeName,
                         );
                       },
                     ),

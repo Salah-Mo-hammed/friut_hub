@@ -22,65 +22,72 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 40.h(context)),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(child: SizedBox(height: 40.h(context))),
         //! AppBar Row
         // ! Note: we didnt use MyAppBar here because there is somechanges in it here
-        MainDashboardAppBarWidget(),
-        SizedBox(height: 16.h(context)),
-        CustomSearchBarWidget(),
-        SizedBox(height: 10),
+        SliverToBoxAdapter(child: MainDashboardAppBarWidget()),
+        SliverToBoxAdapter(child: SizedBox(height: 16.h(context))),
+        SliverToBoxAdapter(child: CustomSearchBarWidget()),
+        SliverToBoxAdapter(child: SizedBox(height: 10)),
         if (!noSearchResult) ...[
-          SizedBox(
-            height: 160.h(context),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: discountImages.length,
-              padding: EdgeInsets.symmetric(horizontal: 4.w(context)),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 160.h(context),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: discountImages.length,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 4.w(context),
+                ),
 
-              itemBuilder: (context, index) {
-                return DiscountBanner(
-                  discountImage: discountImages[index],
-                );
-              },
+                itemBuilder: (context, index) {
+                  return DiscountBanner(
+                    discountImage: discountImages[index],
+                  );
+                },
+              ),
             ),
           ),
 
-          MainBestSellingWIdget(),
-          Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: 10,
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5,
-                    childAspectRatio: .9,
-                  ),
-              itemBuilder: (context, index) {
-                return CustomItemCardWidget();
-              },
-            ),
+          SliverToBoxAdapter(child: MainBestSellingWIdget()),
+          SliverGrid.builder(
+            itemCount: 10,
+            gridDelegate:
+                const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 8,
+                  childAspectRatio: 176 / 214,
+                ),
+            itemBuilder: (context, index) {
+              return CustomItemCardWidget();
+            },
           ),
         ] else ...[
           //! noSearchResult contd
-          SizedBox(height: 140.h(context)),
+          SliverToBoxAdapter(child: SizedBox(height: 140.h(context))),
 
-          SvgPicture.asset(Assets.svgNoResult),
-          SizedBox(height: 20.h(context)),
-          Text(
-            "البحث",
-            style: AppTextStyles.bodyBaseBold.copyWith(
-              color: AppColors.grayscale600,
+          SliverToBoxAdapter(
+            child: SvgPicture.asset(Assets.svgNoResult),
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 20.h(context))),
+          SliverToBoxAdapter(
+            child: Text(
+              "البحث",
+              style: AppTextStyles.bodyBaseBold.copyWith(
+                color: AppColors.grayscale600,
+              ),
             ),
           ),
-          SizedBox(height: 20.h(context)),
-          Text(
-            "عفوًا... هذه المعلومات غير متوفرة للحظة",
-            style: AppTextStyles.bodyBaseBold.copyWith(
-              color: AppColors.grayscale400,
+          SliverToBoxAdapter(child: SizedBox(height: 20.h(context))),
+          SliverToBoxAdapter(
+            child: Text(
+              "عفوًا... هذه المعلومات غير متوفرة للحظة",
+              style: AppTextStyles.bodyBaseBold.copyWith(
+                color: AppColors.grayscale400,
+              ),
             ),
           ),
         ],
@@ -88,8 +95,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

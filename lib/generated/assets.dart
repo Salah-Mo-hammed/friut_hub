@@ -130,6 +130,22 @@ class Assets {
   /// assets/svg/change_pass_successed.svg
   static const String svgChangePassSuccessed = "assets/svg/change_pass_successed.svg";
 
+  /// Assets for svgCheckoutAddress
+  /// assets/svg/checkout_address.svg
+  static const String svgCheckoutAddress = "assets/svg/checkout_address.svg";
+
+  /// Assets for svgCheckoutCharge
+  /// assets/svg/checkout_charge.svg
+  static const String svgCheckoutCharge = "assets/svg/checkout_charge.svg";
+
+  /// Assets for svgCheckoutPaymentMethod
+  /// assets/svg/checkout_payment_method.svg
+  static const String svgCheckoutPaymentMethod = "assets/svg/checkout_payment_method.svg";
+
+  /// Assets for svgCheckoutRevision
+  /// assets/svg/checkout_revision.svg
+  static const String svgCheckoutRevision = "assets/svg/checkout_revision.svg";
+
   /// Assets for svgExitIcon
   /// assets/svg/exitIcon.svg
   static const String svgExitIcon = "assets/svg/exitIcon.svg";
@@ -137,6 +153,10 @@ class Assets {
   /// Assets for svgFarawlla
   /// assets/svg/farawlla.svg
   static const String svgFarawlla = "assets/svg/farawlla.svg";
+
+  /// Assets for svgFilledCircle
+  /// assets/svg/filledCircle.svg
+  static const String svgFilledCircle = "assets/svg/filledCircle.svg";
 
   /// Assets for svgFilterNormal
   /// assets/svg/filter_normal.svg
@@ -197,6 +217,10 @@ class Assets {
   /// Assets for svgReviewIcon
   /// assets/svg/reviewIcon.svg
   static const String svgReviewIcon = "assets/svg/reviewIcon.svg";
+
+  /// Assets for svgRoundedCircle
+  /// assets/svg/roundedCircle.svg
+  static const String svgRoundedCircle = "assets/svg/roundedCircle.svg";
 
   /// Assets for svgSearchNormal
   /// assets/svg/search-normal.svg
