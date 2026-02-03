@@ -94,7 +94,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 16),
               Row(
                 children: [
-                  PoliciesCheckBox(),
+                  PoliciesCheckBox(title: 'check here to',),
                   Container(
                     constraints: BoxConstraints(
                       maxWidth: MediaQuery.sizeOf(context).width - 50,

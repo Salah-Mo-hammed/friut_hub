@@ -114,6 +114,14 @@ class Assets {
   /// assets/svg/apple_icon.svg
   static const String svgAppleIcon = "assets/svg/apple_icon.svg";
 
+  /// Assets for svgApplePaySelected
+  /// assets/svg/applePaySelected.svg
+  static const String svgApplePaySelected = "assets/svg/applePaySelected.svg";
+
+  /// Assets for svgApplePayUnselected
+  /// assets/svg/applePayUnselected.svg
+  static const String svgApplePayUnselected = "assets/svg/applePayUnselected.svg";
+
   /// Assets for svgBigImageDiscount
   /// assets/svg/bigImageDiscount.svg
   static const String svgBigImageDiscount = "assets/svg/bigImageDiscount.svg";
@@ -186,6 +194,14 @@ class Assets {
   /// assets/svg/itemDetails4.svg
   static const String svgItemDetails4 = "assets/svg/itemDetails4.svg";
 
+  /// Assets for svgLocation
+  /// assets/svg/location.svg
+  static const String svgLocation = "assets/svg/location.svg";
+
+  /// Assets for svgMastercard
+  /// assets/svg/Mastercard.svg
+  static const String svgMastercard = "assets/svg/Mastercard.svg";
+
   /// Assets for svgMotagatna
   /// assets/svg/motagatna.svg
   static const String svgMotagatna = "assets/svg/motagatna.svg";
@@ -209,6 +225,10 @@ class Assets {
   /// Assets for svgOrangeOffer
   /// assets/svg/orange_offer.svg
   static const String svgOrangeOffer = "assets/svg/orange_offer.svg";
+
+  /// Assets for svgPaypal
+  /// assets/svg/Paypal.svg
+  static const String svgPaypal = "assets/svg/Paypal.svg";
 
   /// Assets for svgPersonIcon
   /// assets/svg/person_icon.svg
@@ -269,6 +289,18 @@ class Assets {
   /// Assets for svgUser
   /// assets/svg/user.svg
   static const String svgUser = "assets/svg/user.svg";
+
+  /// Assets for svgVector
+  /// assets/svg/Vector.svg
+  static const String svgVector = "assets/svg/Vector.svg";
+
+  /// Assets for svgVisa
+  /// assets/svg/Visa.svg
+  static const String svgVisa = "assets/svg/Visa.svg";
+
+  /// Assets for svgVisaUnselected
+  /// assets/svg/VisaUnselected.svg
+  static const String svgVisaUnselected = "assets/svg/VisaUnselected.svg";
 
   /// Assets for svgWatermellon
   /// assets/svg/watermellon.svg

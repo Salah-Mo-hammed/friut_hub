@@ -3,6 +3,7 @@ import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/checkout_adress_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/checkout_charge_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/checkout_payment_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/checkout_revision_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/checkout_widgets/checkout_row_item_widget.dart';
 import 'package:friut_hub/generated/assets.dart';
 
@@ -26,7 +27,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
   TextEditingController mobileController = TextEditingController();
 
   final PageController _pageController = PageController();
-
   int currentStep = 0;
 
   void nextStep() {
@@ -38,6 +38,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
       );
     }
   }
+  // ******************************************************
+
+  TextEditingController cardOwnerName = TextEditingController();
+  TextEditingController cardNumber = TextEditingController();
+  TextEditingController cardEXpireDate = TextEditingController();
+  TextEditingController cardCVV = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +99,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
+                //! first page (Charge Type Page)
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 0, //16,
@@ -100,6 +107,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                   child: CheckOutChargePage(onNext: nextStep),
                 ),
+
+                //! second page (Address Page)
                 CheckoutAdressPage(
                   fullNameController: fullNameController,
                   adressController: adressController,
@@ -108,7 +117,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   mobileController: mobileController,
                   onNext: nextStep,
                 ),
-                CheckOutPaymentPage()
+
+                //! third page (Payment Method Page)
+                CheckOutPaymentPage(
+                  onNext: nextStep,
+                  cardOwnerName: cardOwnerName,
+                  cardNumber: cardNumber,
+                  cardEXpireDate: cardEXpireDate,
+                  cardCVV: cardCVV,
+                ),
+                //! Forth page (Charge Page)
+                CheckoutRevisionPage(onNext: nextStep,),
               ],
             ),
           ),
