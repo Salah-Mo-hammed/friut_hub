@@ -1,11 +1,12 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/done_pay_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/widgets/checkout_widgets/revision_second_container.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/widgets/checkout_widgets/revision_total_salary_container.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class CheckoutRevisionPage extends StatelessWidget {
@@ -158,102 +159,14 @@ class CheckoutRevisionPage extends StatelessWidget {
           ),
 
           SizedBox(height: 51.h(context)),
-          MyButton(onTap: () {}, buttonTitle: "تأكيد الطلب"),
+          MyButton(
+            onTap: () {
+              Navigator.pushNamed(context, DonePayPage.routeName);
+            },
+            buttonTitle: "تأكيد الطلب",
+          ),
         ],
       ),
-    );
-  }
-}
-
-class RevisionSecondContainer extends StatelessWidget {
-  final String title;
-  final VoidCallback onTap;
-  final Widget widget3;
-  const RevisionSecondContainer({
-    super.key,
-    required this.onTap,
-    required this.title,
-    required this.widget3,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100.h(context),
-      clipBehavior: Clip.antiAlias,
-      decoration: ShapeDecoration(
-        color: Color.fromARGB(126, 217, 218, 218),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            RevisionTotalSalaryContainer(
-              title: title,
-
-              widget2: GestureDetector(
-                onTap: onTap,
-                child: Row(
-                  children: [
-                    // ! change this to svgeditICon
-                    SvgPicture.asset(
-                      Assets.svgVector,
-                      height: 16,
-                      width: 16,
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(width: 5),
-                    Text(
-                      "تعديل",
-                      style: AppTextStyles.bodySmall.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              isBold: true,
-            ),
-
-            widget3,
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class RevisionTotalSalaryContainer extends StatelessWidget {
-  final String title;
-  final Widget widget2;
-  final bool isBold;
-  const RevisionTotalSalaryContainer({
-    super.key,
-    required this.title,
-    required this.widget2,
-    required this.isBold,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-
-          style: AppTextStyles.bodySmallMedium.copyWith(
-            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-            fontSize: 16,
-          ),
-        ),
-        widget2,
-      ],
     );
   }
 }

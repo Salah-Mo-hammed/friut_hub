@@ -3,6 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/about_us_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/favoutires_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/language_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/my_requests_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/payments_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/personal_file_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/profile_widgets/profile_generals_widget.dart';
 import 'package:friut_hub/generated/assets.dart';
 
@@ -38,10 +44,7 @@ class ProfilePage extends StatelessWidget {
                       Assets.pngPersonIcon,
                       fit: BoxFit.fill,
                     ),
-                    // SvgPicture.asset(
-                    //   Assets.svgPersonIcon,
-                    //   fit: BoxFit.fill,
-                    // ),
+
                     SizedBox(width: 5),
                     Column(
                       children: [
@@ -79,7 +82,12 @@ class ProfilePage extends StatelessWidget {
                 child: ProfileGenerals(
                   imageAsset: Assets.svgUser,
                   title: 'الملف الشخصي',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      PersonalProfilePage.routeName,
+                    );
+                  },
                 ),
               ),
               Padding(
@@ -92,9 +100,32 @@ class ProfilePage extends StatelessWidget {
                 child: ProfileGenerals(
                   imageAsset: Assets.svgBox,
                   title: 'طلباتي',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      MyRequestsPage.routeName,
+                    );
+                  },
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Divider(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: ProfileGenerals(
+                  imageAsset: Assets.svgEmptyWallet,
+                  title: 'المدفوعات',
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      PaymentsPage.routeName,
+                    );
+                  },
+                ),
+              ),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Divider(),
@@ -105,7 +136,12 @@ class ProfilePage extends StatelessWidget {
                 child: ProfileGenerals(
                   imageAsset: Assets.svgHeart,
                   title: 'المفضلة',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      FavoutiresPage.routeName,
+                    );
+                  },
                 ),
               ),
               Padding(
@@ -121,6 +157,67 @@ class ProfilePage extends StatelessWidget {
                   isNotification: true,
                   onPressed: () {},
                 ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Divider(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: ProfileGenerals(
+                  imageAsset: Assets.svgGlobal,
+                  title: 'اللغة',
+                  isNotification: false,
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      LanguagePage.routeName,
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Divider(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: ProfileGenerals(
+                  imageAsset: Assets.svgMagicpen,
+                  title: 'الوضع',
+                  isNotification: true,
+                  onPressed: () {},
+                ),
+              ),
+              SizedBox(height: 5),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  "المساعدة",
+                  style: AppTextStyles.bodyBaseBold.copyWith(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: ProfileGenerals(
+                  imageAsset: Assets.svgInfoCircle,
+                  title: 'من نحن',
+                  isNotification: false,
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AboutUsPage.routeName,
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Divider(),
               ),
             ],
           ),
@@ -149,4 +246,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-

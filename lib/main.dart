@@ -44,13 +44,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
 
-      // home: MainDashboard(),
-      // home: ReviewsPage(),
-      // home: LoginPage(isRegister: false),
-      // // ! first page => SplashPage
+   
       onGenerateRoute: OnGenerateRoutes,
-      initialRoute: LoginPage.routeName,
-      // home: LoginPage(isRegister: false),
+      initialRoute: SplashPage.routeName,
+   
     );
   }
 }

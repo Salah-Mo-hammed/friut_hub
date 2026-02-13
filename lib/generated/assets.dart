@@ -154,6 +154,10 @@ class Assets {
   /// assets/svg/checkout_revision.svg
   static const String svgCheckoutRevision = "assets/svg/checkout_revision.svg";
 
+  /// Assets for svgEmptyWallet
+  /// assets/svg/empty-wallet.svg
+  static const String svgEmptyWallet = "assets/svg/empty-wallet.svg";
+
   /// Assets for svgExitIcon
   /// assets/svg/exitIcon.svg
   static const String svgExitIcon = "assets/svg/exitIcon.svg";
@@ -170,6 +174,10 @@ class Assets {
   /// assets/svg/filter_normal.svg
   static const String svgFilterNormal = "assets/svg/filter_normal.svg";
 
+  /// Assets for svgGlobal
+  /// assets/svg/global.svg
+  static const String svgGlobal = "assets/svg/global.svg";
+
   /// Assets for svgGoogleIcon
   /// assets/svg/google_icon.svg
   static const String svgGoogleIcon = "assets/svg/google_icon.svg";
@@ -177,6 +185,10 @@ class Assets {
   /// Assets for svgHeart
   /// assets/svg/heart.svg
   static const String svgHeart = "assets/svg/heart.svg";
+
+  /// Assets for svgInfoCircle
+  /// assets/svg/info-circle.svg
+  static const String svgInfoCircle = "assets/svg/info-circle.svg";
 
   /// Assets for svgItemDetails1
   /// assets/svg/itemDetails1.svg
@@ -197,6 +209,10 @@ class Assets {
   /// Assets for svgLocation
   /// assets/svg/location.svg
   static const String svgLocation = "assets/svg/location.svg";
+
+  /// Assets for svgMagicpen
+  /// assets/svg/magicpen.svg
+  static const String svgMagicpen = "assets/svg/magicpen.svg";
 
   /// Assets for svgMastercard
   /// assets/svg/Mastercard.svg
@@ -234,9 +250,17 @@ class Assets {
   /// assets/svg/person_icon.svg
   static const String svgPersonIcon = "assets/svg/person_icon.svg";
 
+  /// Assets for svgPersonRate
+  /// assets/svg/person_rate.svg
+  static const String svgPersonRate = "assets/svg/person_rate.svg";
+
   /// Assets for svgReviewIcon
   /// assets/svg/reviewIcon.svg
   static const String svgReviewIcon = "assets/svg/reviewIcon.svg";
+
+  /// Assets for svgReviewsProfileImage
+  /// assets/svg/reviews_profile_image.svg
+  static const String svgReviewsProfileImage = "assets/svg/reviews_profile_image.svg";
 
   /// Assets for svgRoundedCircle
   /// assets/svg/roundedCircle.svg
@@ -265,6 +289,30 @@ class Assets {
   /// Assets for svgTag
   /// assets/svg/tag.svg
   static const String svgTag = "assets/svg/tag.svg";
+
+  /// Assets for svgTrackOrder1
+  /// assets/svg/trackOrder1.svg
+  static const String svgTrackOrder1 = "assets/svg/trackOrder1.svg";
+
+  /// Assets for svgTrackOrder2
+  /// assets/svg/trackOrder2.svg
+  static const String svgTrackOrder2 = "assets/svg/trackOrder2.svg";
+
+  /// Assets for svgTrackOrder3
+  /// assets/svg/trackOrder3.svg
+  static const String svgTrackOrder3 = "assets/svg/trackOrder3.svg";
+
+  /// Assets for svgTrackOrder4
+  /// assets/svg/trackOrder4.svg
+  static const String svgTrackOrder4 = "assets/svg/trackOrder4.svg";
+
+  /// Assets for svgTrackOrder5
+  /// assets/svg/trackOrder5.svg
+  static const String svgTrackOrder5 = "assets/svg/trackOrder5.svg";
+
+  /// Assets for svgTrackOrder6
+  /// assets/svg/trackOrder6.svg
+  static const String svgTrackOrder6 = "assets/svg/trackOrder6.svg";
 
   /// Assets for svgTrash
   /// assets/svg/trash.svg
