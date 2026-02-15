@@ -7,6 +7,7 @@ import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.da
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/reset_pass_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/about_us_page.dart';
+import 'package:friut_hub/features/e_commerce/presintaion/pages/add_payment_from_profile_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/best_sellings_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/checkout_page_view.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/done_pay_page.dart';
@@ -63,6 +64,8 @@ Route<dynamic> OnGenerateRoutes(RouteSettings settings) {
     case AboutUsPage.routeName:
       return MaterialPageRoute(builder: (_) => AboutUsPage());
 
+    // case AddPaymentFromProfile.routeName:
+      // return MaterialPageRoute(builder: (_) => AboutUsPage());
       
     case ResetPasswordPage.routeName:
       return MaterialPageRoute(builder: (_) => ResetPasswordPage());

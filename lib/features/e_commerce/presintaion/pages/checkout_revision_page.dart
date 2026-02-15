@@ -163,7 +163,10 @@ class CheckoutRevisionPage extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, DonePayPage.routeName);
             },
-            buttonTitle: "تأكيد الطلب",
+            content:
+                          Text(  "تأكيد الطلب", style: AppTextStyles.bodyBaseBold),
+            
+            
           ),
         ],
       ),

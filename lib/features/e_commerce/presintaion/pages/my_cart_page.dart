@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
@@ -36,7 +37,10 @@ class MyCartPage extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, CheckoutPage.routeName);
             },
-            buttonTitle: "الدفع  120جنيه",
+            content: 
+                          Text("الدفع  120جنيه",style: AppTextStyles.bodyBaseBold),
+            
+            
           ),
         ],
       ),

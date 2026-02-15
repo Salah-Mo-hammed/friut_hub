@@ -105,7 +105,10 @@ class FilterBottomSheetButton extends StatelessWidget {
                           },
                         );
                       },
-                      buttonTitle: "تصفيه",
+                      content: 
+                          Text( "تصفيه", style: AppTextStyles.bodyBaseBold),
+                      
+                      
                     ),
                   ],
                 ),

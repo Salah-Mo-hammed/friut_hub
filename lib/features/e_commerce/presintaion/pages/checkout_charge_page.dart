@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/checkout_widgets/choose_payment_on_charge_page.dart';
 
@@ -44,7 +45,12 @@ class _CheckOutChargePageState extends State<CheckOutChargePage> {
           ),
         ),
         SizedBox(height: 150),
-        MyButton(onTap: widget.onNext, buttonTitle: "NEXT"),
+        MyButton(onTap: widget.onNext, content: 
+                          Text( "التالي", style: AppTextStyles.bodyBaseBold),
+        
+        
+        
+        ),
       ],
     );
   }

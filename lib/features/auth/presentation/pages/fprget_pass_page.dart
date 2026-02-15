@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
@@ -58,7 +59,10 @@ class ForgetPasswordPage extends StatelessWidget {
                   );
                 }
               },
-              buttonTitle: "نسيت كلمة المرور",
+              content:
+                          Text("نسيت كلمة المرور", style: AppTextStyles.bodyBaseBold),
+
+               
             ),
           ],
         ),

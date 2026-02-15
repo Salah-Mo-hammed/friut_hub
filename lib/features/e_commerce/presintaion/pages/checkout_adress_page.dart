@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
+import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/widgets/my_text_form_feild_widget.dart';
 
@@ -111,7 +112,10 @@ class CheckoutAdressPage extends StatelessWidget {
                 onNext();
               }
             },
-            buttonTitle: 'التالي',
+            content: 
+                          Text( 'التالي', style: AppTextStyles.bodyBaseBold),
+            
+            
           ),
         ],
       ),

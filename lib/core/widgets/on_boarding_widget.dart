@@ -137,9 +137,11 @@ class OnBoardingWidget extends StatelessWidget {
                     LoginPage.routeName,
                     arguments: false,
                   );
-             
                 },
-                buttonTitle: "ابدأ الان",
+                content:
+                          Text( "ابدأ الان", style: AppTextStyles.bodyBaseBold),
+                
+                
               ),
             ),
         ],

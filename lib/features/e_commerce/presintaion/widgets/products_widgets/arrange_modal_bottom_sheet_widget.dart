@@ -78,7 +78,10 @@ class _ArrangeModalBottomSheetState
             Navigator.pop(context);
             Navigator.pop(context);
           },
-          buttonTitle: "تصفيه",
+          content: 
+                          Text( "تصفيه", style: AppTextStyles.bodyBaseBold),
+          
+          
         ),
       ],
     );

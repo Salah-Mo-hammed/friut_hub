@@ -161,9 +161,7 @@ class _CheckOutPaymentPageState extends State<CheckOutPaymentPage> {
                 child: PoliciesCheckBox(
                   title: "جعل البطاقة افتراضية",
                   validator: (value) {
-                    if (value != true) {
-                      return "يجب الموافقة على جعل البطاقة افتراضية";
-                    }
+                 
                     return null;
                   },
                 ),
@@ -179,11 +177,13 @@ class _CheckOutPaymentPageState extends State<CheckOutPaymentPage> {
                 widget.onNext();
               }
             },
-            buttonTitle: 'تأكيد & استمرار',
+            content: 
+                          Text( 'تأكيد & استمرار', style: AppTextStyles.bodyBaseBold),
+            
+            
           ),
         ],
       ),
     );
   }
 }
-

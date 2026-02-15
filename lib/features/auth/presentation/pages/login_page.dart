@@ -94,7 +94,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 16),
               Row(
                 children: [
-                  PoliciesCheckBox(title: 'check here to',),
+                  PoliciesCheckBox(title: 'check here to'),
                   Container(
                     constraints: BoxConstraints(
                       maxWidth: MediaQuery.sizeOf(context).width - 50,
@@ -154,8 +154,14 @@ class LoginPage extends StatelessWidget {
                 }
               },
 
-              buttonTitle:
-                  isRegister ? "إنشاء حساب جديد" : "تسجيل دخول",
+              content: isRegister ? 
+              
+                          Text( "إنشاء حساب جديد", style: AppTextStyles.bodyBaseBold):
+              
+                          Text( "تسجيل دخول", style: AppTextStyles.bodyBaseBold)
+               
+               
+                ,
             ),
             SizedBox(height: 33.h(context)),
             //!  ======================== No Account?

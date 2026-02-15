@@ -42,7 +42,10 @@ class DonePayPage extends StatelessWidget {
                   TrackOrderPage.routeName,
                 );
               },
-              buttonTitle: "تتبع الطلب",
+              content:
+                          Text(   "تتبع الطلب",style: AppTextStyles.bodyBaseBold),
+              
+              
             ),
             SizedBox(height: 16.h(context)),
 

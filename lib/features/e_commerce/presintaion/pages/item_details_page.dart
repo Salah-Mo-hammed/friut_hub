@@ -42,11 +42,7 @@ class ItemDetailsPage extends StatelessWidget {
             ),
           ),
           // Back button
-          Positioned(
-            top: 55,
-            right: 30,
-            child: BackButton(),
-          ),
+          Positioned(top: 55, right: 30, child: BackButton()),
 
           // rest components: column
           Positioned.fill(
@@ -138,9 +134,9 @@ class ItemDetailsPage extends StatelessWidget {
           ),
           Positioned(
             bottom: 40,
-            child: MyButton(
-              onTap: () {},
-              buttonTitle: "أضف الي السلة",
+            child: MyButton(onTap: () {}, content:
+                          Text(    "أضف الي السلة",style: AppTextStyles.bodyBaseBold),
+            
             ),
           ),
         ],

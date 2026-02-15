@@ -93,7 +93,10 @@ class PasswoedRecoveryPage extends StatelessWidget {
                   );
                 }
               },
-              buttonTitle: "نسيت كلمة المرور",
+              content:
+                          Text( "نسيت كلمة المرور", style: AppTextStyles.bodyBaseBold),
+              
+               
             ),
             SizedBox(height: 24.h(context)),
             TextButton(

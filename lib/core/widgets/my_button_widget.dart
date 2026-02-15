@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
-import 'package:friut_hub/core/fonts/fonts_class.dart';
 
 class MyButton extends StatelessWidget {
   // final GlobalKey<FormState> _formKey;
-  final String buttonTitle;
+  final Widget content;
   void Function()? onTap;
+  bool doLogOut;
   MyButton({
     super.key,
     required this.onTap,
-    required this.buttonTitle,
+    required this.content,
+    this.doLogOut = false,
   });
 
   @override
@@ -20,19 +21,16 @@ class MyButton extends StatelessWidget {
         width: 400,
         height: 60,
         decoration: BoxDecoration(
-          color: AppColors.green1_500,
+          color: doLogOut ? Colors.white : AppColors.green1_500,
           borderRadius: BorderRadius.circular(15),
+          border:
+              doLogOut
+                  ? Border.all(color: AppColors.green1_500)
+                  : null,
         ),
-        child: InkWell(
-          onTap: onTap,
-          child: Center(
-            child: Text(
-              buttonTitle,
-              style: AppTextStyles.bodyBaseBold,
-            ),
-          ),
-        ),
+        child: InkWell(onTap: onTap, child: Center(child: content)),
       ),
     );
   }
 }
+// style: AppTextStyles.bodyBaseBold,

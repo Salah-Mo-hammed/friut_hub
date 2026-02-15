@@ -69,7 +69,12 @@ class PersonalProfilePage extends StatelessWidget {
               isPassword: true,
             ),
             SizedBox(height: 86),
-            MyButton(onTap: () {}, buttonTitle: "حفظ التغييرات"),
+            MyButton(onTap: () {}, content:
+                          Text( "حفظ التغييرات", style: AppTextStyles.bodyBaseBold),
+
+             
+             
+             ),
           ],
         ),
       ),

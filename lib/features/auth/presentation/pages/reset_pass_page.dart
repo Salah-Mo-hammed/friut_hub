@@ -104,7 +104,10 @@ class ResetPasswordPage extends StatelessWidget {
                   });
                 }
               },
-              buttonTitle: "إنشاء كلمة مرور جديدة",
+              content: 
+                          Text( "إنشاء كلمة مرور جديدة", style: AppTextStyles.bodyBaseBold),
+              
+              
             ),
           ],
         ),
