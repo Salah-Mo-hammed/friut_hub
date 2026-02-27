@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:friut_hub/features/auth/data/repo_impl/auth_repo_impl.dart';
 import 'package:friut_hub/features/auth/data/sources/remote/auth_remote_data_source.dart';
 import 'package:friut_hub/features/auth/domain/repo/auth_repo.dart';
+import 'package:friut_hub/features/auth/domain/usecases/login_user_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/register_user_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/send_email_confirm_code_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/verify_email_usecase.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -34,7 +36,7 @@ Future<void> initilaizedDependencies() async {
   );
 
   //! domain-> usecases
-  //! ============= AUTH =============
+  //! ============= AUTH  Register =============
   sl.registerSingleton<RegisterUserUsecase>(
     RegisterUserUsecase(authRepo: sl<AuthRepo>()),
   );
@@ -43,6 +45,11 @@ Future<void> initilaizedDependencies() async {
   );
   sl.registerSingleton<VerifyEmailUserUsecase>(
     VerifyEmailUserUsecase(authRepo: sl<AuthRepo>()),
+  );
+
+  //! ============= AUTH  Login =============
+  sl.registerSingleton<LoginUserUsecase>(
+    LoginUserUsecase(authRepo: sl<AuthRepo>()),
   );
   //! blocs
   //! ============= AUTH =============
@@ -53,5 +60,8 @@ Future<void> initilaizedDependencies() async {
           sl<SendEmailConfirmationUserUsecase>(),
       verifyEmailUserUsecase: sl<VerifyEmailUserUsecase>(),
     ),
+  );
+  sl.registerFactory<LoginBloc>(
+    () => LoginBloc(loginUserUsecase: sl<LoginUserUsecase>()),
   );
 }

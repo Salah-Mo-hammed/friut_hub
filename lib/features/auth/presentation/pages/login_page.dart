@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';
 import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
@@ -248,19 +249,49 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                       )
-                      : MyButton(
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.pushNamed(
+                      : BlocConsumer<LoginBloc, LoginState>(
+                        listener: (context, state) {
+                          if (state is LoginSucessful) {
+                            ScaffoldMessenger.of(
+                              context,
+                            ).showSnackBar(
+                              SnackBar(
+                                content: Text("Register Sucessful"),
+                              ),
+                            );
+
+                            Navigator.pushReplacementNamed(
                               context,
                               MainDashboard.routeName,
                             );
                           }
+
+                          if (state is LoginFailure) {
+                            ScaffoldMessenger.of(
+                              context,
+                            ).showSnackBar(
+                              SnackBar(content: Text(state.message)),
+                            );
+                          }
                         },
-                        content: Text(
-                          "تسجيل دخول",
-                          style: AppTextStyles.bodyBaseBold,
-                        ),
+                        builder: (context, state) {
+                          return MyButton(
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                context.read<LoginBloc>().add(
+                                  LoginSubmittedEvent(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  ),
+                                );
+                              }
+                            },
+                            content: Text(
+                              "تسجيل دخول",
+                              style: AppTextStyles.bodyBaseBold,
+                            ),
+                          );
+                        },
                       ),
                   SizedBox(height: 33.h(context)),
                   //!  ======================== No Account?

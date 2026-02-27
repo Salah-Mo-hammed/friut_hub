@@ -13,8 +13,11 @@ abstract class AuthRemoteDataSource {
     String password,
   );
   Future<Unit> sendEmailConfirmCode(String email);
-  Future<Unit> verifyEmailOTP(String email,String otp);
-
+  Future<Unit> verifyEmailOTP(String email, String otp);
+  Future<Map<String, dynamic>> loginUser(
+    String email,
+    String password,
+  );
 }
 
 class AuthDsWithDio implements AuthRemoteDataSource {
@@ -94,14 +97,28 @@ class AuthDsWithDio implements AuthRemoteDataSource {
 
     return unit;
   }
-  
+
   @override
-  Future<Unit> verifyEmailOTP(String email, String otp) async{
+  Future<Unit> verifyEmailOTP(String email, String otp) async {
     final response = await dio.put(
       Endpoints.emailConfirmation,
-      data: {"email": email, 'otp':otp},
+      data: {"email": email, 'otp': otp},
     );
     print("response for checking email code ${response.statusCode}");
     return unit;
+  }
+
+  @override
+  Future<Map<String, dynamic>> loginUser(
+    String email,
+    String password,
+  ) async {
+    final response = await dio.post(
+      Endpoints.login,
+      data: {"email": email, "password": password},
+    );
+    print("response for logging in ${response.statusCode}");
+
+    return response.data;
   }
 }

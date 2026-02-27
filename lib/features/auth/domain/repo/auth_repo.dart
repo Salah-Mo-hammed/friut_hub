@@ -10,5 +10,12 @@ abstract class AuthRepo {
     String password,
   );
   Future<Either<Failure, Unit>> sendEmailConfirmCode(String email);
-  Future<Either<Failure,Unit>> verifyEmailOTP(String email, String otp);
+  Future<Either<Failure, Unit>> verifyEmailOTP(
+    String email,
+    String otp,
+  );
+  Future<Either<Failure, Map<String, dynamic>>> loginUser(
+    String email,
+    String password,
+  );
 }
