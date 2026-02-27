@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
@@ -52,13 +55,16 @@ class ForgetPasswordPage extends StatelessWidget {
                     '\x1B[32mEmail: ${emailController.text}\x1B[0m',
                   );
 
+                  context.read<ForgetPassBloc>().add(
+                    ResetPasswordEvent(email: emailController.text),
+                  );
                   // ! go to NextPage OF forget password
                   Navigator.pushNamed(
                     context,
                     PasswoedRecoveryPage.routeName,
                     arguments: {
                       "isForEmailConfirmation": false,
-                      "email": "",
+                      "email": emailController.text,
                     },
                   );
                 }

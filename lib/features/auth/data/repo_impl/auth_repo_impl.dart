@@ -82,12 +82,63 @@ class AuthRepoImpl implements AuthRepo {
       );
     }
   }
-  
+
   @override
-  Future<Either<Failure, Map<String, dynamic>>> loginUser(String email, String password) async{
-   try {
-      final result=await authRemoteDataSource.loginUser(email, password);
+  Future<Either<Failure, Map<String, dynamic>>> loginUser(
+    String email,
+    String password,
+  ) async {
+    try {
+      final result = await authRemoteDataSource.loginUser(
+        email,
+        password,
+      );
+
       return Right(result);
+    } on DioException catch (e) {
+      print("STATUS CODE: ${e.response?.statusCode}");
+      print("RESPONSE DATA: ${e.response?.data}");
+      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
+
+      return Left(Failure.unknown(message: e.toString()));
+    } catch (e) {
+      return Left(
+        Failure.unknown(
+          message: "AuthRepoImpl Exceoption => ${e.toString()}",
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> resetPassword(String email) async {
+    try {
+      final result = await authRemoteDataSource.resetPassword(email);
+
+      return Right(result);
+    } on DioException catch (e) {
+      print("STATUS CODE: ${e.response?.statusCode}");
+      print("RESPONSE DATA: ${e.response?.data}");
+      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
+
+      return Left(Failure.unknown(message: e.toString()));
+    } catch (e) {
+      return Left(
+        Failure.unknown(
+          message: "AuthRepoImpl Exceoption => ${e.toString()}",
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> verifyPassOTP(
+    String email,
+    String otp,
+  ) async {
+    try {
+      await authRemoteDataSource.verifyPassOTP(email, otp);
+      return Right(unit);
     } on DioException catch (e) {
       print("STATUS CODE: ${e.response?.statusCode}");
       print("RESPONSE DATA: ${e.response?.data}");

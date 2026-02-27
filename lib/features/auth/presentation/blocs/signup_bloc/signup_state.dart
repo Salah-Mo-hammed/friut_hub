@@ -26,3 +26,4 @@ final class SignupFailure extends SignupState {
 }
 
 final class EmailVerifiedSucessfully extends SignupState {}
+

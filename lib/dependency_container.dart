@@ -4,8 +4,11 @@ import 'package:friut_hub/features/auth/data/sources/remote/auth_remote_data_sou
 import 'package:friut_hub/features/auth/domain/repo/auth_repo.dart';
 import 'package:friut_hub/features/auth/domain/usecases/login_user_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/register_user_usecase.dart';
+import 'package:friut_hub/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/send_email_confirm_code_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/verify_email_usecase.dart';
+import 'package:friut_hub/features/auth/domain/usecases/verify_pass_otp_usecase.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -24,6 +27,7 @@ Future<void> initilaizedDependencies() async {
       ),
     ),
   );
+
   //! data-> data sources
 
   sl.registerSingleton<AuthRemoteDataSource>(
@@ -46,6 +50,12 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<VerifyEmailUserUsecase>(
     VerifyEmailUserUsecase(authRepo: sl<AuthRepo>()),
   );
+  sl.registerSingleton<ResetPasswordUsecase>(
+    ResetPasswordUsecase(authRepo: sl<AuthRepo>()),
+  );
+  sl.registerSingleton<VerifyPassOTPUserUsecase>(
+    VerifyPassOTPUserUsecase(authRepo: sl<AuthRepo>()),
+  );
 
   //! ============= AUTH  Login =============
   sl.registerSingleton<LoginUserUsecase>(
@@ -64,4 +74,12 @@ Future<void> initilaizedDependencies() async {
   sl.registerFactory<LoginBloc>(
     () => LoginBloc(loginUserUsecase: sl<LoginUserUsecase>()),
   );
+  sl.registerFactory<ForgetPassBloc>(
+    () => ForgetPassBloc(
+      resetPasswordUsecase: sl<ResetPasswordUsecase>(),
+      verifyPassOTPUserUsecase: sl<VerifyPassOTPUserUsecase>(),
+    ),
+  );
+
+  // resetPasswordUsecase: sl<ResetPasswordUsecase>(),
 }

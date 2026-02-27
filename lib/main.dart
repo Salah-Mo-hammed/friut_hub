@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/dependency_container.dart';
 import 'package:friut_hub/core/pages/splash_page.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/generated/l10n.dart';
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
         //! ============ Auth ============
         BlocProvider<SignupBloc>(create: (_) => sl<SignupBloc>()),
         BlocProvider<LoginBloc>(create: (_) => sl<LoginBloc>()),
+        BlocProvider<ForgetPassBloc>(create: (_) => sl<ForgetPassBloc>()),
+      
       ],
       child: MaterialApp(
         locale: Locale('ar'),

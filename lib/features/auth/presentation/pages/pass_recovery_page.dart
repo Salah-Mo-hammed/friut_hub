@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';
 import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
@@ -45,49 +46,91 @@ class PasswoedRecoveryPage extends StatelessWidget {
                 ? "التحقق من الرمز"
                 : "تاكيد الكود الايميل",
       ),
-      body: BlocListener<SignupBloc, SignupState>(
-        listener: (context, state) {
-          if (state is SignupLoading) {
-            // show loading
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder:
-                  (_) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-            );
-          }
-
-          if (state is EmailVerifiedSucessfully) {
-            Navigator.pop(context); // close loading
-
-            !isForEmailConfirmation
-                ? Navigator.pushNamed(
-                  context,
-                  ResetPasswordPage.routeName,
-                )
-                : Navigator.pushReplacementNamed(
-                  context,
-                  LoginPage.routeName,
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<SignupBloc, SignupState>(
+            listener: (context, state) {
+              if (state is SignupLoading) {
+                // show loading
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder:
+                      (_) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                 );
-          }
+              }
 
-          if (state is SignupFailure) {
-            Navigator.pop(context); // close loading
+              if (state is EmailVerifiedSucessfully) {
+                Navigator.pop(context); // close loading
 
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.message)));
-          }
-        },
+                !isForEmailConfirmation
+                    ? Navigator.pushNamed(
+                      context,
+                      ResetPasswordPage.routeName,
+                    )
+                    : Navigator.pushReplacementNamed(
+                      context,
+                      LoginPage.routeName,
+                    );
+              }
+
+              if (state is SignupFailure) {
+                Navigator.pop(context); // close loading
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message)),
+                );
+              }
+            },
+          ),
+          BlocListener<ForgetPassBloc, ForgetPassState>(
+            listener: (context, state) {
+              print(state);
+              if (state is ForgetPassLoading) {
+                // show loading
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder:
+                      (_) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                );
+              }
+
+              if (state is PasswordOtpCorrect) {
+                Navigator.pop(context); // close loading
+
+                !isForEmailConfirmation
+                    ? Navigator.pushNamed(
+                      context,
+                      ResetPasswordPage.routeName,
+                    )
+                    : Navigator.pushReplacementNamed(
+                      context,
+                      LoginPage.routeName,
+                    );
+              }
+
+              if (state is ForgetPassFailure) {
+                Navigator.pop(context); // close loading
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.message)),
+                );
+              }
+            },
+          ),
+        ],
         child: Form(
           key: _formKey,
           child: Column(
             children: [
               ForgetPasswordTexts(
                 title:
-                    "أدخل الرمز الذي أرسلناه إلى عنوان بريد التالي $email",
+                    "أدخل الرمز الذي أرسلناه إلى عنوان بريد التالي //",
               ),
               SizedBox(height: 29.h(context)),
               Row(
@@ -122,7 +165,7 @@ class PasswoedRecoveryPage extends StatelessWidget {
                           return null;
                         },
                         onChanged: (value) {
-                          if (value.isNotEmpty && index < 3) {
+                          if (value.isNotEmpty && index < 5) {
                             _foucsNodes[index + 1].requestFocus();
                           }
                           if (value.isEmpty && index > 0) {
@@ -147,9 +190,21 @@ class PasswoedRecoveryPage extends StatelessWidget {
                             .map((controller) => controller.text)
                             .join();
                     print(otpCode);
-                    context.read<SignupBloc>().add(
-                      VerifyEmailOTPEvent(email: email, otp: otpCode),
-                    );
+                    if (isForEmailConfirmation) {
+                      context.read<SignupBloc>().add(
+                        VerifyEmailOTPEvent(
+                          email: email,
+                          otp: otpCode,
+                        ),
+                      );
+                    } else if (!isForEmailConfirmation) {
+                      context.read<ForgetPassBloc>().add(
+                        VerifyPassOTPEvent(
+                          email: email,
+                          otp: otpCode,
+                        ),
+                      );
+                    }
                   }
                 },
                 content: Text(
@@ -166,7 +221,9 @@ class PasswoedRecoveryPage extends StatelessWidget {
                       ? context.read<SignupBloc>().add(
                         sendEmailConfirmationCodeEvent(email: email),
                       )
-                      : null;
+                      : context.read<ForgetPassBloc>().add(
+                        ResetPasswordEvent(email: email),
+                      );
                 },
                 child: Text(
                   "إعادة إرسال الرمز",

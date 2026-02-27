@@ -36,3 +36,4 @@ class VerifyEmailOTPEvent extends SignupEvent {
   @override
   List<Object?> get props => [email, otp];
 }
+
