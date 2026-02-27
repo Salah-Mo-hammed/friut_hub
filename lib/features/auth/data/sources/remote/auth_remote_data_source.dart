@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:friut_hub/core/endpoints/endpoints.dart';
 import 'package:friut_hub/features/auth/data/models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
@@ -11,6 +12,9 @@ abstract class AuthRemoteDataSource {
     String email,
     String password,
   );
+  Future<Unit> sendEmailConfirmCode(String email);
+  Future<Unit> verifyEmailOTP(String email,String otp);
+
 }
 
 class AuthDsWithDio implements AuthRemoteDataSource {
@@ -64,7 +68,7 @@ class AuthDsWithDio implements AuthRemoteDataSource {
       "password": password,
     });
     final response = await dio.post(
-      "/api/Users",
+      Endpoints.registerUser,
       data: {
         "userName": userName,
         "fullName": fullName,
@@ -78,5 +82,26 @@ class AuthDsWithDio implements AuthRemoteDataSource {
           ? jsonDecode(response.data)
           : response.data,
     );
+  }
+
+  @override
+  Future<Unit> sendEmailConfirmCode(String email) async {
+    final response = await dio.post(
+      Endpoints.emailConfirmation,
+      data: {"email": email},
+    );
+    print("response for sending email code ${response.statusCode}");
+
+    return unit;
+  }
+  
+  @override
+  Future<Unit> verifyEmailOTP(String email, String otp) async{
+    final response = await dio.put(
+      Endpoints.emailConfirmation,
+      data: {"email": email, 'otp':otp},
+    );
+    print("response for checking email code ${response.statusCode}");
+    return unit;
   }
 }

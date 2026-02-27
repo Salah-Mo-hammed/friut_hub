@@ -9,5 +9,6 @@ abstract class AuthRepo {
     String email,
     String password,
   );
-  
+  Future<Either<Failure, Unit>> sendEmailConfirmCode(String email);
+  Future<Either<Failure,Unit>> verifyEmailOTP(String email, String otp);
 }

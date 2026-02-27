@@ -39,8 +39,18 @@ Route<dynamic> OnGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => ForgetPasswordPage());
 
     case PasswoedRecoveryPage.routeName:
+      final args = settings.arguments as Map<String, dynamic>;
+
+      final bool isForEmailConfirmation =
+          args["isForEmailConfirmation"] as bool ?? false;
+
+      final String email = args["email"] as String ?? "";
       return MaterialPageRoute(
-        builder: (_) => PasswoedRecoveryPage(),
+        builder:
+            (_) => PasswoedRecoveryPage(
+              isForEmailConfirmation: isForEmailConfirmation,
+              email: email,
+            ),
       );
     case PolicesPage.routeName:
       return MaterialPageRoute(builder: (_) => PolicesPage());
@@ -65,8 +75,8 @@ Route<dynamic> OnGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => AboutUsPage());
 
     // case AddPaymentFromProfile.routeName:
-      // return MaterialPageRoute(builder: (_) => AboutUsPage());
-      
+    // return MaterialPageRoute(builder: (_) => AboutUsPage());
+
     case ResetPasswordPage.routeName:
       return MaterialPageRoute(builder: (_) => ResetPasswordPage());
     case MainDashboard.routeName:

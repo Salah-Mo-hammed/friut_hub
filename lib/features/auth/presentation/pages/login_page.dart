@@ -7,6 +7,7 @@ import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';
 import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
+import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/features/auth/presentation/widgets/password_feild_widget.dart';
 import 'package:friut_hub/core/widgets/checkbox_widget.dart';
@@ -196,9 +197,26 @@ class _LoginPageState extends State<LoginPage> {
                       ? BlocConsumer<SignupBloc, SignupState>(
                         listener: (context, state) {
                           if (state is SignupSucsses) {
-                            Navigator.pop(
+                            ScaffoldMessenger.of(
                               context,
-                            ); // رجوع بعد نجاح التسجيل
+                            ).showSnackBar(
+                              SnackBar(
+                                content: Text("Register Sucessful"),
+                              ),
+                            );
+                            context.read<SignupBloc>().add(
+                              sendEmailConfirmationCodeEvent(
+                                email: emailController.text,
+                              ),
+                            );
+                            Navigator.pushNamed(
+                              context,
+                              PasswoedRecoveryPage.routeName,
+                              arguments: {
+                                "isForEmailConfirmation": true,
+                                "email": emailController.text,
+                              },
+                            );
                           }
 
                           if (state is SignupFailure) {

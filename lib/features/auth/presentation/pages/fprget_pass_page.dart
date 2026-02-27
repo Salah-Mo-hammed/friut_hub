@@ -56,13 +56,17 @@ class ForgetPasswordPage extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     PasswoedRecoveryPage.routeName,
+                    arguments: {
+                      "isForEmailConfirmation": false,
+                      "email": "",
+                    },
                   );
                 }
               },
-              content:
-                          Text("نسيت كلمة المرور", style: AppTextStyles.bodyBaseBold),
-
-               
+              content: Text(
+                "نسيت كلمة المرور",
+                style: AppTextStyles.bodyBaseBold,
+              ),
             ),
           ],
         ),
