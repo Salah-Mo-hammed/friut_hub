@@ -1,0 +1,13 @@
+import 'package:dartz/dartz.dart';
+import 'package:friut_hub/core/errors/error.dart';
+import 'package:friut_hub/features/auth/domain/entities/user_entity.dart';
+
+abstract class AuthRepo {
+  Future<Either<Failure, UserEntity>> regsterUser(
+    String userName,
+    String fullName,
+    String email,
+    String password,
+  );
+  
+}

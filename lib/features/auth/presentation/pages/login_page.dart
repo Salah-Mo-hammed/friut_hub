@@ -2,7 +2,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';
 import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/features/auth/presentation/widgets/password_feild_widget.dart';
@@ -18,217 +21,297 @@ import 'package:friut_hub/features/e_commerce/presintaion/pages/home_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/main_dashboard.dart';
 import 'package:friut_hub/generated/assets.dart';
 
-class LoginPage extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController(
-    text: kDebugMode ? "emailController@gmail.com" : null,
-  );
-  final TextEditingController passwordController =
-      TextEditingController(
-        text: kDebugMode ? "passwordController" : null,
-      );
+class LoginPage extends StatefulWidget {
   bool isRegister;
-  TextEditingController nameController = TextEditingController(
-    text: kDebugMode ? 'nameController' : null,
-  );
 
   LoginPage({super.key, required this.isRegister});
 
   static const routeName = '/LoginPage';
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = TextEditingController(
+    text: kDebugMode ? "emailController@gmail.com" : null,
+  );
+
+  final TextEditingController passwordController =
+      TextEditingController(
+        text: kDebugMode ? "passwordController" : null,
+      );
+
+  TextEditingController fullNameController = TextEditingController(
+    text: kDebugMode ? 'fullnameController' : null,
+  );
+  TextEditingController userNameController = TextEditingController(
+    text: kDebugMode ? 'usernameController' : null,
+  );
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        appBarTitle: !isRegister ? "تسجيل الدخول" : "حساب جديد",
+        appBarTitle:
+            !widget.isRegister ? "تسجيل الدخول" : "حساب جديد",
       ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            if (isRegister) ...[
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BuildTextFormFeild(
-                  hintLabel: 'الاسم',
-                  controller: nameController,
-                  validator: (nameV) {
-                    if (nameV == null || nameV.isEmpty) {
-                      return "هذا الحقل مطلوب";
-                    }
-                    return null;
-                  },
-                  obscureText: false,
-                ),
-              ),
-            ],
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: BuildTextFormFeild(
-                hintLabel: 'البريد الالكتروني',
-                controller: emailController,
-                validator: (emailV) {
-                  if (emailV == null || emailV.isEmpty) {
-                    return "هذا الحقل مطلوب";
-                  }
-                  return null;
-                },
-                obscureText: false,
-              ),
-            ),
-            SizedBox(height: 20),
-            PasswordField(
-              controller: passwordController,
-              validator: (passwordV) {
-                if (passwordV == null || passwordV.isEmpty) {
-                  return "هذا الحقل مطلوب";
-                }
-                return null;
-              },
-            ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          keyboardDismissBehavior:
+              ScrollViewKeyboardDismissBehavior.onDrag,
 
-            if (isRegister) ...[
-              SizedBox(height: 16),
-              Row(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 30),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  PoliciesCheckBox(title: 'check here to'),
-                  Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.sizeOf(context).width - 50,
+                  if (widget.isRegister) ...[
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: BuildTextFormFeild(
+                        hintLabel: ' المستخدم الاسم',
+                        controller: userNameController,
+                        validator: (nameV) {
+                          if (nameV == null || nameV.isEmpty) {
+                            return "هذا الحقل مطلوب";
+                          }
+                          return null;
+                        },
+                        obscureText: false,
+                      ),
                     ),
-                    child: RichTextWidget(
-                      title1: 'من خلال إنشاء حساب ، فإنك توافق على ',
-                      title2: 'الشروط والأحكام الخاصة بنا',
-                      onTap: () {
-                        // ! Polices page
-                        Navigator.pushNamed(
-                          context,
-                          PolicesPage.routeName,
-                        );
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: BuildTextFormFeild(
+                        hintLabel: 'الاسم',
+                        controller: fullNameController,
+                        validator: (nameV) {
+                          if (nameV == null || nameV.isEmpty) {
+                            return "هذا الحقل مطلوب";
+                          }
+                          return null;
+                        },
+                        obscureText: false,
+                      ),
+                    ),
+                  ],
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: BuildTextFormFeild(
+                      hintLabel: 'البريد الالكتروني',
+                      controller: emailController,
+                      validator: (emailV) {
+                        if (emailV == null || emailV.isEmpty) {
+                          return "هذا الحقل مطلوب";
+                        }
+                        return null;
                       },
+                      obscureText: false,
                     ),
                   ),
-                ],
-              ),
-            ] else ...[
-              SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: RichTextWidget(
-                  title1: '',
-                  title2: 'نسيت كلمة السر؟',
-                  onTap: () {
-                    //! in forget password , go to forget password
-                    Navigator.pushNamed(
-                      context,
-                      ForgetPasswordPage.routeName,
-                    );
-                  },
-                ),
-              ),
-            ],
-            isRegister ? SizedBox(height: 30) : SizedBox(height: 33),
-            //* Button
-            MyButton(
-              onTap: () {
-                if (_formKey.currentState!.validate()) {
-                  // All fields are valid → ready for backend
-                  print(
-                    '\x1B[32mEmail: ${emailController.text}\x1B[0m',
-                  );
-                  print(
-                    '\x1B[32mEmail: ${passwordController.text}\x1B[0m',
-                  );
-                  // ! go to home page after successful (login) or back to login page when register
-                  if (isRegister) {
-                    Navigator.pop(context);
-                  } else {
-                    Navigator.pushNamed(
-                      context,
-                      MainDashboard.routeName,
-                    );
-                  }
-                }
-              },
+                  SizedBox(height: 20),
+                  PasswordField(
+                    controller: passwordController,
+                    validator: (passwordV) {
+                      if (passwordV == null || passwordV.isEmpty) {
+                        return "هذا الحقل مطلوب";
+                      }
+                      return null;
+                    },
+                  ),
 
-              content: isRegister ? 
-              
-                          Text( "إنشاء حساب جديد", style: AppTextStyles.bodyBaseBold):
-              
-                          Text( "تسجيل دخول", style: AppTextStyles.bodyBaseBold)
-               
-               
-                ,
-            ),
-            SizedBox(height: 33.h(context)),
-            //!  ======================== No Account?
-            Center(
-              child:
-                  isRegister
-                      ? RichTextWidget(
-                        title1: " تمتلك حساب بالفعل؟ ",
-                        title2: "تسجيل دخول",
+                  if (widget.isRegister) ...[
+                    SizedBox(height: 16),
+                    Row(
+                      children: [
+                        PoliciesCheckBox(
+                          title: '',
+                          validator: (checkbox) {
+                            if (checkbox == null ||
+                                checkbox == false) {
+                              return "!";
+                            }
+                            return null;
+                          },
+                        ),
+                        Container(
+                          constraints: BoxConstraints(
+                            maxWidth:
+                                MediaQuery.sizeOf(context).width - 50,
+                          ),
+                          child: RichTextWidget(
+                            title1:
+                                'من خلال إنشاء حساب ، فإنك توافق على ',
+                            title2: 'الشروط والأحكام الخاصة بنا',
+                            onTap: () {
+                              // ! Polices page
+                              Navigator.pushNamed(
+                                context,
+                                PolicesPage.routeName,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ] else ...[
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                      ),
+                      child: RichTextWidget(
+                        title1: '',
+                        title2: 'نسيت كلمة السر؟',
                         onTap: () {
-                          //! back to Login page
-                          Navigator.pop(context);
-                        },
-                      )
-                      : RichTextWidget(
-                        title1: 'لا تمتلك حساب؟ ',
-                        title2: 'قم بإنشاء حساب',
-                        onTap: () {
+                          //! in forget password , go to forget password
                           Navigator.pushNamed(
                             context,
-                            LoginPage.routeName,
-                            arguments: true,
+                            ForgetPasswordPage.routeName,
                           );
                         },
                       ),
-            ),
-            //
-            if (!isRegister) ...[
-              SizedBox(height: 33.h(context)),
+                    ),
+                  ],
+                  widget.isRegister
+                      ? SizedBox(height: 30)
+                      : SizedBox(height: 33),
 
-              //! (--------------------  Text --------------------)
-              Row(
-                children: [
-                  Expanded(child: Divider(thickness: 1)),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                    ),
-                    child: Text(
-                      "أو",
-                      style: AppTextStyles.bodyBaseBold.copyWith(
-                        color: Colors.black,
+                  //* Button
+                  widget.isRegister
+                      ? BlocConsumer<SignupBloc, SignupState>(
+                        listener: (context, state) {
+                          if (state is SignupSucsses) {
+                            Navigator.pop(
+                              context,
+                            ); // رجوع بعد نجاح التسجيل
+                          }
+
+                          if (state is SignupFailure) {
+                            ScaffoldMessenger.of(
+                              context,
+                            ).showSnackBar(
+                              SnackBar(content: Text(state.message)),
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          return MyButton(
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                context.read<SignupBloc>().add(
+                                  SignupSubmittedEvent(
+                                    userName: userNameController.text,
+                                    fullName: fullNameController.text,
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  ),
+                                );
+                              }
+                            },
+                            content: Text(
+                              "إنشاء حساب جديد",
+                              style: AppTextStyles.bodyBaseBold,
+                            ),
+                          );
+                        },
+                      )
+                      : MyButton(
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.pushNamed(
+                              context,
+                              MainDashboard.routeName,
+                            );
+                          }
+                        },
+                        content: Text(
+                          "تسجيل دخول",
+                          style: AppTextStyles.bodyBaseBold,
+                        ),
                       ),
-                    ),
+                  SizedBox(height: 33.h(context)),
+                  //!  ======================== No Account?
+                  Center(
+                    child:
+                        widget.isRegister
+                            ? RichTextWidget(
+                              title1: " تمتلك حساب بالفعل؟ ",
+                              title2: "تسجيل دخول",
+                              onTap: () {
+                                //! back to Login page
+                                Navigator.pop(context);
+                              },
+                            )
+                            : RichTextWidget(
+                              title1: 'لا تمتلك حساب؟ ',
+                              title2: 'قم بإنشاء حساب',
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  LoginPage.routeName,
+                                  arguments: true,
+                                );
+                              },
+                            ),
                   ),
-                  Expanded(child: Divider(thickness: 1)),
+                  //
+                  if (!widget.isRegister) ...[
+                    SizedBox(height: 33.h(context)),
+
+                    //! (--------------------  Text --------------------)
+                    Row(
+                      children: [
+                        Expanded(child: Divider(thickness: 1)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                          ),
+                          child: Text(
+                            "أو",
+                            style: AppTextStyles.bodyBaseBold
+                                .copyWith(color: Colors.black),
+                          ),
+                        ),
+                        Expanded(child: Divider(thickness: 1)),
+                      ],
+                    ),
+                    SizedBox(height: 33.h(context)),
+
+                    OtherSignInButton(
+                      title: "تسجيل بواسطة جوجل",
+                      iconSvgPath: Assets.svgGoogleIcon,
+                      onTap: () {
+                        //! sign with google logic
+                      },
+                    ),
+                    SizedBox(height: 16.h(context)),
+                    OtherSignInButton(
+                      title: "تسجيل بواسطة ابل",
+                      iconSvgPath: Assets.svgAppleIcon,
+                      onTap: () {
+                        //! sign with apple logic
+                      },
+                    ),
+                  ],
                 ],
               ),
-              SizedBox(height: 33.h(context)),
-
-              OtherSignInButton(
-                title: "تسجيل بواسطة جوجل",
-                iconSvgPath: Assets.svgGoogleIcon,
-                onTap: () {
-                  //! sign with google logic
-                },
-              ),
-              SizedBox(height: 16.h(context)),
-              OtherSignInButton(
-                title: "تسجيل بواسطة ابل",
-                iconSvgPath: Assets.svgAppleIcon,
-                onTap: () {
-                  //! sign with apple logic
-                },
-              ),
-            ],
-          ],
+            ),
+          ),
         ),
       ),
     );
