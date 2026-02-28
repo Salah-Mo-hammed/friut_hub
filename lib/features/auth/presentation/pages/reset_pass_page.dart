@@ -13,6 +13,7 @@ import 'package:friut_hub/features/auth/presentation/widgets/password_feild_widg
 import 'package:friut_hub/generated/assets.dart';
 
 class ResetPasswordPage extends StatelessWidget {
+  String resetToken;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController passwordController =
       TextEditingController(
@@ -23,7 +24,7 @@ class ResetPasswordPage extends StatelessWidget {
         text: kDebugMode ? "confirmPassController" : null,
       );
 
-  ResetPasswordPage({super.key});
+  ResetPasswordPage({super.key, required this.resetToken});
   static const routeName = "ResetPassword";
   @override
   Widget build(BuildContext context) {
@@ -71,43 +72,62 @@ class ResetPasswordPage extends StatelessWidget {
                   print(
                     '\x1B[32mEmail: ${confirmPassController.text}\x1B[0m',
                   );
-
-                  showDialog(
-                    context: context,
-                    builder:
-                        (context) => AlertDialog(
-                          title: Column(
-                            children: [
-                              SvgPicture.asset(
-                                height: 107.h(context),
-                                width: 154.h(context),
-                                Assets.svgChangePassSuccessed,
-                              ),
-                              SizedBox(height: 20),
-                              Text(
-                                "تم تغيير الباسورد بنجاح",
-                                style: AppTextStyles.bodyBaseBold
-                                    .copyWith(
-                                      color: AppColors.grayscale900,
-                                    ),
-                              ),
-                            ],
+                  if (passwordController.text ==
+                      confirmPassController.text) {
+                    // TODO ! changeToNewPassword
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => AlertDialog(
+                            title: Column(
+                              children: [
+                                SvgPicture.asset(
+                                  height: 107.h(context),
+                                  width: 154.h(context),
+                                  Assets.svgChangePassSuccessed,
+                                ),
+                                SizedBox(height: 20),
+                                Text(
+                                  "تم تغيير الباسورد بنجاح",
+                                  style: AppTextStyles.bodyBaseBold
+                                      .copyWith(
+                                        color: AppColors.grayscale900,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                  );
-                  Future.delayed(Duration(seconds: 5), () {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      LoginPage.routeName,
-                      arguments: false,
                     );
-                  });
+                    Future.delayed(Duration(seconds: 5), () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        LoginPage.routeName,
+                        arguments: false,
+                      );
+                    });
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => AlertDialog(
+                            title: Text(
+                              "غير متطابق كلمتا السر",
+                              style: AppTextStyles.bodyBaseBold
+                                  .copyWith(
+                                    color: AppColors.grayscale900,
+                                  ),
+                            ),
+                          ),
+                    );
+                    passwordController.clear();
+                    confirmPassController.clear();
+                  }
                 }
               },
-              content: 
-                          Text( "إنشاء كلمة مرور جديدة", style: AppTextStyles.bodyBaseBold),
-              
-              
+              content: Text(
+                "إنشاء كلمة مرور جديدة",
+                style: AppTextStyles.bodyBaseBold,
+              ),
             ),
           ],
         ),

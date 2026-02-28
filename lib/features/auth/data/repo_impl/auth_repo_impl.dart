@@ -132,13 +132,13 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> verifyPassOTP(
+  Future<Either<Failure, Map<String,dynamic>>> verifyPassOTP(
     String email,
     String otp,
   ) async {
     try {
-      await authRemoteDataSource.verifyPassOTP(email, otp);
-      return Right(unit);
+      final response=await authRemoteDataSource.verifyPassOTP(email, otp);
+      return Right(response);
     } on DioException catch (e) {
       print("STATUS CODE: ${e.response?.statusCode}");
       print("RESPONSE DATA: ${e.response?.data}");

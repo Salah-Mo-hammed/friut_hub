@@ -6,7 +6,7 @@ class VerifyPassOTPUserUsecase {
   AuthRepo authRepo;
   VerifyPassOTPUserUsecase({required this.authRepo});
 
-  Future<Either<Failure, Unit>> call(
+  Future<Either<Failure, Map<String,dynamic>>> call(
     String email,
     String otp
 

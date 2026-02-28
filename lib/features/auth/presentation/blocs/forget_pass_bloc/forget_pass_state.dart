@@ -8,14 +8,20 @@ sealed class ForgetPassState extends Equatable {
 }
 
 final class ForgetPassInitial extends ForgetPassState {}
+
 final class PasswordOtpSent extends ForgetPassState {}
-final class PasswordOtpCorrect extends ForgetPassState {}
+
+final class PasswordOtpCorrect extends ForgetPassState {
+  Map<String, dynamic> resetToken;
+  PasswordOtpCorrect({required this.resetToken});
+}
 
 final class PasswordResetedSucessfully extends ForgetPassState {}
+
 final class ForgetPassLoading extends ForgetPassState {}
+
 final class ForgetPassFailure extends ForgetPassState {
-    final String message;
+  final String message;
 
- const ForgetPassFailure({required this.message});
-
+  const ForgetPassFailure({required this.message});
 }

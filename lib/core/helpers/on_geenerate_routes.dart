@@ -78,7 +78,9 @@ Route<dynamic> OnGenerateRoutes(RouteSettings settings) {
     // return MaterialPageRoute(builder: (_) => AboutUsPage());
 
     case ResetPasswordPage.routeName:
-      return MaterialPageRoute(builder: (_) => ResetPasswordPage());
+          final args = settings.arguments as Map<String, dynamic>;
+          final resetToken=args['resetToken'];
+      return MaterialPageRoute(builder: (_) => ResetPasswordPage(resetToken: resetToken,));
     case MainDashboard.routeName:
       return MaterialPageRoute(builder: (_) => MainDashboard());
     case BestSellingsPage.routeName:

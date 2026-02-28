@@ -102,11 +102,12 @@ class PasswoedRecoveryPage extends StatelessWidget {
 
               if (state is PasswordOtpCorrect) {
                 Navigator.pop(context); // close loading
-
+                print(state.resetToken);
                 !isForEmailConfirmation
                     ? Navigator.pushNamed(
                       context,
                       ResetPasswordPage.routeName,
+                      arguments: state.resetToken,
                     )
                     : Navigator.pushReplacementNamed(
                       context,

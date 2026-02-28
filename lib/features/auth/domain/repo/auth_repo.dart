@@ -19,7 +19,7 @@ abstract class AuthRepo {
     String password,
   );
     Future<Either<Failure, Unit>> resetPassword(String email);
-  Future<Either<Failure, Unit>> verifyPassOTP(
+  Future<Either<Failure, Map<String,dynamic>>> verifyPassOTP(
     String email,
     String otp,
   );

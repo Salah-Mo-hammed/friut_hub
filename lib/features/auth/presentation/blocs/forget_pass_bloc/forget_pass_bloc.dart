@@ -53,8 +53,8 @@ class ForgetPassBloc extends Bloc<ForgetPassEvent, ForgetPassState> {
 
         emit(ForgetPassFailure(message: "SignupFailure=> $failure "));
       },
-      (unit) {
-        emit(PasswordOtpCorrect());
+      (data) {
+        emit(PasswordOtpCorrect(resetToken: data));
       },
     );
   }
