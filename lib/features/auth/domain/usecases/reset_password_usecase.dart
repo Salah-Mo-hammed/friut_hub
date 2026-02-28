@@ -6,10 +6,7 @@ class ResetPasswordUsecase {
   AuthRepo authRepo;
   ResetPasswordUsecase({required this.authRepo});
 
-  Future<Either<Failure, Unit>> call(
-    String email,
-
-  ) {
-    return authRepo.resetPassword( email);
+  Future<Either<Failure, Unit>> call(String email) {
+    return authRepo.sendresetPasswordCode(email);
   }
 }

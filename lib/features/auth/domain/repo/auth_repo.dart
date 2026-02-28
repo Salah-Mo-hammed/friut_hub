@@ -18,9 +18,11 @@ abstract class AuthRepo {
     String email,
     String password,
   );
-    Future<Either<Failure, Unit>> resetPassword(String email);
-  Future<Either<Failure, Map<String,dynamic>>> verifyPassOTP(
+  Future<Either<Failure, Unit>> sendresetPasswordCode(String email);
+  Future<Either<Failure, Map<String, dynamic>>> verifyPassOTP(
     String email,
     String otp,
   );
+  Future<Either<Failure, Unit>> changeTONewPassword(String resetToken, String newPassword);
+
 }

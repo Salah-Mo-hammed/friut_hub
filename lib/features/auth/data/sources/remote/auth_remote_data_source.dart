@@ -14,11 +14,18 @@ abstract class AuthRemoteDataSource {
   );
   Future<Unit> sendEmailConfirmCode(String email);
   Future<Unit> resetPassword(String email);
-  Future<Map<String,dynamic>> verifyPassOTP(String email, String otp);
+  Future<Map<String, dynamic>> verifyPassOTP(
+    String email,
+    String otp,
+  );
   Future<Unit> verifyEmailOTP(String email, String otp);
   Future<Map<String, dynamic>> loginUser(
     String email,
     String password,
+  );
+  Future<Unit> changeToNewPassword(
+    String resetToken,
+    String newPassword,
   );
 }
 
@@ -149,5 +156,21 @@ class AuthDsWithDio implements AuthRemoteDataSource {
     print("response for checking pass otp ${response.statusCode}");
     print(response.data);
     return response.data;
+  }
+
+  @override
+  Future<Unit> changeToNewPassword(
+    String resetToken,
+    String newPassword,
+  ) async {
+    final response = await dio.put(
+      Endpoints.changeToNewPassword,
+      data: {"resetToken": resetToken, "newPassword": newPassword},
+    );
+    print(
+      "response for changing to new pass:  ${response.statusCode}",
+    );
+
+    return unit;
   }
 }

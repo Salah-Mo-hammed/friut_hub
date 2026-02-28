@@ -20,3 +20,12 @@ class VerifyPassOTPEvent extends ForgetPassEvent {
   List<Object> get props => [email,otp];
 
 }
+
+class ChangeToNewPasswordEvent extends ForgetPassEvent {
+  String resetToken;
+  String newPassword;
+  ChangeToNewPasswordEvent({required this.resetToken, required this.newPassword});
+  @override
+  List<Object> get props => [resetToken,newPassword];
+
+}

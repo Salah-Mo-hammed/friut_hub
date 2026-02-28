@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:friut_hub/features/auth/data/repo_impl/auth_repo_impl.dart';
 import 'package:friut_hub/features/auth/data/sources/remote/auth_remote_data_source.dart';
 import 'package:friut_hub/features/auth/domain/repo/auth_repo.dart';
+import 'package:friut_hub/features/auth/domain/usecases/change_to_new_pass_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/login_user_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/register_user_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/reset_password_usecase.dart';
@@ -56,6 +57,9 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<VerifyPassOTPUserUsecase>(
     VerifyPassOTPUserUsecase(authRepo: sl<AuthRepo>()),
   );
+  sl.registerSingleton<ChangeToNewPassUsecase>(
+    ChangeToNewPassUsecase(authRepo: sl<AuthRepo>()),
+  );
 
   //! ============= AUTH  Login =============
   sl.registerSingleton<LoginUserUsecase>(
@@ -77,7 +81,7 @@ Future<void> initilaizedDependencies() async {
   sl.registerFactory<ForgetPassBloc>(
     () => ForgetPassBloc(
       resetPasswordUsecase: sl<ResetPasswordUsecase>(),
-      verifyPassOTPUserUsecase: sl<VerifyPassOTPUserUsecase>(),
+      verifyPassOTPUserUsecase: sl<VerifyPassOTPUserUsecase>(), changeToNewPassUsecase: sl<ChangeToNewPassUsecase>(),
     ),
   );
 

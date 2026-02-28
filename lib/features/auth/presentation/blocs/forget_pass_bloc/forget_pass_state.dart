@@ -17,6 +17,7 @@ final class PasswordOtpCorrect extends ForgetPassState {
 }
 
 final class PasswordResetedSucessfully extends ForgetPassState {}
+final class PasswordChangedSucessfully extends ForgetPassState {}
 
 final class ForgetPassLoading extends ForgetPassState {}
 

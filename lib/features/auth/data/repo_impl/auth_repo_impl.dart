@@ -111,7 +111,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> resetPassword(String email) async {
+  Future<Either<Failure, Unit>> sendresetPasswordCode(
+    String email,
+  ) async {
     try {
       final result = await authRemoteDataSource.resetPassword(email);
 
@@ -132,12 +134,15 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Map<String,dynamic>>> verifyPassOTP(
+  Future<Either<Failure, Map<String, dynamic>>> verifyPassOTP(
     String email,
     String otp,
   ) async {
     try {
-      final response=await authRemoteDataSource.verifyPassOTP(email, otp);
+      final response = await authRemoteDataSource.verifyPassOTP(
+        email,
+        otp,
+      );
       return Right(response);
     } on DioException catch (e) {
       print("STATUS CODE: ${e.response?.statusCode}");
@@ -152,5 +157,29 @@ class AuthRepoImpl implements AuthRepo {
         ),
       );
     }
+  }
+  
+  @override
+  Future<Either<Failure, Unit>> changeTONewPassword(String resetToken, String newPassword) async{
+    try {
+      final response = await authRemoteDataSource.changeToNewPassword(
+        resetToken,
+        newPassword,
+      );
+      return Right(response);
+    } on DioException catch (e) {
+      print("STATUS CODE: ${e.response?.statusCode}");
+      print("RESPONSE DATA: ${e.response?.data}");
+      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
+
+      return Left(Failure.unknown(message: e.toString()));
+    } catch (e) {
+      return Left(
+        Failure.unknown(
+          message: "AuthRepoImpl Exceoption => ${e.toString()}",
+        ),
+      );
+    }
+    
   }
 }
