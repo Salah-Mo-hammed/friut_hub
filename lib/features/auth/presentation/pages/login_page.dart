@@ -256,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                               context,
                             ).showSnackBar(
                               SnackBar(
-                                content: Text("Register Sucessful"),
+                                content: Text("Login Sucessful"),
                               ),
                             );
 
