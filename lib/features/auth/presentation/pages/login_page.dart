@@ -1,25 +1,23 @@
 // ! there is a problem (fill password , then click on show password , it wont be printed)
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:friut_hub/core/extentions/num_extenstions.dart';
+import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
+import 'package:friut_hub/core/widgets/checkbox_widget.dart';
+import 'package:friut_hub/core/widgets/my_button_widget.dart';
+import 'package:friut_hub/core/widgets/my_text_form_feild_widget.dart';
+import 'package:friut_hub/core/widgets/rich_text_widget.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';
 import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
-import 'package:friut_hub/features/auth/presentation/widgets/password_feild_widget.dart';
-import 'package:friut_hub/core/widgets/checkbox_widget.dart';
 import 'package:friut_hub/features/auth/presentation/widgets/google_ios_button.dart';
-import 'package:friut_hub/core/widgets/my_button_widget.dart';
-import 'package:friut_hub/core/widgets/my_text_form_feild_widget.dart';
-import 'package:friut_hub/core/widgets/rich_text_widget.dart';
-import 'package:friut_hub/core/colors/app_colors.dart';
-import 'package:friut_hub/core/extentions/num_extenstions.dart';
-import 'package:friut_hub/core/fonts/fonts_class.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/home_page.dart';
+import 'package:friut_hub/features/auth/presentation/widgets/password_feild_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/main_dashboard.dart';
 import 'package:friut_hub/generated/assets.dart';
 
@@ -252,6 +250,9 @@ class _LoginPageState extends State<LoginPage> {
                       : BlocConsumer<LoginBloc, LoginState>(
                         listener: (context, state) {
                           if (state is LoginSucessful) {
+                            print(
+                              "response from sucessful login is ${state.loggedUserData} ",
+                            );
                             ScaffoldMessenger.of(
                               context,
                             ).showSnackBar(
@@ -263,6 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.pushReplacementNamed(
                               context,
                               MainDashboard.routeName,
+                              arguments: state.loggedUserData
                             );
                           }
 

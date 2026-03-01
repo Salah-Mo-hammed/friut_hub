@@ -122,12 +122,20 @@ class AuthDsWithDio implements AuthRemoteDataSource {
     String email,
     String password,
   ) async {
-    final response = await dio.post(
+    Response response = await dio.post(
       Endpoints.login,
       data: {"email": email, "password": password},
     );
     print("response for logging in ${response.statusCode}");
+    print("response for logging in ${response.data}");
 
+    final accessToken = response.data['accessToken'];
+    response = await dio.get(
+      Endpoints.getLoggedUserData,
+      options: Options(
+        headers: {"Authorization": "Bearer $accessToken"},
+      ),
+    );
     return response.data;
   }
 

@@ -12,8 +12,8 @@ final class LoginInitial extends LoginState {}
 final class LoginLoading extends LoginState {}
 
 final class LoginSucessful extends LoginState {
-  Map<String, dynamic> response;
-  LoginSucessful({required this.response});
+  Map<String, dynamic> loggedUserData;
+  LoginSucessful({required this.loggedUserData});
 }
 
 final class LoginFailure extends LoginState {

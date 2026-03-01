@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 
+// ignore: must_be_immutable
 class MyButton extends StatelessWidget {
   // final GlobalKey<FormState> _formKey;
   final Widget content;

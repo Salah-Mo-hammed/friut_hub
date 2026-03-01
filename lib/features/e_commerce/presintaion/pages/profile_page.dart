@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
-import 'package:friut_hub/core/pages/splash_page.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/about_us_page.dart';

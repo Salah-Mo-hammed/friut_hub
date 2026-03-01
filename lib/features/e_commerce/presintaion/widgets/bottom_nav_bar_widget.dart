@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/domain/entites/bottom_nav_bar_items_entity.dart';
-import 'package:friut_hub/generated/assets.dart';
 
 class FancyBottomNavBar extends StatelessWidget {
   final int selectedIndex;

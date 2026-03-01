@@ -1,8 +1,8 @@
 import 'dart:async';
 
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:friut_hub/features/auth/domain/usecases/change_to_new_pass_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/verify_pass_otp_usecase.dart';

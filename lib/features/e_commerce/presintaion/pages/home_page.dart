@@ -11,6 +11,8 @@ import 'package:friut_hub/features/e_commerce/presintaion/widgets/home_widgets/m
 import 'package:friut_hub/generated/assets.dart';
 
 class HomePage extends StatelessWidget {
+  String userFullName;
+
   bool noSearchResult = false;
   final discountImages = [
     Assets.pngDiscountImage1,
@@ -18,7 +20,7 @@ class HomePage extends StatelessWidget {
     Assets.pngDicountImage3,
   ];
 
-  HomePage({super.key});
+  HomePage({super.key, required this.userFullName});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class HomePage extends StatelessWidget {
         SliverToBoxAdapter(child: SizedBox(height: 40.h(context))),
         //! AppBar Row
         // ! Note: we didnt use MyAppBar here because there is somechanges in it here
-        SliverToBoxAdapter(child: MainDashboardAppBarWidget()),
+        SliverToBoxAdapter(child: MainDashboardAppBarWidget(userFullName: userFullName,)),
         SliverToBoxAdapter(child: SizedBox(height: 16.h(context))),
         SliverToBoxAdapter(child: CustomSearchBarWidget()),
         SliverToBoxAdapter(child: SizedBox(height: 10)),

@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
@@ -8,7 +7,6 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/reviews_widgets/person_rate_and_comment.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/reviews_widgets/reviews_custom_text_feild.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/reviews_widgets/reviews_inner_row.dart';
-import 'package:friut_hub/generated/assets.dart';
 
 class ReviewsPage extends StatelessWidget {
   static const routeName = "ReviewsPage";

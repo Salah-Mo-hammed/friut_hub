@@ -1,7 +1,3 @@
-// //! still need improvments , how to check that its true , this is a seperated widget
-import 'package:flutter/material.dart';
-import 'package:friut_hub/core/colors/app_colors.dart';
-
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';

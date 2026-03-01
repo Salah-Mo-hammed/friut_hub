@@ -6,7 +6,8 @@ import 'package:friut_hub/features/e_commerce/presintaion/pages/profile_page.dar
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/bottom_nav_bar_widget.dart';
 
 class MainDashboard extends StatefulWidget {
-  const MainDashboard({super.key});
+  Map<String, dynamic> userData;
+  MainDashboard({super.key, required this.userData});
 
   @override
   State<MainDashboard> createState() => _MainDashboardState();
@@ -14,6 +15,7 @@ class MainDashboard extends StatefulWidget {
 }
 
 class _MainDashboardState extends State<MainDashboard> {
+  late String userName;
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -21,7 +23,11 @@ class _MainDashboardState extends State<MainDashboard> {
       _selectedIndex = index;
     });
   }
-
+@override
+  void initState() {
+  userName = widget.userData['fullName'];
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +36,7 @@ class _MainDashboardState extends State<MainDashboard> {
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          HomePage(),
+          HomePage(userFullName: userName,),
           ProductsPage(),
           MyCartPage(),
           ProfilePage(),

@@ -3,7 +3,6 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/add_payment_from_profile_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/profile_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/profile_widgets/build_payment_container.dart';
 import 'package:friut_hub/generated/assets.dart';
 

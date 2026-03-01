@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/product_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/products_widgets/price_range_slider_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/products_widgets/arrange_modal_bottom_sheet_widget.dart';
 import 'package:friut_hub/generated/assets.dart';
@@ -139,7 +138,7 @@ class FilterBottomSheetButton extends StatelessWidget {
 
 class _numberFeild extends StatelessWidget {
   TextEditingController priceController;
-  _numberFeild({super.key, required this.priceController});
+  _numberFeild({required this.priceController});
 
   @override
   Widget build(BuildContext context) {

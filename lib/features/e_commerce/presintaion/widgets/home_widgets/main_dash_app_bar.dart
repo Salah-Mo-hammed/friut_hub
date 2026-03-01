@@ -7,7 +7,8 @@ import 'package:friut_hub/features/e_commerce/presintaion/pages/notifications_pa
 import 'package:friut_hub/generated/assets.dart';
 
 class MainDashboardAppBarWidget extends StatelessWidget {
-  const MainDashboardAppBarWidget({super.key});
+  String userFullName;
+   MainDashboardAppBarWidget({super.key, required this.userFullName});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class MainDashboardAppBarWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    "أحمد مصطفي",
+                    userFullName,
                     style: AppTextStyles.bodyBaseBold.copyWith(
                       color: Colors.black,
                     ),

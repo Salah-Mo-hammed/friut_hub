@@ -1,18 +1,16 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
-import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
-import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';
-import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
-import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
-import 'package:friut_hub/features/auth/presentation/pages/reset_pass_page.dart';
-import 'package:friut_hub/core/widgets/app_bar_widget.dart';
-import 'package:friut_hub/core/widgets/my_button_widget.dart';
+
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/core/widgets/app_bar_widget.dart';
+import 'package:friut_hub/core/widgets/my_button_widget.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';
+import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
+import 'package:friut_hub/features/auth/presentation/pages/reset_pass_page.dart';
 import 'package:friut_hub/features/auth/presentation/widgets/forget_pass_texts_widget.dart';
 
 class PasswoedRecoveryPage extends StatelessWidget {

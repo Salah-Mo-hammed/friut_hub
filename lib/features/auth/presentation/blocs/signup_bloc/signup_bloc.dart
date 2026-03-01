@@ -1,9 +1,8 @@
 import 'dart:async';
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:friut_hub/features/auth/domain/usecases/register_user_usecase.dart';
-import 'package:friut_hub/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/send_email_confirm_code_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/verify_email_usecase.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_state.dart';

@@ -42,16 +42,18 @@ class DonePayPage extends StatelessWidget {
                   TrackOrderPage.routeName,
                 );
               },
-              content:
-                          Text(   "تتبع الطلب",style: AppTextStyles.bodyBaseBold),
-              
-              
+              content: Text(
+                "تتبع الطلب",
+                style: AppTextStyles.bodyBaseBold,
+              ),
             ),
             SizedBox(height: 16.h(context)),
 
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, MainDashboard.routeName);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                // Navigator.pushNamed(context, MainDashboard.routeName);
               },
               child: Text(
                 'الرئيسية',

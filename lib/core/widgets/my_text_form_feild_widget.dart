@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 
+// ignore: must_be_immutable
 class BuildTextFormFeild extends StatefulWidget {
   final String hintLabel;
   final TextEditingController controller;

@@ -11,12 +11,6 @@ import 'package:friut_hub/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:friut_hub/core/helpers/on_geenerate_routes.dart';
 
-import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/item_details_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/main_dashboard.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/reviews_page.dart';
-import 'package:friut_hub/core/pages/on_boarding_view.dart';
-
 // asdjk asdj
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +49,7 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        onGenerateRoute: OnGenerateRoutes,
+        onGenerateRoute: onGenerateRoutes,
 
         initialRoute: SplashPage.routeName,
       ),

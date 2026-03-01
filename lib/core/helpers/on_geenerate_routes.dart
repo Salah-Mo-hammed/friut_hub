@@ -7,7 +7,6 @@ import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.da
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/reset_pass_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/about_us_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/add_payment_from_profile_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/best_sellings_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/checkout_page_view.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/done_pay_page.dart';
@@ -22,7 +21,7 @@ import 'package:friut_hub/features/e_commerce/presintaion/pages/personal_file_pa
 import 'package:friut_hub/features/e_commerce/presintaion/pages/reviews_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/track_order_page.dart';
 
-Route<dynamic> OnGenerateRoutes(RouteSettings settings) {
+Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
     case SplashPage.routeName:
       return MaterialPageRoute(builder: (_) => SplashPage());
@@ -42,9 +41,9 @@ Route<dynamic> OnGenerateRoutes(RouteSettings settings) {
       final args = settings.arguments as Map<String, dynamic>;
 
       final bool isForEmailConfirmation =
-          args["isForEmailConfirmation"] as bool ?? false;
+          args["isForEmailConfirmation"] as bool;
 
-      final String email = args["email"] as String ?? "";
+      final String email = args["email"] as String;
       return MaterialPageRoute(
         builder:
             (_) => PasswoedRecoveryPage(
@@ -78,11 +77,14 @@ Route<dynamic> OnGenerateRoutes(RouteSettings settings) {
     // return MaterialPageRoute(builder: (_) => AboutUsPage());
 
     case ResetPasswordPage.routeName:
-          final args = settings.arguments as Map<String, dynamic>;
-          final resetToken=args['resetToken'];
-      return MaterialPageRoute(builder: (_) => ResetPasswordPage(resetToken: resetToken,));
+      final args = settings.arguments as Map<String, dynamic>;
+      final resetToken = args['resetToken'];
+      return MaterialPageRoute(
+        builder: (_) => ResetPasswordPage(resetToken: resetToken),
+      );
     case MainDashboard.routeName:
-      return MaterialPageRoute(builder: (_) => MainDashboard());
+    final args = settings.arguments as Map<String, dynamic>;
+      return MaterialPageRoute(builder: (_) => MainDashboard(userData: args,));
     case BestSellingsPage.routeName:
       return MaterialPageRoute(builder: (_) => BestSellingsPage());
     case ItemDetailsPage.routeName:

@@ -30,7 +30,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginFailure(message: "LoginFailure=> $failure "));
       },
       (map) {
-        emit(LoginSucessful(response: map));
+        emit(LoginSucessful(loggedUserData: map));
       },
     );
   }

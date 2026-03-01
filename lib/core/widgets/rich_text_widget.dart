@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 
+// ignore: must_be_immutable
 class RichTextWidget extends StatelessWidget {
   String title1;
   String title2;

@@ -4,7 +4,6 @@ import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/widgets/home_widgets/add_icon.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/product_details_widgets/item_details_row_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/product_details_widgets/item_quantity_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/product_details_widgets/product_name_and_price_widget.dart';

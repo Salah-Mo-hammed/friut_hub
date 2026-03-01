@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/home_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/item_details_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/home_widgets/add_icon.dart';
 import 'package:friut_hub/generated/assets.dart';

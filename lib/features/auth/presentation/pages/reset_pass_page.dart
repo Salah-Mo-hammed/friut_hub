@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
-import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
