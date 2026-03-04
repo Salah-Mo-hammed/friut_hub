@@ -36,13 +36,11 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController(
-    text: kDebugMode ? "emailController@gmail.com" : null,
+    text: kDebugMode ? "epicearth668@gmail.com" : null,
   );
 
   final TextEditingController passwordController =
-      TextEditingController(
-        text: kDebugMode ? "passwordController" : null,
-      );
+      TextEditingController(text: kDebugMode ? "668Salah@" : null);
 
   TextEditingController fullNameController = TextEditingController(
     text: kDebugMode ? 'fullnameController' : null,
@@ -264,7 +262,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.pushReplacementNamed(
                               context,
                               MainDashboard.routeName,
-                              arguments: state.loggedUserData
+                              arguments: state.loggedUserData,
                             );
                           }
 

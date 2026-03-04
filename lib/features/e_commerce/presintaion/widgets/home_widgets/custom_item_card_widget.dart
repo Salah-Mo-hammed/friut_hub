@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/item_details_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/home_widgets/add_icon.dart';
+import 'package:friut_hub/features/e_commerce/products/domain/entities/product_entity.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class CustomItemCardWidget extends StatelessWidget {
-  const CustomItemCardWidget({super.key});
+  final ProductEntity product;
+  const CustomItemCardWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,7 @@ class CustomItemCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "بطيخ",
+                  product.name, //"بطيخ",
                   style: AppTextStyles.bodySmallBold.copyWith(
                     color: Colors.black,
                   ),
@@ -42,7 +47,7 @@ class CustomItemCardWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "20جنية / ",
+                      "${product.price} جنية / ",
                       style: AppTextStyles.bodySmallBold.copyWith(
                         fontSize: 15,
                         color: AppColors.orange500,
@@ -64,11 +69,15 @@ class CustomItemCardWidget extends StatelessWidget {
             bottom: 20,
             left: 10,
             child: ItemAddIcon(
-              onTap:
-                  () => Navigator.pushNamed(
-                    context,
-                    ItemDetailsPage.routeName
-                  ),
+              onTap: () {
+                context.read<ProductDetailsBloc>().add(
+                  GetProductByIdEvent(product.id),
+                );
+                Navigator.pushNamed(
+                  context,
+                  ItemDetailsPage.routeName,
+                );
+              },
             ),
           ),
         ],

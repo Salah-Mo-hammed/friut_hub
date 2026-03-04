@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/home_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/my_cart_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/product_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/profile_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/bottom_nav_bar_widget.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
 
 class MainDashboard extends StatefulWidget {
   Map<String, dynamic> userData;
@@ -23,11 +25,14 @@ class _MainDashboardState extends State<MainDashboard> {
       _selectedIndex = index;
     });
   }
-@override
+
+  @override
   void initState() {
-  userName = widget.userData['fullName'];
+    userName = widget.userData['fullName'];
+    context.read<ProductsBloc>().add(GetAllProductsEvent());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +41,7 @@ class _MainDashboardState extends State<MainDashboard> {
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          HomePage(userFullName: userName,),
+          HomePage(userFullName: userName),
           ProductsPage(),
           MyCartPage(),
           ProfilePage(),

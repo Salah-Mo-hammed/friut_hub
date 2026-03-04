@@ -9,7 +9,7 @@ class SplashPage extends StatefulWidget {
 
   @override
   SplashPageState createState() => SplashPageState();
-  static const routeName = '/';
+  static const routeName = 'SplashPage';
 }
 
 class SplashPageState extends State<SplashPage> {
@@ -43,7 +43,8 @@ class SplashPageState extends State<SplashPage> {
 
             // Step 5: wait for fade-out duration (1 second) then navigate
             Future.delayed(const Duration(seconds: 1), () {
-              _moveOn();
+
+              // _moveOn();
             });
           });
         });

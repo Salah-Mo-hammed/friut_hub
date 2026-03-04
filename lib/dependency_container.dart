@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:friut_hub/core/endpoints/endpoints.dart';
 import 'package:friut_hub/features/auth/data/repo_impl/auth_repo_impl.dart';
 import 'package:friut_hub/features/auth/data/sources/remote/auth_remote_data_source.dart';
 import 'package:friut_hub/features/auth/domain/repo/auth_repo.dart';
@@ -12,6 +13,13 @@ import 'package:friut_hub/features/auth/domain/usecases/verify_pass_otp_usecase.
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/data/repo_impl/product_repo_impl.dart';
+import 'package:friut_hub/features/e_commerce/products/data/source/product_remote_data_source.dart';
+import 'package:friut_hub/features/e_commerce/products/domain/repo/product_repo.dart';
+import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_all_products_usecase.dart';
+import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_detaild_product_usecase.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt sl = GetIt.instance;
@@ -21,7 +29,7 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<Dio>(
     Dio(
       BaseOptions(
-        baseUrl: "http://127.0.0.1:8080",
+        baseUrl: Endpoints.baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         headers: {"Content-Type": "application/json"},
@@ -34,10 +42,18 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<AuthRemoteDataSource>(
     AuthDsWithDio(dio: sl<Dio>()),
   );
+  sl.registerSingleton<ProductRemoteDataSource>(
+    ProductDsWithDio(dio: sl<Dio>()),
+  );
 
   //! domain-> repo
   sl.registerSingleton<AuthRepo>(
     AuthRepoImpl(authRemoteDataSource: sl<AuthRemoteDataSource>()),
+  );
+  sl.registerSingleton<ProductRepo>(
+    ProductRepoImpl(
+      productRemoteDataSource: sl<ProductRemoteDataSource>(),
+    ),
   );
 
   //! domain-> usecases
@@ -60,11 +76,18 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<ChangeToNewPassUsecase>(
     ChangeToNewPassUsecase(authRepo: sl<AuthRepo>()),
   );
-
-  //! ============= AUTH  Login =============
   sl.registerSingleton<LoginUserUsecase>(
     LoginUserUsecase(authRepo: sl<AuthRepo>()),
   );
+
+  //! ============= Products =============
+  sl.registerSingleton<GetAllProductsUsecase>(
+    GetAllProductsUsecase(productRepo: sl<ProductRepo>()),
+  );
+  sl.registerSingleton<GetDetaildProductUsecase>(
+    GetDetaildProductUsecase(productRepo: sl<ProductRepo>()),
+  );
+
   //! blocs
   //! ============= AUTH =============
   sl.registerFactory<SignupBloc>(
@@ -81,9 +104,21 @@ Future<void> initilaizedDependencies() async {
   sl.registerFactory<ForgetPassBloc>(
     () => ForgetPassBloc(
       resetPasswordUsecase: sl<ResetPasswordUsecase>(),
-      verifyPassOTPUserUsecase: sl<VerifyPassOTPUserUsecase>(), changeToNewPassUsecase: sl<ChangeToNewPassUsecase>(),
+      verifyPassOTPUserUsecase: sl<VerifyPassOTPUserUsecase>(),
+      changeToNewPassUsecase: sl<ChangeToNewPassUsecase>(),
     ),
   );
-
-  // resetPasswordUsecase: sl<ResetPasswordUsecase>(),
+  //! ============= Products =============
+  sl.registerFactory<ProductsBloc>(
+    () =>
+        ProductsBloc(
+          getAllProductsUsecase: sl<GetAllProductsUsecase>(),
+       ),
+  );
+    sl.registerFactory<ProductDetailsBloc>(
+    () =>
+        ProductDetailsBloc(
+           getDetaildProductUsecase: sl<GetDetaildProductUsecase>(),
+       ),
+  );
 }

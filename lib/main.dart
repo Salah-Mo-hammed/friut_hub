@@ -7,6 +7,9 @@ import 'package:friut_hub/core/pages/splash_page.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
+import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc.dart';
 import 'package:friut_hub/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:friut_hub/core/helpers/on_geenerate_routes.dart';
@@ -37,6 +40,13 @@ class MyApp extends StatelessWidget {
         BlocProvider<SignupBloc>(create: (_) => sl<SignupBloc>()),
         BlocProvider<LoginBloc>(create: (_) => sl<LoginBloc>()),
         BlocProvider<ForgetPassBloc>(create: (_) => sl<ForgetPassBloc>()),
+        //! ============ Prodcut ============
+
+         BlocProvider(
+              create: (_) =>sl< ProductsBloc>(),),
+
+         BlocProvider(
+              create: (_) =>sl< ProductDetailsBloc>(),)
       
       ],
       child: MaterialApp(
@@ -51,7 +61,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales,
         onGenerateRoute: onGenerateRoutes,
 
-        initialRoute: SplashPage.routeName,
+        initialRoute: LoginPage.routeName,
       ),
     );
   }

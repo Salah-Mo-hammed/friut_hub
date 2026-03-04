@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/pages/on_boarding_view.dart';
 import 'package:friut_hub/core/pages/splash_page.dart';
+import 'package:friut_hub/dependency_container.dart';
 import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
@@ -20,6 +22,7 @@ import 'package:friut_hub/features/e_commerce/presintaion/pages/payments_page.da
 import 'package:friut_hub/features/e_commerce/presintaion/pages/personal_file_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/reviews_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/track_order_page.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -83,10 +86,20 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
         builder: (_) => ResetPasswordPage(resetToken: resetToken),
       );
     case MainDashboard.routeName:
-    final args = settings.arguments as Map<String, dynamic>;
-      return MaterialPageRoute(builder: (_) => MainDashboard(userData: args,));
+      final args = settings.arguments as Map<String, dynamic>;
+      return MaterialPageRoute(
+        builder:
+            (_) => MainDashboard(userData: args),
+      );
     case BestSellingsPage.routeName:
       return MaterialPageRoute(builder: (_) => BestSellingsPage());
+      // case BestSellingsPage.routeName:
+  // return MaterialPageRoute(
+  //   builder: (context) => BlocProvider.value(
+  //     value: BlocProvider.of<ProductsBloc>(context),
+  //     child: const BestSellingsPage(),
+  //   ),
+  // );
     case ItemDetailsPage.routeName:
       return MaterialPageRoute(builder: (_) => ItemDetailsPage());
     case NotificationsPage.routeName:
