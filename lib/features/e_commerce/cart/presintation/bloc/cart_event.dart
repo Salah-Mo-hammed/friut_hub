@@ -13,3 +13,4 @@ class AddToCartEvent extends CartEvent {
   int quantity;
   AddToCartEvent({required this.productId,required this.quantity});
 }
+class GetCartProductsEvent extends CartEvent{}

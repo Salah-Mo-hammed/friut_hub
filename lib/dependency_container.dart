@@ -17,6 +17,7 @@ import 'package:friut_hub/features/e_commerce/cart/data/repo_impl/cart_repo_impl
 import 'package:friut_hub/features/e_commerce/cart/data/source/cart_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/cart/domain/repo/cart_repo.dart';
 import 'package:friut_hub/features/e_commerce/cart/domain/usecases/add_to_cart_usecase.dart';
+import 'package:friut_hub/features/e_commerce/cart/domain/usecases/get_cart_products_usecase.dart';
 import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/category/data/repo_impls/category_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/category/data/source/category_remote_data_source.dart';
@@ -143,7 +144,14 @@ Future<void> initilaizedDependencies() async {
   //! ============= Cart =============
   sl.registerSingleton<AddToCartUsecase>(
     AddToCartUsecase(cartRepo: sl<CartRepo>()),
+
   );
+sl.registerSingleton<GetCartProductsUsecase>(
+    GetCartProductsUsecase(cartRepo: sl<CartRepo>()),
+
+  );
+
+  
   //! blocs
   //! ============= AUTH =============
   sl.registerFactory<SignupBloc>(
@@ -186,6 +194,6 @@ Future<void> initilaizedDependencies() async {
   );
   //! ============= Cart =============
   sl.registerFactory<CartBloc>(
-    () => CartBloc(addToCartUsecase: sl<AddToCartUsecase>()),
+    () => CartBloc(addToCartUsecase: sl<AddToCartUsecase>(), getCartProductsUsecase:sl<GetCartProductsUsecase>()),
   );
 }

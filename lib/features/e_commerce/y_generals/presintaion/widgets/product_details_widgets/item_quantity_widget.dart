@@ -5,10 +5,12 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/hom
 class ItemQuantityWidget extends StatefulWidget {
   final ValueChanged<int> onQuantityChanged;
   final int maxQuantity;
-  const ItemQuantityWidget({
+   int initialQuantity;
+  ItemQuantityWidget({
     super.key,
     required this.onQuantityChanged,
     required this.maxQuantity,
+   this.initialQuantity = 1,
   });
 
   @override
@@ -17,7 +19,13 @@ class ItemQuantityWidget extends StatefulWidget {
 }
 
 class _ItemQuantityWidgetState extends State<ItemQuantityWidget> {
-  int quantity = 1;
+  late int quantity=widget.initialQuantity;
+  // @override
+  // void initState() {
+  //   quantity = widget.initialQuantity!;
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Row(

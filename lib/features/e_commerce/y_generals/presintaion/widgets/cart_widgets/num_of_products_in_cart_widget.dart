@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 
 class NumProductsInCart extends StatelessWidget {
-  const NumProductsInCart({
-    super.key,
-  });
+  int productNum;
+   NumProductsInCart({super.key,required this.productNum});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,7 @@ class NumProductsInCart extends StatelessWidget {
       decoration: BoxDecoration(color: AppColors.green1_50),
       child: Center(
         child: Text(
-          "لديك 3 منتجات في سله التسوق",
+          "لديك $productNum منتجات في سله التسوق",
           style: AppTextStyles.bodySmallBold.copyWith(
             color: AppColors.green1_500,
             fontSize: 15,

@@ -18,4 +18,5 @@ class Endpoints {
   static const getAllCategories = "/api/Categories";
 
   static const addToCart = "/api/Cart";
+  
 }
