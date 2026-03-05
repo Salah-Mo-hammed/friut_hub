@@ -6,20 +6,20 @@ import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/reset_pass_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/about_us_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/best_sellings_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/checkout_page_view.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/done_pay_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/favoutires_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/item_details_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/language_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/main_dashboard.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/my_requests_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/notifications_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/payments_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/personal_file_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/reviews_page.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/track_order_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/about_us_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/best_sellings_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/checkout_page_view.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/done_pay_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/favoutires_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/item_details_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/language_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/main_dashboard.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/my_requests_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/notifications_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/payments_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/personal_file_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/reviews_page.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/track_order_page.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {

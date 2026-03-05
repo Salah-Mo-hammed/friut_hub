@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/entities/product_entity.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_all_products_usecase.dart';
-import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_category_products_usecase.dart';
+import 'package:friut_hub/features/e_commerce/category/domain/usecases/get_category_products_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/search_prodcuts_usecase.dart';
 
 part 'products_event.dart';

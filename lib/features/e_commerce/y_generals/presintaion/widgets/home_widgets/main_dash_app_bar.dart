@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:friut_hub/core/colors/app_colors.dart';
+import 'package:friut_hub/core/extentions/num_extenstions.dart';
+import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/notifications_page.dart';
+import 'package:friut_hub/generated/assets.dart';
+
+class MainDashboardAppBarWidget extends StatelessWidget {
+  String userFullName;
+  MainDashboardAppBarWidget({super.key, required this.userFullName});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Image.asset(Assets.pngPersonIcon, fit: BoxFit.fill),
+              SizedBox(width: 5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Text(
+                      "صباح الخير !..",
+                      style: AppTextStyles.bodyBase.copyWith(
+                        color: AppColors.grayscale400,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    userFullName,
+                    style: AppTextStyles.bodyBaseBold.copyWith(
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                NotificationsPage.routeName,
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: SvgPicture.asset(
+                Assets.svgNotificationRing,
+                height: 20.h(context),
+                width: 20.w(context),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

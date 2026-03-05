@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 
 import 'package:friut_hub/core/errors/error.dart';
 import 'package:friut_hub/features/e_commerce/products/data/source/product_remote_data_source.dart';
-import 'package:friut_hub/features/e_commerce/products/domain/entities/category_entity.dart';
+import 'package:friut_hub/features/e_commerce/category/domain/entities/category_entity.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/entities/product_entity.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/repo/product_repo.dart';
 
@@ -79,46 +79,4 @@ class ProductRepoImpl implements ProductRepo {
     }
   }
 
-  @override
-  Future<Either<Failure, List<CategoryEntity>>>
-  getAllCategories() async {
-    try {
-      final categories =
-          await productRemoteDataSource.getAllCategories();
-      return Right(categories);
-    } on DioException catch (e) {
-      print("STATUS CODE: ${e.response?.statusCode}");
-      print("RESPONSE DATA: ${e.response?.data}");
-      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
-
-      return Left(Failure.unknown(message: e.toString()));
-    } catch (e) {
-      return Left(
-        Failure.unknown(
-          message: "ProductRepoImpl Exceoption => ${e.toString()}",
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<ProductEntity>>> getCategoryProducts(
-  int id,
-  ) async{
-    try {
-      final products = await productRemoteDataSource.getCategoryProducts(id);
-      return Right(products);
-    } on DioException catch (e) {
-      print("STATUS CODE: ${e.response?.statusCode}");
-      print("RESPONSE DATA: ${e.response?.data}");
-      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
-
-      return Left(Failure.unknown(message: e.toString()));
-    } catch (e) {
-      return Left(
-        Failure.unknown(
-          message: "ProductRepoImpl Exceoption => ${e.toString()}",
-        ),
-      );
-    }  }
 }

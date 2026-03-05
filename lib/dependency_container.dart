@@ -13,15 +13,18 @@ import 'package:friut_hub/features/auth/domain/usecases/verify_pass_otp_usecase.
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
+import 'package:friut_hub/features/e_commerce/category/data/repo_impls/category_repo_impl.dart';
+import 'package:friut_hub/features/e_commerce/category/data/source/category_remote_data_source.dart';
+import 'package:friut_hub/features/e_commerce/category/domain/repo/category_repo.dart';
 import 'package:friut_hub/features/e_commerce/products/data/repo_impl/product_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/products/data/source/product_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/repo/product_repo.dart';
-import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_all_categories_usecase.dart';
+import 'package:friut_hub/features/e_commerce/category/domain/usecases/get_all_categories_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_all_products_usecase.dart';
-import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_category_products_usecase.dart';
+import 'package:friut_hub/features/e_commerce/category/domain/usecases/get_category_products_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_detaild_product_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/search_prodcuts_usecase.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/category_bloc/category_bloc.dart';
+import 'package:friut_hub/features/e_commerce/category/presintation/bloc/category_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -49,6 +52,9 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<ProductRemoteDataSource>(
     ProductDsWithDio(dio: sl<Dio>()),
   );
+    sl.registerSingleton<CategoryRemoteDataSource>(
+    CategoryDsWithDio(dio: sl<Dio>()),
+  );
 
   //! domain-> repo
   sl.registerSingleton<AuthRepo>(
@@ -59,7 +65,11 @@ Future<void> initilaizedDependencies() async {
       productRemoteDataSource: sl<ProductRemoteDataSource>(),
     ),
   );
-
+  sl.registerSingleton<CategoryRepo>(
+    CategoryRepoImpl(
+      categoryRemoteDataSource: sl<CategoryRemoteDataSource>(),
+    ),
+  );
   //! domain-> usecases
   //! ============= AUTH  Register =============
   sl.registerSingleton<RegisterUserUsecase>(
@@ -96,10 +106,10 @@ Future<void> initilaizedDependencies() async {
   );
   //! ============= Categories =============
   sl.registerSingleton<GetAllCategoriesUsecase>(
-    GetAllCategoriesUsecase(productRepo: sl<ProductRepo>()),
+    GetAllCategoriesUsecase(categoryRepo: sl<CategoryRepo>()),
   );
   sl.registerSingleton<GetCategoryProductsUsecase>(
-    GetCategoryProductsUsecase(productRepo: sl<ProductRepo>()),
+    GetCategoryProductsUsecase(categoryRepo: sl<CategoryRepo>()),
   );
 
   //! blocs
@@ -134,6 +144,8 @@ Future<void> initilaizedDependencies() async {
       getDetaildProductUsecase: sl<GetDetaildProductUsecase>(),
     ),
   );
+    //! ============= Category =============
+
     sl.registerFactory<CategoryBloc>(
     () => CategoryBloc(
       getAllCategoriesUsecase: sl<GetAllCategoriesUsecase>(),

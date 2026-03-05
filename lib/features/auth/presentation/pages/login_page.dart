@@ -18,7 +18,7 @@ import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.da
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/features/auth/presentation/widgets/google_ios_button.dart';
 import 'package:friut_hub/features/auth/presentation/widgets/password_feild_widget.dart';
-import 'package:friut_hub/features/e_commerce/presintaion/pages/main_dashboard.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/main_dashboard.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class LoginPage extends StatefulWidget {
