@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:friut_hub/core/endpoints/endpoints.dart';
 import 'package:friut_hub/features/auth/data/models/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserModel> registerUser(
@@ -130,6 +131,8 @@ class AuthDsWithDio implements AuthRemoteDataSource {
     print("response for logging in ${response.data}");
 
     final accessToken = response.data['accessToken'];
+final prefs = await SharedPreferences.getInstance();
+await prefs.setString('access_token', accessToken);
     response = await dio.get(
       Endpoints.getLoggedUserData,
       options: Options(

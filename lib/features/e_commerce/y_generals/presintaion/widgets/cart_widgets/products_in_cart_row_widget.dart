@@ -7,9 +7,7 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/pro
 import 'package:friut_hub/generated/assets.dart';
 
 class ProductsInCartRow extends StatelessWidget {
-  const ProductsInCartRow({
-    super.key,
-  });
+  const ProductsInCartRow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +21,7 @@ class ProductsInCartRow extends StatelessWidget {
                 Container(
                   width: 93.w(context),
                   height: 112.h(context),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
+                  decoration: BoxDecoration(color: Colors.white),
                   child: Image.asset(
                     Assets.pngWatermellonPng,
                     width: 73.w(context),
@@ -35,31 +31,29 @@ class ProductsInCartRow extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "بطيخ",
-                        style: AppTextStyles.bodySmallBold
-                            .copyWith(
-                              color: Colors.black,
-                            ),
+                        style: AppTextStyles.bodySmallBold.copyWith(
+                          color: Colors.black,
+                        ),
                       ),
                       SizedBox(height: 5),
-    
+
                       Text(
                         "3 كم",
-                        style: AppTextStyles.bodySmallBold
-                            .copyWith(
-                              fontSize: 15,
-                              color: AppColors.orange500,
-                            ),
+                        style: AppTextStyles.bodySmallBold.copyWith(
+                          fontSize: 15,
+                          color: AppColors.orange500,
+                        ),
                       ),
                       SizedBox(height: 15),
                       SizedBox(
                         height: 35,
                         child: ItemQuantityWidget(
                           onQuantityChanged: (valaue) {},
+                          maxQuantity: 100,
                         ),
                       ),
                     ],
@@ -71,17 +65,15 @@ class ProductsInCartRow extends StatelessWidget {
           SizedBox(
             height: 112.h(context),
             child: Column(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SvgPicture.asset(Assets.svgTrash),
                 Text(
                   "60 جنيه ",
-                  style: AppTextStyles.bodyBaseBold
-                      .copyWith(
-                        fontSize: 16,
-                        color: AppColors.orange500,
-                      ),
+                  style: AppTextStyles.bodyBaseBold.copyWith(
+                    fontSize: 16,
+                    color: AppColors.orange500,
+                  ),
                 ),
               ],
             ),

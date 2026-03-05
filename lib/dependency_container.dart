@@ -13,6 +13,11 @@ import 'package:friut_hub/features/auth/domain/usecases/verify_pass_otp_usecase.
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
+import 'package:friut_hub/features/e_commerce/cart/data/repo_impl/cart_repo_impl.dart';
+import 'package:friut_hub/features/e_commerce/cart/data/source/cart_remote_data_source.dart';
+import 'package:friut_hub/features/e_commerce/cart/domain/repo/cart_repo.dart';
+import 'package:friut_hub/features/e_commerce/cart/domain/usecases/add_to_cart_usecase.dart';
+import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/category/data/repo_impls/category_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/category/data/source/category_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/category/domain/repo/category_repo.dart';
@@ -28,21 +33,39 @@ import 'package:friut_hub/features/e_commerce/category/presintation/bloc/categor
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt sl = GetIt.instance;
 
 Future<void> initilaizedDependencies() async {
-  //! Dio
-  sl.registerSingleton<Dio>(
-    Dio(
+    final prefs = await SharedPreferences.getInstance();
+    sl.registerSingleton<SharedPreferences>(prefs);
+
+    // Dio with interceptor
+    final dio = Dio(
       BaseOptions(
         baseUrl: Endpoints.baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         headers: {"Content-Type": "application/json"},
       ),
-    ),
-  );
+    );
+
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = sl<SharedPreferences>().getString(
+            'access_token',
+          );
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+      ),
+    );
+
+    sl.registerSingleton<Dio>(dio);
 
   //! data-> data sources
 
@@ -52,8 +75,11 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<ProductRemoteDataSource>(
     ProductDsWithDio(dio: sl<Dio>()),
   );
-    sl.registerSingleton<CategoryRemoteDataSource>(
+  sl.registerSingleton<CategoryRemoteDataSource>(
     CategoryDsWithDio(dio: sl<Dio>()),
+  );
+  sl.registerSingleton<CartRemoteDataSource>(
+    CartDsWithDio(dio: sl<Dio>()),
   );
 
   //! domain-> repo
@@ -69,6 +95,9 @@ Future<void> initilaizedDependencies() async {
     CategoryRepoImpl(
       categoryRemoteDataSource: sl<CategoryRemoteDataSource>(),
     ),
+  );
+  sl.registerSingleton<CartRepo>(
+    CartRepoImpl(cartRemoteDataSource: sl<CartRemoteDataSource>()),
   );
   //! domain-> usecases
   //! ============= AUTH  Register =============
@@ -111,7 +140,10 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<GetCategoryProductsUsecase>(
     GetCategoryProductsUsecase(categoryRepo: sl<CategoryRepo>()),
   );
-
+  //! ============= Cart =============
+  sl.registerSingleton<AddToCartUsecase>(
+    AddToCartUsecase(cartRepo: sl<CartRepo>()),
+  );
   //! blocs
   //! ============= AUTH =============
   sl.registerFactory<SignupBloc>(
@@ -136,7 +168,8 @@ Future<void> initilaizedDependencies() async {
   sl.registerFactory<ProductsBloc>(
     () => ProductsBloc(
       getAllProductsUsecase: sl<GetAllProductsUsecase>(),
-      searchProdcutsUsecase: sl<SearchProdcutsUsecase>(), getCategoryProductsUsecase: sl<GetCategoryProductsUsecase>(),
+      searchProdcutsUsecase: sl<SearchProdcutsUsecase>(),
+      getCategoryProductsUsecase: sl<GetCategoryProductsUsecase>(),
     ),
   );
   sl.registerFactory<ProductDetailsBloc>(
@@ -144,11 +177,15 @@ Future<void> initilaizedDependencies() async {
       getDetaildProductUsecase: sl<GetDetaildProductUsecase>(),
     ),
   );
-    //! ============= Category =============
+  //! ============= Category =============
 
-    sl.registerFactory<CategoryBloc>(
+  sl.registerFactory<CategoryBloc>(
     () => CategoryBloc(
       getAllCategoriesUsecase: sl<GetAllCategoriesUsecase>(),
     ),
+  );
+  //! ============= Cart =============
+  sl.registerFactory<CartBloc>(
+    () => CartBloc(addToCartUsecase: sl<AddToCartUsecase>()),
   );
 }

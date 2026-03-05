@@ -7,6 +7,7 @@ import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forg
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
+import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/category/presintation/bloc/category_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
@@ -47,6 +48,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<ProductDetailsBloc>()),
         //! ============ Category ============
         BlocProvider(create: (_) => sl<CategoryBloc>()),
+        //! ============ Cart ============
+        BlocProvider(create: (_) => sl<CartBloc>()),
+        
       ],
       child: MaterialApp(
         locale: Locale('ar'),

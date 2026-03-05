@@ -4,10 +4,11 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/hom
 
 class ItemQuantityWidget extends StatefulWidget {
   final ValueChanged<int> onQuantityChanged;
-
+  final int maxQuantity;
   const ItemQuantityWidget({
     super.key,
     required this.onQuantityChanged,
+    required this.maxQuantity,
   });
 
   @override
@@ -25,7 +26,7 @@ class _ItemQuantityWidgetState extends State<ItemQuantityWidget> {
         ItemAddIcon(
           onTap: () {
             setState(() {
-              quantity++;
+              if (quantity != widget.maxQuantity) quantity++;
             });
             widget.onQuantityChanged(quantity);
           },

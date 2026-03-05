@@ -5,6 +5,7 @@ import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/product_details_widgets/item_details_row_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/product_details_widgets/item_quantity_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/product_details_widgets/product_name_and_price_widget.dart';
@@ -13,10 +14,12 @@ import 'package:friut_hub/features/e_commerce/products/presintation/blocs/produc
 import 'package:friut_hub/generated/assets.dart';
 
 class ItemDetailsPage extends StatelessWidget {
-  int selectedQuantity = 1;
   ItemDetailsPage({super.key});
 
   static const routeName = "ItemDetailsPage";
+
+  int selectedQuantity = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +95,7 @@ class ItemDetailsPage extends StatelessWidget {
                                         'Quantity: $selectedQuantity',
                                       );
                                     },
+                                    maxQuantity: product.stock!,
                                   ),
                                 ],
                               ),
@@ -163,7 +167,57 @@ class ItemDetailsPage extends StatelessWidget {
                   bottom: 40,
                   child: MyButton(
                     onTap: () {
+                      context.read<CartBloc>().add(
+                        AddToCartEvent(
+                          productId: product.id,
+                          quantity: selectedQuantity,
+                        ),
+                      );
 
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "product added successfully",
+                                    style: AppTextStyles.bodyBaseBold
+                                        .copyWith(
+                                          color: Colors.black,
+                                        ),
+                                  ),
+                                  const SizedBox(height: 20),
+
+                                  SizedBox(
+                                    width: 150,
+                                    height: 70,
+                                    child: MyButton(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                      content: Text(
+                                        "OK",
+                                        style:
+                                            AppTextStyles
+                                                .bodyBaseBold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
                     },
                     content: Text(
                       "أضف الي السلة",
@@ -181,46 +235,3 @@ class ItemDetailsPage extends StatelessWidget {
     );
   }
 }
-                        // ! line 127
-
-                        //   SizedBox(
-                        //     width: 200.w(context),
-                        //     height: 200.h(context),
-                        //     child: GridView.builder(
-                        //       padding: EdgeInsets.zero,
-                        //       itemCount: 4,
-                        //       gridDelegate:
-                        //           const SliverGridDelegateWithFixedCrossAxisCount(
-                        //             crossAxisCount: 2,
-                        //             crossAxisSpacing: 10,
-                        //             mainAxisSpacing: 10,
-                        //             // childAspectRatio: .7,
-                        //           ),
-
-                        //       itemBuilder:
-                        //           (context, index) => Container(
-                        //             decoration: BoxDecoration(
-                        //               color: AppColors.grayscale50,
-                        //               borderRadius: BorderRadius.circular(
-                        //                 25,
-                        //               ),
-                        //             ),
-                        //             child: Row(
-                        //               children: [
-                        //                 Column(
-                        //                   children: [
-                        //                     Text("100%"),
-                        //                     SizedBox(height: 5),
-                        //                     Text("organic"),
-                        //                   ],
-                        //                 ),
-                        //                 SvgPicture.asset(
-                        //                   width: 50,
-                        //                   height: 50,
-                        //                   Assets.svgItemDetails1,
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //     ),
-                        //   ),
