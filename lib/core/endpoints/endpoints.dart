@@ -11,6 +11,9 @@ class Endpoints {
   static const changeToNewPassword = "/api/password-resets";
 
   // ! =================== Products ====================
-  static const getAllProducts = '/api/Products'; // note: also for get detaild product bt Id
+  static const getAllProducts =
+      '/api/Products'; // note: also for get detaild product bt Id
 
+  // ! =================== Categories ====================
+  static const getAllCategories = "/api/Categories";
 }

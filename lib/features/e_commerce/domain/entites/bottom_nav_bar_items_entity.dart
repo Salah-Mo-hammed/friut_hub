@@ -8,29 +8,29 @@ class BottomNavBarItemEntity {
     required this.activeImage,
     required this.inActiveInage,
   });
-
 }
-  List<BottomNavBarItemEntity> get bottomNavBarItems => [
-    BottomNavBarItemEntity(
-      text: "الرئيسية",
-      activeImage: Assets.svgSelectedHomeIcon,
-      inActiveInage: Assets.svgUnselectedHomeIcon,
-    ),
 
-    BottomNavBarItemEntity(
-      text: "المنتجات",
-      activeImage: Assets.svgSelectedProductIcon,
-      inActiveInage: Assets.svgUnselectedProductsIcon,
-    ),
+List<BottomNavBarItemEntity> get bottomNavBarItems => [
+  BottomNavBarItemEntity(
+    text: "الرئيسية",
+    activeImage: Assets.svgSelectedHomeIcon,
+    inActiveInage: Assets.svgUnselectedHomeIcon,
+  ),
 
-    BottomNavBarItemEntity(
-      text: "سلة المشتريات",
-      activeImage: Assets.svgSelectedHomeIcon,
-      inActiveInage: Assets.svgUnselectedHomeIcon,
-    ),
-    BottomNavBarItemEntity(
-      text: "حسابي",
-      activeImage: Assets.svgSelectedUserIcon,
-      inActiveInage: Assets.svgUnselectedProfileIcon,
-    ),
-  ];
+  BottomNavBarItemEntity(
+    text: "المنتجات",
+    activeImage: Assets.svgSelectedProductIcon,
+    inActiveInage: Assets.svgUnselectedProductsIcon,
+  ),
+
+  BottomNavBarItemEntity(
+    text: "سلة المشتريات",
+    activeImage: Assets.svgSelectedShoppingCartIcon,
+    inActiveInage: Assets.svgUnselectedShoppingCartIcon,
+  ),
+  BottomNavBarItemEntity(
+    text: "حسابي",
+    activeImage: Assets.svgSelectedUserIcon,
+    inActiveInage: Assets.svgUnselectedProfileIcon,
+  ),
+];

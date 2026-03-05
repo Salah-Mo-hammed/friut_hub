@@ -12,8 +12,9 @@ class ProductInitial extends ProductsState {}
 class ProductsLoading extends ProductsState {}
 
 class ProductsLoaded extends ProductsState {
+  final bool didSearch;
   final List<ProductEntity> products;
-  const ProductsLoaded({required this.products});
+  const ProductsLoaded({required this.products, required this.didSearch});
 }
 
 class ProductError extends ProductsState {

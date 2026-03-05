@@ -8,7 +8,7 @@ import 'package:friut_hub/generated/assets.dart';
 
 class MainDashboardAppBarWidget extends StatelessWidget {
   String userFullName;
-   MainDashboardAppBarWidget({super.key, required this.userFullName});
+  MainDashboardAppBarWidget({super.key, required this.userFullName});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,7 @@ class MainDashboardAppBarWidget extends StatelessWidget {
               Image.asset(Assets.pngPersonIcon, fit: BoxFit.fill),
               SizedBox(width: 5),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 15.0),

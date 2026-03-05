@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/domain/entites/bottom_nav_bar_items_entity.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 
 class FancyBottomNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -48,7 +50,14 @@ class FancyBottomNavBar extends StatelessWidget {
           final isSelected = index == selectedIndex;
 
           return GestureDetector(
-            onTap: () => onTap(index),
+            onTap: () {
+              if (index == 0) {
+                context.read<ProductsBloc>().add(
+                  GetAllProductsEvent(),
+                );
+              }
+              onTap(index);
+            },
             child:
             // ! this animated to gorw container size
             AnimatedContainer(

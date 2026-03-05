@@ -7,6 +7,7 @@ import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forg
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/category_bloc/category_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:friut_hub/generated/l10n.dart';
@@ -38,15 +39,14 @@ class MyApp extends StatelessWidget {
         //! ============ Auth ============
         BlocProvider<SignupBloc>(create: (_) => sl<SignupBloc>()),
         BlocProvider<LoginBloc>(create: (_) => sl<LoginBloc>()),
-        BlocProvider<ForgetPassBloc>(create: (_) => sl<ForgetPassBloc>()),
+        BlocProvider<ForgetPassBloc>(
+          create: (_) => sl<ForgetPassBloc>(),
+        ),
         //! ============ Prodcut ============
-
-         BlocProvider(
-              create: (_) =>sl< ProductsBloc>(),),
-
-         BlocProvider(
-              create: (_) =>sl< ProductDetailsBloc>(),)
-      
+        BlocProvider(create: (_) => sl<ProductsBloc>()),
+        BlocProvider(create: (_) => sl<ProductDetailsBloc>()),
+        //! ============ Category ============
+        BlocProvider(create: (_) => sl<CategoryBloc>()),
       ],
       child: MaterialApp(
         locale: Locale('ar'),
@@ -61,6 +61,11 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: onGenerateRoutes,
 
         initialRoute: LoginPage.routeName,
+        builder:
+            (context, child) => Directionality(
+              textDirection: TextDirection.rtl,
+              child: child!,
+            ),
       ),
     );
   }

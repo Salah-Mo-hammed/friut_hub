@@ -16,9 +16,12 @@ import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bl
 import 'package:friut_hub/features/e_commerce/products/data/repo_impl/product_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/products/data/source/product_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/repo/product_repo.dart';
+import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_all_categories_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_all_products_usecase.dart';
+import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_category_products_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_detaild_product_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/search_prodcuts_usecase.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/category_bloc/category_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -91,6 +94,13 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<GetDetaildProductUsecase>(
     GetDetaildProductUsecase(productRepo: sl<ProductRepo>()),
   );
+  //! ============= Categories =============
+  sl.registerSingleton<GetAllCategoriesUsecase>(
+    GetAllCategoriesUsecase(productRepo: sl<ProductRepo>()),
+  );
+  sl.registerSingleton<GetCategoryProductsUsecase>(
+    GetCategoryProductsUsecase(productRepo: sl<ProductRepo>()),
+  );
 
   //! blocs
   //! ============= AUTH =============
@@ -116,12 +126,17 @@ Future<void> initilaizedDependencies() async {
   sl.registerFactory<ProductsBloc>(
     () => ProductsBloc(
       getAllProductsUsecase: sl<GetAllProductsUsecase>(),
-      searchProdcutsUsecase: sl<SearchProdcutsUsecase>(),
+      searchProdcutsUsecase: sl<SearchProdcutsUsecase>(), getCategoryProductsUsecase: sl<GetCategoryProductsUsecase>(),
     ),
   );
   sl.registerFactory<ProductDetailsBloc>(
     () => ProductDetailsBloc(
       getDetaildProductUsecase: sl<GetDetaildProductUsecase>(),
+    ),
+  );
+    sl.registerFactory<CategoryBloc>(
+    () => CategoryBloc(
+      getAllCategoriesUsecase: sl<GetAllCategoriesUsecase>(),
     ),
   );
 }

@@ -134,6 +134,10 @@ class Assets {
   /// assets/svg/box.svg
   static const String svgBox = "assets/svg/box.svg";
 
+  /// Assets for svgBread
+  /// assets/svg/bread.svg
+  static const String svgBread = "assets/svg/bread.svg";
+
   /// Assets for svgChangePassSuccessed
   /// assets/svg/change_pass_successed.svg
   static const String svgChangePassSuccessed = "assets/svg/change_pass_successed.svg";
@@ -153,6 +157,18 @@ class Assets {
   /// Assets for svgCheckoutRevision
   /// assets/svg/checkout_revision.svg
   static const String svgCheckoutRevision = "assets/svg/checkout_revision.svg";
+
+  /// Assets for svgCloseCircle
+  /// assets/svg/close_circle.svg
+  static const String svgCloseCircle = "assets/svg/close_circle.svg";
+
+  /// Assets for svgCloseSquare
+  /// assets/svg/close_square.svg
+  static const String svgCloseSquare = "assets/svg/close_square.svg";
+
+  /// Assets for svgDairy
+  /// assets/svg/dairy.svg
+  static const String svgDairy = "assets/svg/dairy.svg";
 
   /// Assets for svgEmptyWallet
   /// assets/svg/empty-wallet.svg
@@ -174,6 +190,10 @@ class Assets {
   /// assets/svg/filter_normal.svg
   static const String svgFilterNormal = "assets/svg/filter_normal.svg";
 
+  /// Assets for svgFruits
+  /// assets/svg/fruits.svg
+  static const String svgFruits = "assets/svg/fruits.svg";
+
   /// Assets for svgGlobal
   /// assets/svg/global.svg
   static const String svgGlobal = "assets/svg/global.svg";
@@ -185,6 +205,10 @@ class Assets {
   /// Assets for svgHeart
   /// assets/svg/heart.svg
   static const String svgHeart = "assets/svg/heart.svg";
+
+  /// Assets for svgHerb
+  /// assets/svg/herb.svg
+  static const String svgHerb = "assets/svg/herb.svg";
 
   /// Assets for svgInfoCircle
   /// assets/svg/info-circle.svg
@@ -205,6 +229,10 @@ class Assets {
   /// Assets for svgItemDetails4
   /// assets/svg/itemDetails4.svg
   static const String svgItemDetails4 = "assets/svg/itemDetails4.svg";
+
+  /// Assets for svgJuice
+  /// assets/svg/juice.svg
+  static const String svgJuice = "assets/svg/juice.svg";
 
   /// Assets for svgLocation
   /// assets/svg/location.svg
@@ -269,6 +297,10 @@ class Assets {
   /// Assets for svgSearchNormal
   /// assets/svg/search-normal.svg
   static const String svgSearchNormal = "assets/svg/search-normal.svg";
+
+  /// Assets for svgSeeds
+  /// assets/svg/seeds.svg
+  static const String svgSeeds = "assets/svg/seeds.svg";
 
   /// Assets for svgSelectedHomeIcon
   /// assets/svg/selected_home_icon.svg
@@ -341,6 +373,10 @@ class Assets {
   /// Assets for svgVector
   /// assets/svg/Vector.svg
   static const String svgVector = "assets/svg/Vector.svg";
+
+  /// Assets for svgVegetables
+  /// assets/svg/vegetables.svg
+  static const String svgVegetables = "assets/svg/vegetables.svg";
 
   /// Assets for svgVisa
   /// assets/svg/Visa.svg

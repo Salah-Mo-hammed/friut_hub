@@ -3,7 +3,8 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/best_sellings_page.dart';
 
 class MainBestSellingWIdget extends StatelessWidget {
-  const MainBestSellingWIdget({super.key});
+ final String title;
+  const MainBestSellingWIdget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class MainBestSellingWIdget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "الأكثر مبيعًا",
+            title ,
             style: AppTextStyles.bodyBaseBold.copyWith(
               color: Colors.black,
             ),
