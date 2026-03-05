@@ -14,7 +14,7 @@
 
 ## 📱 Screenshots
 
-> _Coming soon — screenshots and screen recordings will be added here._
+> _Coming soon — screenshots will be added here._
 
 ---
 
