@@ -11,7 +11,7 @@ import 'package:friut_hub/features/e_commerce/presintaion/widgets/products_widge
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/products_widgets/products_app_bar_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/products_widgets/products_horizntal_list_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/products_widgets/products_row_widget.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 
 class ProductsPage extends StatelessWidget {
   TextEditingController minPriceController = TextEditingController(

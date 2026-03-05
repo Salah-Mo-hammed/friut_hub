@@ -3,13 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/dependency_container.dart';
-import 'package:friut_hub/core/pages/splash_page.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:friut_hub/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:friut_hub/core/helpers/on_geenerate_routes.dart';

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class CustomSearchBarWidget extends StatelessWidget {
-  const CustomSearchBarWidget({super.key});
+  TextEditingController searchController = TextEditingController();
+  CustomSearchBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +21,24 @@ class CustomSearchBarWidget extends StatelessWidget {
         ),
         width: 343.w(context),
         child: TextField(
+          controller: searchController,
           decoration: InputDecoration(
             hintText: "ابحث عن.......",
             hintStyle: AppTextStyles.bodySmall,
             border: InputBorder.none,
             prefixIcon: Padding(
               padding: const EdgeInsets.all(7.0),
-              child: SvgPicture.asset(
-                Assets.svgSearchNormal,
-                height: 30,
-                width: 30,
+              child: GestureDetector(
+                onTap: () {
+                  context.read<ProductsBloc>().add(
+                    SearchProductsEvent(searchController.text),
+                  );
+                },
+                child: SvgPicture.asset(
+                  Assets.svgSearchNormal,
+                  height: 30,
+                  width: 30,
+                ),
               ),
             ),
             prefixIconConstraints: BoxConstraints(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/pages/on_boarding_view.dart';
 import 'package:friut_hub/core/pages/splash_page.dart';
-import 'package:friut_hub/dependency_container.dart';
 import 'package:friut_hub/features/auth/presentation/pages/fprget_pass_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
@@ -22,7 +20,6 @@ import 'package:friut_hub/features/e_commerce/presintaion/pages/payments_page.da
 import 'package:friut_hub/features/e_commerce/presintaion/pages/personal_file_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/reviews_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/track_order_page.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {

@@ -18,8 +18,9 @@ import 'package:friut_hub/features/e_commerce/products/data/source/product_remot
 import 'package:friut_hub/features/e_commerce/products/domain/repo/product_repo.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_all_products_usecase.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/usecases/get_detaild_product_usecase.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/domain/usecases/search_prodcuts_usecase.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt sl = GetIt.instance;
@@ -84,6 +85,9 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<GetAllProductsUsecase>(
     GetAllProductsUsecase(productRepo: sl<ProductRepo>()),
   );
+  sl.registerSingleton<SearchProdcutsUsecase>(
+    SearchProdcutsUsecase(productRepo: sl<ProductRepo>()),
+  );
   sl.registerSingleton<GetDetaildProductUsecase>(
     GetDetaildProductUsecase(productRepo: sl<ProductRepo>()),
   );
@@ -110,15 +114,14 @@ Future<void> initilaizedDependencies() async {
   );
   //! ============= Products =============
   sl.registerFactory<ProductsBloc>(
-    () =>
-        ProductsBloc(
-          getAllProductsUsecase: sl<GetAllProductsUsecase>(),
-       ),
+    () => ProductsBloc(
+      getAllProductsUsecase: sl<GetAllProductsUsecase>(),
+      searchProdcutsUsecase: sl<SearchProdcutsUsecase>(),
+    ),
   );
-    sl.registerFactory<ProductDetailsBloc>(
-    () =>
-        ProductDetailsBloc(
-           getDetaildProductUsecase: sl<GetDetaildProductUsecase>(),
-       ),
+  sl.registerFactory<ProductDetailsBloc>(
+    () => ProductDetailsBloc(
+      getDetaildProductUsecase: sl<GetDetaildProductUsecase>(),
+    ),
   );
 }

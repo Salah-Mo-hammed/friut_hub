@@ -5,7 +5,7 @@ import 'package:friut_hub/features/e_commerce/presintaion/pages/my_cart_page.dar
 import 'package:friut_hub/features/e_commerce/presintaion/pages/product_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/profile_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/bottom_nav_bar_widget.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 
 class MainDashboard extends StatefulWidget {
   Map<String, dynamic> userData;

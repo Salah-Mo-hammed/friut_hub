@@ -5,4 +5,6 @@ import 'package:friut_hub/features/e_commerce/products/domain/entities/product_e
 abstract class ProductRepo {
   Future<Either<Failure, List<ProductEntity>>> getAllProducts();
   Future<Either<Failure, ProductEntity>> getDetaildProduct(String id);
+  Future<Either<Failure, List<ProductEntity>>> searchProducts(String searchQuery);
+
 }

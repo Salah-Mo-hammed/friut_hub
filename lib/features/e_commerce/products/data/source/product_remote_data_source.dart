@@ -8,6 +8,7 @@ import 'package:friut_hub/features/e_commerce/products/data/models/product_model
 abstract class ProductRemoteDataSource {
   Future<List<ProductModel>> getAllProducts();
   Future<ProductDetailesModel> getDetaildProduct(String id);
+  Future<List<ProductModel>> searchProducts(String searchQuery);
 }
 
 class ProductDsWithDio implements ProductRemoteDataSource {
@@ -29,9 +30,7 @@ class ProductDsWithDio implements ProductRemoteDataSource {
 
   @override
   Future<ProductDetailesModel> getDetaildProduct(String id) async {
-    final response = await dio.get(
-      "${Endpoints.getAllProducts}/$id",
-    );
+    final response = await dio.get("${Endpoints.getAllProducts}/$id");
     print(
       "status code for getting detaild  product: ${response.statusCode}",
     );
@@ -39,5 +38,24 @@ class ProductDsWithDio implements ProductRemoteDataSource {
     final ProductDetailesModel detailedProduct =
         ProductDetailesModel.fromJson(response.data);
     return detailedProduct;
+  }
+
+  @override
+  Future<List<ProductModel>> searchProducts(
+    String searchQuery,
+  ) async {
+    final response = await dio.get(
+      Endpoints.getAllProducts,
+      queryParameters: {"Search":searchQuery},
+    );
+    print("status code for getting products: ${response.statusCode}");
+    print("getting the prodcuts ${response.data}");
+
+    final List<ProductModel> products =
+        (response.data as List<dynamic>)
+            .map((product) => ProductModel.fromJson(product))
+            .toList();
+
+    return products;
   }
 }

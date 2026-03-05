@@ -5,8 +5,7 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/pages/item_details_page.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/home_widgets/add_icon.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/entities/product_entity.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class CustomItemCardWidget extends StatelessWidget {

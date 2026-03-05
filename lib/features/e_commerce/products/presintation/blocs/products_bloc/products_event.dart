@@ -16,6 +16,6 @@ class GetProductsByCategoryEvent extends ProductsEvent {
 
 
 class SearchProductsEvent extends ProductsEvent {
-  final String query;
-  const SearchProductsEvent(this.query);
+  final String searchQuery;
+  const SearchProductsEvent(this.searchQuery);
 }

@@ -51,4 +51,24 @@ class ProductRepoImpl implements ProductRepo {
     }
 
   }
+  
+  @override
+  Future<Either<Failure, List<ProductEntity>>> searchProducts(String searchQuery) async{
+    try {
+      final products = await productRemoteDataSource.searchProducts(searchQuery);
+      return Right(products);
+    } on DioException catch (e) {
+      print("STATUS CODE: ${e.response?.statusCode}");
+      print("RESPONSE DATA: ${e.response?.data}");
+      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
+
+      return Left(Failure.unknown(message: e.toString()));
+    } catch (e) {
+      return Left(
+        Failure.unknown(
+          message: "ProductRepoImpl Exceoption => ${e.toString()}",
+        ),
+      );
+    }
+  }
 }

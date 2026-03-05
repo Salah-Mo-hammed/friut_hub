@@ -9,8 +9,7 @@ import 'package:friut_hub/features/e_commerce/presintaion/widgets/product_detail
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/product_details_widgets/item_quantity_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/product_details_widgets/product_name_and_price_widget.dart';
 import 'package:friut_hub/features/e_commerce/presintaion/widgets/product_details_widgets/product_rate_widget.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/bloc/products_bloc.dart';
-import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc.dart';
+import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class ItemDetailsPage extends StatelessWidget {
