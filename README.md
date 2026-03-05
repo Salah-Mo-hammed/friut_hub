@@ -52,10 +52,10 @@
 
 ### 👤 Profile & Account
 - Change password
+- Manage favorites
 - Manage saved payment cards
 - Add new payment methods
-- Notifications center
-
+- User orders tracking
 ---
 
 ## 🏗️ Architecture
@@ -110,33 +110,14 @@ The app integrates with a custom RESTful API backend supporting:
 
 ---
 
-## 🧰 Tech Stack
-
-| Category | Technology |
-|----------|------------|
-| Framework | Flutter 3.x |
-| Language | Dart 3.x |
-| State Management | BLoC / Cubit |
-| Networking | Dio |
-| Dependency Injection | GetIt + Injectable |
-| Navigation | Auto Route / Go Router |
-| Local Storage | Shared Preferences / Flutter Secure Storage |
-| Architecture | Clean Architecture |
-
----
-
 ## 🚀 Getting Started
 
-### Prerequisites
-- Flutter SDK `>=3.0.0`
-- Dart SDK `>=3.0.0`
-- Android Studio / VS Code with Flutter extension
 
 ### Installation
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/shopsphere.git
+git clone https://github.com/Salah-Mo-hammed/shopsphere.git
 cd shopsphere
 
 # 2. Install dependencies
@@ -145,58 +126,11 @@ flutter pub get
 # 3. Run code generation (if using injectable / auto_route)
 dart run build_runner build --delete-conflicting-outputs
 
-# 4. Set up environment variables
-cp .env.example .env
-# Edit .env and set BASE_URL to your API endpoint
 
-# 5. Run the app
+# 4. Run the app
 flutter run
 ```
 
-### Environment Variables
 
-Create a `.env` file at the project root:
 
-```env
-BASE_URL=https://your-api-domain.com/api
-```
-
----
-
-## 📂 Project Structure Highlights
-
-```
-lib/core/api/
-├── api_client.dart          # Dio instance with base options
-├── auth_interceptor.dart    # Attaches Bearer token to requests
-└── token_refresh_interceptor.dart  # Handles 401 → refresh → retry
-
-lib/features/auth/
-├── data/
-│   ├── models/              # LoginModel, RegisterModel, UserModel
-│   ├── datasources/         # AuthRemoteDataSource
-│   └── repositories/        # AuthRepositoryImpl
-├── domain/
-│   ├── entities/            # User entity
-│   ├── usecases/            # LoginUseCase, RegisterUseCase, etc.
-│   └── repositories/        # AuthRepository (abstract)
-└── presentation/
-    ├── cubit/               # AuthCubit, AuthState
-    └── screens/             # LoginScreen, RegisterScreen, OtpScreen
-```
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-<p align="center">Made with ❤️ by <a href="https://github.com/YOUR_USERNAME">Salah Abd Al-Atti</a></p>
+<p align="center">Made with ❤️ by <a href="https://github.com/Salah-Mo-hammed">Salah Abd Al-Atti</a></p>
