@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
   }
 }
 //! ANOTHER SHAPE FOR NO SEARCH RESULT (TAKE WHOLE SCREEN), AND DISCOUNT BANNER IS IN ProductLoaded
-// ! Note: but with no loading skeleton 
+// ! Note: but with no loading skeleton , OK
 /*
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
