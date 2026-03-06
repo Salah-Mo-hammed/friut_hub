@@ -10,6 +10,7 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/check
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/skeletonizer_product_grid.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/num_of_products_in_cart_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/products_in_cart_row_widget.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/skeleton_cart_widget.dart';
 
 class MyCartPage extends StatefulWidget {
   const MyCartPage({super.key});
@@ -55,28 +56,40 @@ class _MyCartPageState extends State<MyCartPage> {
         },
         builder: (context, state) {
           if (state is CartLoading) {
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+            return ListView.builder(
               itemCount: 4,
-
-              itemBuilder: (_, __) {
-                return SkeletonProductCard();
-              },
+              itemBuilder: (_, __) => const SkeletonCartRow(),
             );
           }
 
           if (state is CartroductsLoaded) {
             if (_cartItems.isEmpty) {
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 4,
-
-                itemBuilder: (_, __) {
-                  return SkeletonProductCard();
-                },
+              return Center(
+                child: Text(
+                  "السلة فارغة",
+                  style: AppTextStyles.bodyLarge.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               );
+
+              /*
+              return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 4,
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 8,
+                        childAspectRatio: 176 / 214,
+                      ),
+                  itemBuilder: (_, __) {
+                    return SkeletonProductCard();
+                  },
+                );
+               */
             }
 
             return Column(

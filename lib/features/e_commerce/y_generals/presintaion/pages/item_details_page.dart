@@ -190,7 +190,7 @@ class ItemDetailsPage extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    "product added successfully",
+                                    "تم الاضافة الى السلة",
                                     style: AppTextStyles.bodyBaseBold
                                         .copyWith(
                                           color: Colors.black,
