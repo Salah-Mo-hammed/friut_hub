@@ -54,4 +54,24 @@ class CartRepoImpl implements CartRepo {
     }
     
   }
+  
+  @override
+  Future<Either<Failure, Unit>> updateProductQuantityInCart(int productId, int quantity) async{
+   try {
+       await cartRemoteDataSource.updateProductQuantityInCart(productId,quantity);
+      return Right(unit);
+    } on DioException catch (e) {
+      print("STATUS CODE: ${e.response?.statusCode}");
+      print("RESPONSE DATA: ${e.response?.data}");
+      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
+
+      return Left(Failure.unknown(message: e.toString()));
+    } catch (e) {
+      return Left(
+        Failure.unknown(
+          message: "CartRepoImpl Exceoption => ${e.toString()}",
+        ),
+      );
+    }
+  }
 }

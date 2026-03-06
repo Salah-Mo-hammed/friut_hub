@@ -8,4 +8,8 @@ abstract class CartRepo {
     int quantity,
   );
   Future<Either<Failure, CartEntity>> getCartProducts();
+   Future<Either<Failure, Unit>> updateProductQuantityInCart(
+    int productId,
+    int quantity,
+  );
 }
