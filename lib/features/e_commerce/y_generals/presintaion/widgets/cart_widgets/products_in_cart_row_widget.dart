@@ -58,14 +58,18 @@ class ProductsInCartRow extends StatelessWidget {
                       SizedBox(
                         height: 35,
                         child: ItemQuantityWidget(
+                          itemId: item.productId,
                           onQuantityChanged: (newQuantity) {
                             //this is not a very professional way , but its good
-                            context.read<CartBloc>().add(
-                              UpdateProductQInCartEvent(
-                                productId: item.productId,
-                                quantity: newQuantity,
-                              ),
-                            );
+                            if (newQuantity != 0) {
+                              context.read<CartBloc>().add(
+                                UpdateProductQInCartEvent(
+                                  productId: item.productId,
+                                  quantity: newQuantity,
+                                ),
+                              );
+                            }
+
                             context.read<CartBloc>().add(
                               GetCartProductsEvent(),
                             );
@@ -87,7 +91,9 @@ class ProductsInCartRow extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context.read<CartBloc>().add(RemoveFromCartEvent(productId: item.productId));
+                    context.read<CartBloc>().add(
+                      RemoveFromCartEvent(productId: item.productId),
+                    );
                   },
                   child: SvgPicture.asset(Assets.svgTrash),
                 ),

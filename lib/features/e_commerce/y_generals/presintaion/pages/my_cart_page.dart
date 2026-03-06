@@ -55,25 +55,27 @@ class _MyCartPageState extends State<MyCartPage> {
         },
         builder: (context, state) {
           if (state is CartLoading) {
-ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 4,
-               
-                  itemBuilder: (_, __) {
-                    return SkeletonProductCard();
-                  },
-                );          }
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 4,
+
+              itemBuilder: (_, __) {
+                return SkeletonProductCard();
+              },
+            );
+          }
 
           if (state is CartroductsLoaded) {
             if (_cartItems.isEmpty) {
-              return Center(
-                child: Text(
-                  "السلة فارغة",
-                  style: AppTextStyles.bodyLarge.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 4,
+
+                itemBuilder: (_, __) {
+                  return SkeletonProductCard();
+                },
               );
             }
 

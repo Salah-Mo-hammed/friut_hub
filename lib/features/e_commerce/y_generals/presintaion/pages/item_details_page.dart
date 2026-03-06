@@ -89,6 +89,8 @@ class ItemDetailsPage extends StatelessWidget {
 
                                   // ! for increase ,decrease ,and number of items
                                   ItemQuantityWidget(
+                                    isIndetaildPRoduct: true,
+                                    itemId: product.id,
                                     onQuantityChanged: (value) {
                                       selectedQuantity = value;
                                       debugPrint(

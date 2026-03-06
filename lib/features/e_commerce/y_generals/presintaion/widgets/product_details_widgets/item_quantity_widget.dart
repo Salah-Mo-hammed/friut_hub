@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/add_icon.dart';
 
 class ItemQuantityWidget extends StatefulWidget {
+  final int itemId;
+  bool isIndetaildPRoduct;
   final ValueChanged<int> onQuantityChanged;
   final int maxQuantity;
-   int initialQuantity;
+  int initialQuantity;
   ItemQuantityWidget({
     super.key,
+    required this.itemId,
     required this.onQuantityChanged,
     required this.maxQuantity,
-   this.initialQuantity = 1,
+    this.isIndetaildPRoduct = false,
+    this.initialQuantity = 1,
   });
 
   @override
@@ -19,7 +25,7 @@ class ItemQuantityWidget extends StatefulWidget {
 }
 
 class _ItemQuantityWidgetState extends State<ItemQuantityWidget> {
-  late int quantity=widget.initialQuantity;
+  late int quantity = widget.initialQuantity;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +53,17 @@ class _ItemQuantityWidgetState extends State<ItemQuantityWidget> {
           icon: Icons.remove,
           onTap: () {
             setState(() {
-              if (quantity != 1) quantity--;
+              if (widget.isIndetaildPRoduct) {
+                if (quantity != 1) quantity--;
+              }
+              if (quantity == 1) {
+                context.read<CartBloc>().add(
+                  RemoveFromCartEvent(productId: widget.itemId),
+                );
+              }
+              if (!widget.isIndetaildPRoduct) {
+                quantity--;
+              }
             });
             widget.onQuantityChanged(quantity);
           },
