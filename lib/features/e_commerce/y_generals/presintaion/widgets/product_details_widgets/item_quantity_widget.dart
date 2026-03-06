@@ -20,11 +20,6 @@ class ItemQuantityWidget extends StatefulWidget {
 
 class _ItemQuantityWidgetState extends State<ItemQuantityWidget> {
   late int quantity=widget.initialQuantity;
-  // @override
-  // void initState() {
-  //   quantity = widget.initialQuantity!;
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {

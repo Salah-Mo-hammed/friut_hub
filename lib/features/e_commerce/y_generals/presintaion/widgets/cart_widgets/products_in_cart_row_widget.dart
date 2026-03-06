@@ -9,9 +9,23 @@ import 'package:friut_hub/features/e_commerce/cart/domain/entities/cart_item_ent
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/product_details_widgets/item_quantity_widget.dart';
 import 'package:friut_hub/generated/assets.dart';
 
-class ProductsInCartRow extends StatelessWidget {
+class ProductsInCartRow extends StatefulWidget {
   CartItemEntity item;
-  ProductsInCartRow({super.key, required this.item});
+  // final ValueChanged<int> onQuantityChanged;
+  ProductsInCartRow({super.key, required this.item,});
+
+  @override
+  State<ProductsInCartRow> createState() => _ProductsInCartRowState();
+}
+
+class _ProductsInCartRowState extends State<ProductsInCartRow> {
+  late double itemSubTotalPrice;
+
+  @override
+  void initState() {
+    super.initState();
+    itemSubTotalPrice = widget.item.price * widget.item.quantity;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +52,7 @@ class ProductsInCartRow extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        item.productName,
+                        widget.item.productName,
                         style: AppTextStyles.bodySmallBold.copyWith(
                           color: Colors.black,
                         ),
@@ -46,7 +60,7 @@ class ProductsInCartRow extends StatelessWidget {
                       SizedBox(height: 5),
 
                       Text(
-                        "${item.quantity.toString()} كم",
+                        "عدد:  ${widget.item.quantity.toString()} ",
                         style: AppTextStyles.bodySmallBold.copyWith(
                           fontSize: 15,
                           color: AppColors.orange500,
@@ -56,8 +70,15 @@ class ProductsInCartRow extends StatelessWidget {
                       SizedBox(
                         height: 35,
                         child: ItemQuantityWidget(
-                          onQuantityChanged: (valaue) {},
-                          initialQuantity: item.quantity,
+                          onQuantityChanged: (itemQuantityValue) {
+                            setState(() {
+                              itemSubTotalPrice =
+                                  widget.item.price *
+                                  itemQuantityValue;
+                            });
+                          },
+                          initialQuantity: widget.item.quantity,
+                          // ! maxQuantity  should be item.stock (call backend fev to add it)
                           maxQuantity: 100,
                         ),
                       ),
@@ -74,7 +95,7 @@ class ProductsInCartRow extends StatelessWidget {
               children: [
                 SvgPicture.asset(Assets.svgTrash),
                 Text(
-                  "${item.subTotal} جنيه ",
+                  "$itemSubTotalPrice جنيه ",
                   style: AppTextStyles.bodyBaseBold.copyWith(
                     fontSize: 16,
                     color: AppColors.orange500,

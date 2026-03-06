@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 
 import 'package:friut_hub/core/errors/error.dart';
 import 'package:friut_hub/features/e_commerce/products/data/source/product_remote_data_source.dart';
-import 'package:friut_hub/features/e_commerce/category/domain/entities/category_entity.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/entities/product_entity.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/repo/product_repo.dart';
 

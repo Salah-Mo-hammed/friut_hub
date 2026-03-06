@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:friut_hub/core/endpoints/endpoints.dart';
 import 'package:friut_hub/features/e_commerce/cart/data/models/cart_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class CartRemoteDataSource {
   Future<Unit> addToCart(int productId, int quantity);
@@ -15,8 +14,8 @@ class CartDsWithDio implements CartRemoteDataSource {
   CartDsWithDio({required this.dio});
   @override
   Future<Unit> addToCart(int productId, int quantity) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('access_token');
+    // final prefs = await SharedPreferences.getInstance();
+    // final token = prefs.getString('access_token');
     final response = await dio.post(
       "${Endpoints.addToCart}/$productId",
       data: {"quantity": quantity},

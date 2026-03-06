@@ -10,8 +10,19 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/check
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/num_of_products_in_cart_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/products_in_cart_row_widget.dart';
 
-class MyCartPage extends StatelessWidget {
+class MyCartPage extends StatefulWidget {
   const MyCartPage({super.key});
+
+  @override
+  State<MyCartPage> createState() => _MyCartPageState();
+}
+
+class _MyCartPageState extends State<MyCartPage> {
+  @override
+  void initState() {
+    context.read<CartBloc>().add(GetCartProductsEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +52,12 @@ class MyCartPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ProductsInCartRow(
                         item: cartItems[index],
+                        // onQuantityChanged: (itemQuantityValue) {
+                        //   setState(() {
+                        //     cartItems[index].quantity =
+                        //         itemQuantityValue;
+                        //   });
+                        // },
                       );
                     },
                   ),
@@ -65,8 +82,6 @@ class MyCartPage extends StatelessWidget {
           } else if (state is CartLoading) {
             return Center(child: CircularProgressIndicator());
           } else {
-            context.read<CartBloc>().add(GetCartProductsEvent());
-
             return Text(" $state ");
           }
         },
