@@ -18,6 +18,7 @@ import 'package:friut_hub/features/e_commerce/cart/data/source/cart_remote_data_
 import 'package:friut_hub/features/e_commerce/cart/domain/repo/cart_repo.dart';
 import 'package:friut_hub/features/e_commerce/cart/domain/usecases/add_to_cart_usecase.dart';
 import 'package:friut_hub/features/e_commerce/cart/domain/usecases/get_cart_products_usecase.dart';
+import 'package:friut_hub/features/e_commerce/cart/domain/usecases/remove_frpm_cart_usecase.dart';
 import 'package:friut_hub/features/e_commerce/cart/domain/usecases/update_peoduct_quantity_in_cart_usecase.dart';
 import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/category/data/repo_impls/category_repo_impl.dart';
@@ -155,6 +156,11 @@ sl.registerSingleton<GetCartProductsUsecase>(
     UpdatePeoductQuantityInCartUsecase(cartRepo: sl<CartRepo>()),
 
   );
+  sl.registerSingleton<RemoveFromCartUsecase>(
+    RemoveFromCartUsecase(cartRepo: sl<CartRepo>()),
+
+  );
+
 
   
   //! blocs
@@ -199,6 +205,6 @@ sl.registerSingleton<GetCartProductsUsecase>(
   );
   //! ============= Cart =============
   sl.registerFactory<CartBloc>(
-    () => CartBloc(addToCartUsecase: sl<AddToCartUsecase>(), getCartProductsUsecase:sl<GetCartProductsUsecase>(), updatePeoductQuantityInCartUsecase:sl<UpdatePeoductQuantityInCartUsecase>()),
+    () => CartBloc(addToCartUsecase: sl<AddToCartUsecase>(), getCartProductsUsecase:sl<GetCartProductsUsecase>(), updatePeoductQuantityInCartUsecase:sl<UpdatePeoductQuantityInCartUsecase>(), removeFromCartUsecase:sl<RemoveFromCartUsecase>() ),
   );
 }

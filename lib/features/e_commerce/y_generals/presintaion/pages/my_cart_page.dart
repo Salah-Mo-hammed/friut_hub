@@ -7,6 +7,7 @@ import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/features/e_commerce/cart/domain/entities/cart_item_entity.dart';
 import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/checkout_page_view.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/skeletonizer_product_grid.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/num_of_products_in_cart_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/products_in_cart_row_widget.dart';
 
@@ -20,10 +21,10 @@ class MyCartPage extends StatefulWidget {
 class _MyCartPageState extends State<MyCartPage> {
   List<CartItemEntity> _cartItems = [];
 
-  double get _totalPrice => _cartItems.fold(
-    0,
-    (sum, item) => sum + (item.price * item.quantity),
-  );
+  //double get _totalPrice => _cartItems.fold(
+  //0,
+  //(sum, item) => sum + (item.price * item.quantity),
+  //);
 
   @override
   void initState() {
@@ -38,6 +39,9 @@ class _MyCartPageState extends State<MyCartPage> {
       appBar: MyAppBar(appBarTitle: "السلة"),
       body: BlocConsumer<CartBloc, CartState>(
         listener: (context, state) {
+          if (state is CartInitial) {
+            context.read<CartBloc>().add(GetCartProductsEvent());
+          }
           if (state is CartroductsLoaded) {
             setState(() {
               _cartItems = List.from(state.cartItems.items);
@@ -51,12 +55,26 @@ class _MyCartPageState extends State<MyCartPage> {
         },
         builder: (context, state) {
           if (state is CartLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 4,
+               
+                  itemBuilder: (_, __) {
+                    return SkeletonProductCard();
+                  },
+                );          }
 
           if (state is CartroductsLoaded) {
             if (_cartItems.isEmpty) {
-              return const Center(child: Text("السلة فارغة"));
+              return Center(
+                child: Text(
+                  "السلة فارغة",
+                  style: AppTextStyles.bodyLarge.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              );
             }
 
             return Column(
@@ -73,6 +91,7 @@ class _MyCartPageState extends State<MyCartPage> {
                     itemBuilder: (context, index) {
                       return ProductsInCartRow(
                         item: _cartItems[index],
+                        /*
                         onQuantityChanged: (newQuantity) {
                           setState(() {
                             _cartItems[index] = CartItemEntity(
@@ -86,7 +105,8 @@ class _MyCartPageState extends State<MyCartPage> {
                                   newQuantity,
                             );
                           });
-                        },
+                          
+                        },*/
                       );
                     },
                   ),
@@ -99,7 +119,7 @@ class _MyCartPageState extends State<MyCartPage> {
                         CheckoutPage.routeName,
                       ),
                   content: Text(
-                    "الدفع ${_totalPrice.toStringAsFixed(0)} جنيه",
+                    "الدفع ${state.cartItems.totalPrice.toStringAsFixed(0)} جنيه",
                     style: AppTextStyles.bodyBaseBold,
                   ),
                 ),
@@ -111,7 +131,7 @@ class _MyCartPageState extends State<MyCartPage> {
             return Center(child: Text(state.message));
           }
 
-          return const SizedBox();
+          return Text("$state");
         },
       ),
     );

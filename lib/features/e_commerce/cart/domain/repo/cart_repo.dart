@@ -12,4 +12,8 @@ abstract class CartRepo {
     int productId,
     int quantity,
   );
+
+  Future<Either<Failure, Unit>> removeFromCart(
+    int productId,
+  );
 }

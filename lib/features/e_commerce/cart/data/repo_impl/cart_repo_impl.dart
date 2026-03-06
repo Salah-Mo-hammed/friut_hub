@@ -74,4 +74,25 @@ class CartRepoImpl implements CartRepo {
       );
     }
   }
+  
+  @override
+  Future<Either<Failure, Unit>> removeFromCart(int productId) async{
+        try {
+       await cartRemoteDataSource.removeFromCart(productId);
+      return Right(unit);
+    } on DioException catch (e) {
+      print("STATUS CODE: ${e.response?.statusCode}");
+      print("RESPONSE DATA: ${e.response?.data}");
+      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
+
+      return Left(Failure.unknown(message: e.toString()));
+    } catch (e) {
+      return Left(
+        Failure.unknown(
+          message: "CartRepoImpl Exceoption => ${e.toString()}",
+        ),
+      );
+    }
+    
+  }
 }

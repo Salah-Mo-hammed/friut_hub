@@ -6,6 +6,7 @@ import 'package:friut_hub/features/e_commerce/cart/data/models/cart_model.dart';
 
 abstract class CartRemoteDataSource {
   Future<Unit> addToCart(int productId, int quantity);
+  Future<Unit> removeFromCart(int productId);
   Future<Unit> updateProductQuantityInCart(int productId, int quantity);
   Future<CartModel> getCartProducts();
 }
@@ -13,6 +14,7 @@ abstract class CartRemoteDataSource {
 class CartDsWithDio implements CartRemoteDataSource {
   final Dio dio;
   CartDsWithDio({required this.dio});
+ 
   @override
   Future<Unit> addToCart(int productId, int quantity) async {
     // final prefs = await SharedPreferences.getInstance();
@@ -46,6 +48,19 @@ class CartDsWithDio implements CartRemoteDataSource {
     );
     print("status code for updating product quantity in the Cart: ${response.statusCode}");
     print("getting the prodcuts ${response.data}");
+
+    return unit;
+  }
+
+   @override
+  Future<Unit> removeFromCart(int productId) async {
+    // final prefs = await SharedPreferences.getInstance();
+    // final token = prefs.getString('access_token');
+    final response = await dio.delete(
+      "${Endpoints.addToCart}/$productId",
+    );
+    print("status code for removing from Cart: ${response.statusCode}");
+    print("removing the prodcuts ${response.data}");
 
     return unit;
   }

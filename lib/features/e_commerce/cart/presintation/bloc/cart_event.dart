@@ -11,11 +11,21 @@ sealed class CartEvent extends Equatable {
 class AddToCartEvent extends CartEvent {
   int productId;
   int quantity;
-  AddToCartEvent({required this.productId,required this.quantity});
+  AddToCartEvent({required this.productId, required this.quantity});
 }
+
+class RemoveFromCartEvent extends CartEvent {
+  int productId;
+  RemoveFromCartEvent({required this.productId});
+}
+
 class UpdateProductQInCartEvent extends CartEvent {
   int productId;
   int quantity;
-  UpdateProductQInCartEvent({required this.productId,required this.quantity});
+  UpdateProductQInCartEvent({
+    required this.productId,
+    required this.quantity,
+  });
 }
-class GetCartProductsEvent extends CartEvent{}
+
+class GetCartProductsEvent extends CartEvent {}
