@@ -132,6 +132,7 @@ class _MyCartPageState extends State<MyCartPage> {
                       () => Navigator.pushNamed(
                         context,
                         CheckoutPage.routeName,
+                        arguments: state.cartItems.totalPrice
                       ),
                   content: Text(
                     "الدفع ${state.cartItems.totalPrice.toStringAsFixed(0)} جنيه",

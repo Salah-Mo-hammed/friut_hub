@@ -14,13 +14,19 @@ class CheckOutPaymentPage extends StatefulWidget {
   final TextEditingController cardNumber;
   final TextEditingController cardEXpireDate;
   final TextEditingController cardCVV;
-  const CheckOutPaymentPage({
+  final ValueChanged<int> onPaymentMethodChanged; // 👈
+  final ValueChanged<bool> onUseCardAsDefaultChanged;
+  int selectedPaymentMethod;
+  CheckOutPaymentPage({
     super.key,
     required this.cardOwnerName,
     required this.cardNumber,
     required this.cardEXpireDate,
     required this.cardCVV,
     required this.onNext,
+    required this.selectedPaymentMethod,
+    required this.onPaymentMethodChanged,
+    required this.onUseCardAsDefaultChanged,
   });
 
   @override
@@ -34,7 +40,10 @@ class _CheckOutPaymentPageState extends State<CheckOutPaymentPage> {
   int _selectedPaymentMethod = 0;
 
   void _onSelect(int index) {
-    setState(() => _selectedPaymentMethod = index);
+    setState(() {
+      _selectedPaymentMethod = index;
+      widget.onPaymentMethodChanged(index);
+    });
   }
 
   @override
@@ -160,8 +169,10 @@ class _CheckOutPaymentPageState extends State<CheckOutPaymentPage> {
                 child: PoliciesCheckBox(
                   title: "جعل البطاقة افتراضية",
                   validator: (value) {
-                 
                     return null;
+                  },
+                  onChanged: (value) {
+                    widget.onUseCardAsDefaultChanged(value);
                   },
                 ),
               ),
@@ -176,10 +187,10 @@ class _CheckOutPaymentPageState extends State<CheckOutPaymentPage> {
                 widget.onNext();
               }
             },
-            content: 
-                          Text( 'تأكيد & استمرار', style: AppTextStyles.bodyBaseBold),
-            
-            
+            content: Text(
+              'تأكيد & استمرار',
+              style: AppTextStyles.bodyBaseBold,
+            ),
           ),
         ],
       ),

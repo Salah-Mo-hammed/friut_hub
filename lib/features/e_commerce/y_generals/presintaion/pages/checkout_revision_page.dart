@@ -11,8 +11,75 @@ import 'package:friut_hub/generated/assets.dart';
 
 class CheckoutRevisionPage extends StatelessWidget {
   final VoidCallback onNext;
-  const CheckoutRevisionPage({super.key, required this.onNext});
+  final void Function(int pageIndex) onGoToPage;
+  final double totalPrice;
+  final double deliveryPrice;
 
+  //! second page
+  TextEditingController fullNameController;
+
+  TextEditingController adressController;
+
+  TextEditingController cityController;
+
+  TextEditingController apartmentController;
+
+  TextEditingController mobileController;
+
+  //!  third page
+  int selectedPaymentMethod;
+  TextEditingController cardOwnerName;
+  TextEditingController cardNumber;
+  TextEditingController cardCVV;
+  TextEditingController cardEXpireDate;
+  bool useCardAsDefault;
+
+  CheckoutRevisionPage({
+    super.key,
+    required this.onNext,
+    required this.totalPrice,
+    required this.deliveryPrice,
+    required this.selectedPaymentMethod,
+    required this.fullNameController,
+    required this.adressController,
+    required this.cityController,
+    required this.apartmentController,
+    required this.mobileController,
+    required this.cardOwnerName,
+    required this.cardNumber,
+    required this.cardCVV,
+    required this.cardEXpireDate,
+    required this.useCardAsDefault,
+    required this.onGoToPage,
+  });
+
+  void printCheckoutData() {
+    debugPrint('============ Checkout Data ============');
+    debugPrint('totalPrice: $totalPrice');
+    debugPrint('deliveryPrice: $deliveryPrice');
+    debugPrint('--- Page 1: Charge ---');
+    debugPrint('--- Page 2: Address ---');
+    debugPrint('fullName: ${fullNameController.text}');
+    debugPrint('address: ${adressController.text}');
+    debugPrint('city: ${cityController.text}');
+    debugPrint('apartment: ${apartmentController.text}');
+    debugPrint('mobile: ${mobileController.text}');
+    debugPrint('--- Page 3: Payment ---');
+    debugPrint('selectedPaymentMethod: $selectedPaymentMethod');
+    debugPrint('cardOwnerName: ${cardOwnerName.text}');
+    debugPrint('cardNumber: ${cardNumber.text}');
+    debugPrint('cardCVV: ${cardCVV.text}');
+    debugPrint('cardExpireDate: ${cardEXpireDate.text}');
+    debugPrint('useCardAsDefault: $useCardAsDefault');
+    debugPrint('=======================================');
+  }
+
+  List<String> cards = [
+    Assets.svgVisa, //0
+    Assets.svgMastercard, //1
+    Assets.svgPaypal, // 2
+    Assets.svgApplePaySelected, // 3
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,7 +112,7 @@ class CheckoutRevisionPage extends StatelessWidget {
                       title: "المجموع الفرعي :",
 
                       widget2: Text(
-                        "150 جنيه",
+                        "${totalPrice.toString()} جنيه",
 
                         style: AppTextStyles.bodySmall.copyWith(
                           fontSize: 16,
@@ -57,7 +124,7 @@ class CheckoutRevisionPage extends StatelessWidget {
                     RevisionTotalSalaryContainer(
                       title: "التوصيل  :",
                       widget2: Text(
-                        "30 جنيه",
+                        "${deliveryPrice.toString()} جنيه",
 
                         style: AppTextStyles.bodySmall.copyWith(
                           fontSize: 16,
@@ -69,7 +136,7 @@ class CheckoutRevisionPage extends StatelessWidget {
                     RevisionTotalSalaryContainer(
                       title: "الكلي",
                       widget2: Text(
-                        "180 جنيه",
+                        "${(totalPrice + deliveryPrice).toString()} جنيه",
 
                         style: AppTextStyles.bodySmall.copyWith(
                           fontWeight: FontWeight.bold,
@@ -91,15 +158,13 @@ class CheckoutRevisionPage extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
 
             child: RevisionSecondContainer(
-              onTap: () {
-                // ! go back to  CheckoutPaymentMethod Page (the previous page)
-              },
+              onTap: () => onGoToPage(1),
               title: "وسيلة الدفع",
               widget3: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "**** **** **** 6522",
+                    cardNumber.text.toString(),
                     style: AppTextStyles.bodyBase.copyWith(
                       color: AppColors.grayscale500,
                     ),
@@ -121,7 +186,7 @@ class CheckoutRevisionPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SvgPicture.asset(
-                        Assets.svgVisa,
+                        cards[selectedPaymentMethod],
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -134,14 +199,12 @@ class CheckoutRevisionPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: RevisionSecondContainer(
-              onTap: () {
-                // ! go back to  CheckoutAdress Page (the previous  of previous page)
-              },
+              onTap: () => onGoToPage(2),
               title: "عنوان التوصيل",
               widget3: Row(
                 children: [
                   Text(
-                    "شارع النيل، مبنى رقم ١٢٣",
+                    "${adressController.text}, ${cityController.text}, ${apartmentController.text}  ",
                     style: AppTextStyles.bodyBase.copyWith(
                       color: AppColors.grayscale500,
                     ),
@@ -162,11 +225,12 @@ class CheckoutRevisionPage extends StatelessWidget {
           MyButton(
             onTap: () {
               Navigator.pushNamed(context, DonePayPage.routeName);
+              printCheckoutData();
             },
-            content:
-                          Text(  "تأكيد الطلب", style: AppTextStyles.bodyBaseBold),
-            
-            
+            content: Text(
+              "تأكيد الطلب",
+              style: AppTextStyles.bodyBaseBold,
+            ),
           ),
         ],
       ),

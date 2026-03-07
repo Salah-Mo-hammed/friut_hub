@@ -4,8 +4,15 @@ import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/checkout_widgets/choose_payment_on_charge_page.dart';
 
 class CheckOutChargePage extends StatefulWidget {
-  const CheckOutChargePage({super.key, required this.onNext});
+  CheckOutChargePage({
+    super.key,
+    required this.onNext,
+    required this.selectedChargeWay,
+    required this.onChargeWayChanged,
+  });
   final VoidCallback onNext;
+  int selectedChargeWay;
+  final ValueChanged<int> onChargeWayChanged;
 
   @override
   State<CheckOutChargePage> createState() =>
@@ -23,6 +30,7 @@ class _CheckOutChargePageState extends State<CheckOutChargePage> {
           onTap: () {
             setState(() {
               selectedIndex = 0;
+              widget.onChargeWayChanged(0);
             });
           },
           child: choosePaymentOnCharge(
@@ -36,6 +44,7 @@ class _CheckOutChargePageState extends State<CheckOutChargePage> {
           onTap: () {
             setState(() {
               selectedIndex = 1;
+              widget.onChargeWayChanged(1);
             });
           },
           child: choosePaymentOnCharge(
@@ -45,11 +54,9 @@ class _CheckOutChargePageState extends State<CheckOutChargePage> {
           ),
         ),
         SizedBox(height: 150),
-        MyButton(onTap: widget.onNext, content: 
-                          Text( "التالي", style: AppTextStyles.bodyBaseBold),
-        
-        
-        
+        MyButton(
+          onTap: widget.onNext,
+          content: Text("التالي", style: AppTextStyles.bodyBaseBold),
         ),
       ],
     );

@@ -32,27 +32,33 @@ class choosePaymentOnCharge extends StatelessWidget {
                   : BorderSide.none,
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                choosen != true
-                    ? Assets.svgRoundedCircle
-                    : Assets.svgFilledCircle,
-              ),
-              SizedBox(width: 5),
-              Text(paymentMethod, style: AppTextStyles.bodySmallBold),
-            ],
-          ),
-          Text(
-            price,
-            style: AppTextStyles.bodySmallBold.copyWith(
-              color: const Color(0xFF3A8B33),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                SvgPicture.asset(
+                  choosen != true
+                      ? Assets.svgRoundedCircle
+                      : Assets.svgFilledCircle,
+                ),
+                SizedBox(width: 5),
+                Text(
+                  paymentMethod,
+                  style: AppTextStyles.bodySmallBold,
+                ),
+              ],
             ),
-          ),
-        ],
+            Text(
+              price,
+              style: AppTextStyles.bodySmallBold.copyWith(
+                color: const Color(0xFF3A8B33),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

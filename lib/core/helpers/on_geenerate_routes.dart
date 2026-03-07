@@ -85,24 +85,26 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case MainDashboard.routeName:
       final args = settings.arguments as Map<String, dynamic>;
       return MaterialPageRoute(
-        builder:
-            (_) => MainDashboard(userData: args),
+        builder: (_) => MainDashboard(userData: args),
       );
     case BestSellingsPage.routeName:
       return MaterialPageRoute(builder: (_) => BestSellingsPage());
-      // case BestSellingsPage.routeName:
-  // return MaterialPageRoute(
-  //   builder: (context) => BlocProvider.value(
-  //     value: BlocProvider.of<ProductsBloc>(context),
-  //     child: const BestSellingsPage(),
-  //   ),
-  // );
+    // case BestSellingsPage.routeName:
+    // return MaterialPageRoute(
+    //   builder: (context) => BlocProvider.value(
+    //     value: BlocProvider.of<ProductsBloc>(context),
+    //     child: const BestSellingsPage(),
+    //   ),
+    // );
     case ItemDetailsPage.routeName:
       return MaterialPageRoute(builder: (_) => ItemDetailsPage());
     case NotificationsPage.routeName:
       return MaterialPageRoute(builder: (_) => NotificationsPage());
     case CheckoutPage.routeName:
-      return MaterialPageRoute(builder: (_) => CheckoutPage());
+      final args = settings.arguments as double;
+      return MaterialPageRoute(
+        builder: (_) => CheckoutPage(totalPrice: args),
+      );
 
     case DonePayPage.routeName:
       return MaterialPageRoute(builder: (_) => DonePayPage());

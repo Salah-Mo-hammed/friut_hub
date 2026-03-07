@@ -8,7 +8,8 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/che
 import 'package:friut_hub/generated/assets.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({super.key});
+  final double totalPrice;
+  const CheckoutPage({super.key, required this.totalPrice});
   static const routeName = "CheckoutCharge";
 
   @override
@@ -16,6 +17,9 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
+  //! first page
+  int selectedChargeWay = 0;
+  //! second page
   TextEditingController fullNameController = TextEditingController();
 
   TextEditingController adressController = TextEditingController();
@@ -26,8 +30,23 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   TextEditingController mobileController = TextEditingController();
 
+  //!  third page
+  int selectedPaymentMethod = 0;
+  TextEditingController cardOwnerName = TextEditingController();
+  TextEditingController cardNumber = TextEditingController();
+  TextEditingController cardCVV = TextEditingController();
+  TextEditingController cardEXpireDate = TextEditingController();
+  bool useCardAsDefault = false;
+
   final PageController _pageController = PageController();
   int currentStep = 0;
+
+  void _onChargeWayChanged(int value) =>
+      setState(() => selectedChargeWay = value);
+  void _onPaymentMethodChanged(int value) =>
+      setState(() => selectedPaymentMethod = value);
+  void _onUseCardAsDefaultChanged(bool value) =>
+      setState(() => useCardAsDefault = value);
 
   void nextStep() {
     if (currentStep < 3) {
@@ -38,12 +57,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
       );
     }
   }
-  // ******************************************************
 
-  TextEditingController cardOwnerName = TextEditingController();
-  TextEditingController cardNumber = TextEditingController();
-  TextEditingController cardEXpireDate = TextEditingController();
-  TextEditingController cardCVV = TextEditingController();
+  void prevStep(int pageIndex) {
+    setState(() => currentStep = pageIndex);
+    _pageController.animateToPage(
+      pageIndex,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +100,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   assetsPath:
                       currentStep >= 2
                           ? Assets.svgCheckoutCharge
-                          : Assets.svgCheckoutAddress,
+                          : Assets.svgCheckoutPaymentMethod,
                   isDone: currentStep >= 2,
                 ),
                 Spacer(),
@@ -87,7 +109,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   assetsPath:
                       currentStep >= 3
                           ? Assets.svgCheckoutCharge
-                          : Assets.svgCheckoutAddress,
+                          : Assets.svgCheckoutRevision,
                   isDone: currentStep >= 3,
                 ),
               ],
@@ -105,7 +127,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     horizontal: 0, //16,
                     vertical: 0, //20,
                   ),
-                  child: CheckOutChargePage(onNext: nextStep),
+                  child: CheckOutChargePage(
+                    onNext: nextStep,
+                    selectedChargeWay: selectedChargeWay,
+                    onChargeWayChanged: _onChargeWayChanged,
+                  ),
                 ),
 
                 //! second page (Address Page)
@@ -125,9 +151,29 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   cardNumber: cardNumber,
                   cardEXpireDate: cardEXpireDate,
                   cardCVV: cardCVV,
+                  selectedPaymentMethod: selectedPaymentMethod,
+                  onPaymentMethodChanged: _onPaymentMethodChanged,
+                  onUseCardAsDefaultChanged:
+                      _onUseCardAsDefaultChanged,
                 ),
                 //! Forth page (Charge Page)
-                CheckoutRevisionPage(onNext: nextStep,),
+                CheckoutRevisionPage(
+                  onNext: nextStep,
+                  totalPrice: widget.totalPrice,
+                  deliveryPrice: selectedChargeWay == 0 ? 10 : 40,
+                  selectedPaymentMethod: selectedPaymentMethod,
+                  fullNameController: fullNameController,
+                  adressController: adressController,
+                  cityController: cityController,
+                  apartmentController: apartmentController,
+                  mobileController: mobileController,
+                  cardOwnerName: cardOwnerName,
+                  cardNumber: cardNumber,
+                  cardCVV: cardCVV,
+                  cardEXpireDate: cardEXpireDate,
+                  useCardAsDefault: useCardAsDefault,
+                  onGoToPage: prevStep,
+                ),
               ],
             ),
           ),

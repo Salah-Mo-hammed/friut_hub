@@ -4,8 +4,8 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/widgets/my_text_form_feild_widget.dart';
 
-class CheckoutAdressPage extends StatelessWidget {
-  CheckoutAdressPage({
+class CheckoutAdressPage extends StatefulWidget {
+  const CheckoutAdressPage({
     super.key,
     required this.fullNameController,
     required this.adressController,
@@ -14,14 +14,19 @@ class CheckoutAdressPage extends StatelessWidget {
     required this.mobileController,
     required this.onNext,
   });
-  final _formKey = GlobalKey<FormState>();
-
   final TextEditingController fullNameController;
   final TextEditingController adressController;
   final TextEditingController cityController;
   final TextEditingController apartmentController;
   final TextEditingController mobileController;
   final VoidCallback onNext;
+
+  @override
+  State<CheckoutAdressPage> createState() => _CheckoutAdressPageState();
+}
+
+class _CheckoutAdressPageState extends State<CheckoutAdressPage> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,7 @@ class CheckoutAdressPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: BuildTextFormFeild(
               hintLabel: 'الاسم كامل',
-              controller: fullNameController,
+              controller: widget.fullNameController,
               validator: (emailV) {
                 if (emailV == null || emailV.isEmpty) {
                   return "هذا الحقل مطلوب";
@@ -50,7 +55,7 @@ class CheckoutAdressPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: BuildTextFormFeild(
               hintLabel: 'العنوان',
-              controller: adressController,
+              controller: widget.adressController,
               validator: (emailV) {
                 if (emailV == null || emailV.isEmpty) {
                   return "هذا الحقل مطلوب";
@@ -65,7 +70,7 @@ class CheckoutAdressPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: BuildTextFormFeild(
               hintLabel: 'المدينه',
-              controller: cityController,
+              controller: widget.cityController,
               validator: (emailV) {
                 if (emailV == null || emailV.isEmpty) {
                   return "هذا الحقل مطلوب";
@@ -80,7 +85,7 @@ class CheckoutAdressPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: BuildTextFormFeild(
               hintLabel: 'الشقة',
-              controller: apartmentController,
+              controller: widget.apartmentController,
               validator: (emailV) {
                 if (emailV == null || emailV.isEmpty) {
                   return "هذا الحقل مطلوب";
@@ -95,7 +100,7 @@ class CheckoutAdressPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: BuildTextFormFeild(
               hintLabel: 'رقم الهاتف',
-              controller: mobileController,
+              controller: widget.mobileController,
               validator: (emailV) {
                 if (emailV == null || emailV.isEmpty) {
                   return "هذا الحقل مطلوب";
@@ -109,7 +114,7 @@ class CheckoutAdressPage extends StatelessWidget {
           MyButton(
             onTap: () {
               if (_formKey.currentState!.validate()) {
-                onNext();
+                widget.onNext();
               }
             },
             content: 
