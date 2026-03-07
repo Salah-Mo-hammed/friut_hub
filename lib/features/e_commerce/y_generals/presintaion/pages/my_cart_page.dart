@@ -7,7 +7,6 @@ import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/features/e_commerce/cart/domain/entities/cart_item_entity.dart';
 import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/checkout_page_view.dart';
-import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/skeletonizer_product_grid.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/num_of_products_in_cart_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/products_in_cart_row_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/cart_widgets/skeleton_cart_widget.dart';

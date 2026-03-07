@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
+import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
+import 'package:friut_hub/features/e_commerce/order/domain/entities/create_order_param.dart';
+import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/done_pay_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/checkout_widgets/revision_second_container.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/checkout_widgets/revision_total_salary_container.dart';
@@ -226,6 +230,20 @@ class CheckoutRevisionPage extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, DonePayPage.routeName);
               printCheckoutData();
+              CreateOrderParamEntity orderParams =
+                  CreateOrderParamEntity(
+                    customerFullName: fullNameController.text,
+                    customerAddress: adressController.text,
+                    customerCity: cityController.text,
+                    customerDepartment: int.parse(
+                      apartmentController.text,
+                    ),
+                    customerPhoneNumber: mobileController.text,
+                  );
+              context.read<OrderBloc>().add(
+                CreateOrderEvent(orderParams: orderParams),
+              );
+              
             },
             content: Text(
               "تأكيد الطلب",

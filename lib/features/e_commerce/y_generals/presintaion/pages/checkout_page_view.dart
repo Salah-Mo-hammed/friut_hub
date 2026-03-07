@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/checkout_adress_page.dart';
@@ -20,23 +21,41 @@ class _CheckoutPageState extends State<CheckoutPage> {
   //! first page
   int selectedChargeWay = 0;
   //! second page
-  TextEditingController fullNameController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController(
+    text: kDebugMode ? "صلاح محمد حسن" : null,
+  );
 
-  TextEditingController adressController = TextEditingController();
+  TextEditingController adressController = TextEditingController(
+    text: kDebugMode ? "خانيونس" : null,
+  );
 
-  TextEditingController cityController = TextEditingController();
+  TextEditingController cityController = TextEditingController(
+    text: kDebugMode ? "غزة" : null,
+  );
 
-  TextEditingController apartmentController = TextEditingController();
+  TextEditingController apartmentController = TextEditingController(
+    text: kDebugMode ? "2" : null,
+  );
 
-  TextEditingController mobileController = TextEditingController();
+  TextEditingController mobileController = TextEditingController(
+    text: kDebugMode ? "01069078099" : null,
+  );
 
   //!  third page
   int selectedPaymentMethod = 0;
-  TextEditingController cardOwnerName = TextEditingController();
-  TextEditingController cardNumber = TextEditingController();
-  TextEditingController cardCVV = TextEditingController();
-  TextEditingController cardEXpireDate = TextEditingController();
-  bool useCardAsDefault = false;
+  TextEditingController cardOwnerName = TextEditingController(
+    text: kDebugMode ? "انا يعني مين" : null,
+  );
+  TextEditingController cardNumber = TextEditingController(
+    text: kDebugMode ? "1234 5678 9101 1213" : null,
+  );
+  TextEditingController cardCVV = TextEditingController(
+    text: kDebugMode ? "123" : null,
+  );
+  TextEditingController cardEXpireDate = TextEditingController(
+    text: kDebugMode ? "12/12" : null,
+  );
+  bool useCardAsDefault = true;
 
   final PageController _pageController = PageController();
   int currentStep = 0;

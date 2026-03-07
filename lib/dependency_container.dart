@@ -24,6 +24,11 @@ import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.d
 import 'package:friut_hub/features/e_commerce/category/data/repo_impls/category_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/category/data/source/category_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/category/domain/repo/category_repo.dart';
+import 'package:friut_hub/features/e_commerce/order/data/repo_impl/order_repo_impl.dart';
+import 'package:friut_hub/features/e_commerce/order/data/source/order_remote_data_source.dart';
+import 'package:friut_hub/features/e_commerce/order/domain/repo/order_repo.dart';
+import 'package:friut_hub/features/e_commerce/order/domain/usecase/create_order_usecase.dart';
+import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/data/repo_impl/product_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/products/data/source/product_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/repo/product_repo.dart';
@@ -41,34 +46,34 @@ import 'package:shared_preferences/shared_preferences.dart';
 GetIt sl = GetIt.instance;
 
 Future<void> initilaizedDependencies() async {
-    final prefs = await SharedPreferences.getInstance();
-    sl.registerSingleton<SharedPreferences>(prefs);
+  final prefs = await SharedPreferences.getInstance();
+  sl.registerSingleton<SharedPreferences>(prefs);
 
-    // Dio with interceptor
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: Endpoints.baseUrl,
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
-        headers: {"Content-Type": "application/json"},
-      ),
-    );
+  // Dio with interceptor
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: Endpoints.baseUrl,
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30),
+      headers: {"Content-Type": "application/json"},
+    ),
+  );
 
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          final token = sl<SharedPreferences>().getString(
-            'access_token',
-          );
-          if (token != null) {
-            options.headers['Authorization'] = 'Bearer $token';
-          }
-          return handler.next(options);
-        },
-      ),
-    );
+  dio.interceptors.add(
+    InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        final token = sl<SharedPreferences>().getString(
+          'access_token',
+        );
+        if (token != null) {
+          options.headers['Authorization'] = 'Bearer $token';
+        }
+        return handler.next(options);
+      },
+    ),
+  );
 
-    sl.registerSingleton<Dio>(dio);
+  sl.registerSingleton<Dio>(dio);
 
   //! data-> data sources
 
@@ -83,6 +88,9 @@ Future<void> initilaizedDependencies() async {
   );
   sl.registerSingleton<CartRemoteDataSource>(
     CartDsWithDio(dio: sl<Dio>()),
+  );
+  sl.registerSingleton<OrderRemoteDataSource>(
+    OrderDsWithDio(dio: sl<Dio>()),
   );
 
   //! domain-> repo
@@ -102,6 +110,11 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<CartRepo>(
     CartRepoImpl(cartRemoteDataSource: sl<CartRemoteDataSource>()),
   );
+
+  sl.registerSingleton<OrderRepo>(
+    OrderRepoImpl(orderRemoteDataSource: sl<OrderRemoteDataSource>()),
+  );
+
   //! domain-> usecases
   //! ============= AUTH  Register =============
   sl.registerSingleton<RegisterUserUsecase>(
@@ -146,23 +159,22 @@ Future<void> initilaizedDependencies() async {
   //! ============= Cart =============
   sl.registerSingleton<AddToCartUsecase>(
     AddToCartUsecase(cartRepo: sl<CartRepo>()),
-
   );
-sl.registerSingleton<GetCartProductsUsecase>(
+  sl.registerSingleton<GetCartProductsUsecase>(
     GetCartProductsUsecase(cartRepo: sl<CartRepo>()),
-
   );
   sl.registerSingleton<UpdatePeoductQuantityInCartUsecase>(
     UpdatePeoductQuantityInCartUsecase(cartRepo: sl<CartRepo>()),
-
   );
   sl.registerSingleton<RemoveFromCartUsecase>(
     RemoveFromCartUsecase(cartRepo: sl<CartRepo>()),
-
   );
 
+  //! ============= Order =============
+  sl.registerSingleton<CreateOrderUsecase>(
+    CreateOrderUsecase(orderRepo: sl<OrderRepo>()),
+  );
 
-  
   //! blocs
   //! ============= AUTH =============
   sl.registerFactory<SignupBloc>(
@@ -205,6 +217,17 @@ sl.registerSingleton<GetCartProductsUsecase>(
   );
   //! ============= Cart =============
   sl.registerFactory<CartBloc>(
-    () => CartBloc(addToCartUsecase: sl<AddToCartUsecase>(), getCartProductsUsecase:sl<GetCartProductsUsecase>(), updatePeoductQuantityInCartUsecase:sl<UpdatePeoductQuantityInCartUsecase>(), removeFromCartUsecase:sl<RemoveFromCartUsecase>() ),
+    () => CartBloc(
+      addToCartUsecase: sl<AddToCartUsecase>(),
+      getCartProductsUsecase: sl<GetCartProductsUsecase>(),
+      updatePeoductQuantityInCartUsecase:
+          sl<UpdatePeoductQuantityInCartUsecase>(),
+      removeFromCartUsecase: sl<RemoveFromCartUsecase>(),
+    ),
+  );
+
+  //! ============= Order =============
+  sl.registerFactory<OrderBloc>(
+    () => OrderBloc(createOrderUsecase: sl<CreateOrderUsecase>()),
   );
 }
