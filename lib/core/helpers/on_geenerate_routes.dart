@@ -57,7 +57,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => ReviewsPage());
 
     case PersonalProfilePage.routeName:
-      return MaterialPageRoute(builder: (_) => PersonalProfilePage());
+      final args = settings.arguments as Map<String, dynamic>;
+      return MaterialPageRoute(builder: (_) => PersonalProfilePage(userName: args['name'], useremail: args['email'],));
 
     case MyRequestsPage.routeName:
       return MaterialPageRoute(builder: (_) => MyRequestsPage());

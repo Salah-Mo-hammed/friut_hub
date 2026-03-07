@@ -12,3 +12,7 @@ class LoginSubmittedEvent extends LoginEvent {
   String password;
   LoginSubmittedEvent({required this.email, required this.password});
 }
+class LogoutEvent extends LoginEvent {
+
+  const LogoutEvent();
+}

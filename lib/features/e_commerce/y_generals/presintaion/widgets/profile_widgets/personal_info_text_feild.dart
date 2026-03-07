@@ -1,21 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 
 class PersonalInfoTextFeild extends StatelessWidget {
   final String hintLabel;
   final bool isPassword;
-  const PersonalInfoTextFeild({
+  TextEditingController controller;
+   PersonalInfoTextFeild({
     super.key,
     required this.hintLabel,
     required this.isPassword,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       style: AppTextStyles.bodyBaseBold.copyWith(color: Colors.black),
-      // controller: widget.controller,
+      controller: controller,
       // validator: widget.validator,
       // obscureText: widget.obscureText,
       // keyboardType: widget.keyboardType,

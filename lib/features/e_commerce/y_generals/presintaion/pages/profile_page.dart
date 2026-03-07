@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
+import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/about_us_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/favoutires_page.dart';
@@ -16,7 +18,14 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/pro
 import 'package:friut_hub/generated/assets.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final String userFullName;
+  final String userEmail;
+
+  const ProfilePage({
+    super.key,
+    required this.userFullName,
+    required this.userEmail,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +59,17 @@ class ProfilePage extends StatelessWidget {
 
                     SizedBox(width: 5),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "أحمد مصطفي",
+                          userFullName,
                           style: AppTextStyles.bodyBaseBold.copyWith(
                             color: Colors.black,
                           ),
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "mail@mail.com",
+                          userEmail,
                           style: AppTextStyles.bodyBase.copyWith(
                             color: AppColors.grayscale400,
                           ),
@@ -89,6 +99,7 @@ class ProfilePage extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       PersonalProfilePage.routeName,
+                      arguments: {'email':userEmail,'name':userFullName},
                     );
                   },
                 ),
@@ -274,6 +285,9 @@ class ProfilePage extends StatelessWidget {
                                 height: 70,
                                 child: MyButton(
                                   onTap: () {
+                                    context.read<LoginBloc>().add(
+                                      LogoutEvent(),
+                                    );
                                     Navigator.pushReplacementNamed(
                                       context,
                                       LoginPage.routeName,

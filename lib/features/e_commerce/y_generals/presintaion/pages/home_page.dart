@@ -15,7 +15,7 @@ import 'package:friut_hub/generated/assets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatelessWidget {
-  String userFullName;
+ final String userFullName;
 
   // bool noSearchResult = false;
   final discountImages = [

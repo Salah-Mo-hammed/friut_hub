@@ -28,6 +28,7 @@ abstract class AuthRemoteDataSource {
     String resetToken,
     String newPassword,
   );
+  Future<Unit> logout();
 }
 
 class AuthDsWithDio implements AuthRemoteDataSource {
@@ -131,8 +132,8 @@ class AuthDsWithDio implements AuthRemoteDataSource {
     print("response for logging in ${response.data}");
 
     final accessToken = response.data['accessToken'];
-final prefs = await SharedPreferences.getInstance();
-await prefs.setString('access_token', accessToken);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('access_token', accessToken);
     response = await dio.get(
       Endpoints.getLoggedUserData,
       options: Options(
@@ -182,6 +183,15 @@ await prefs.setString('access_token', accessToken);
       "response for changing to new pass:  ${response.statusCode}",
     );
 
+    return unit;
+  }
+
+  @override
+  Future<Unit> logout() async {
+    final response = await dio.delete(Endpoints.login);
+
+    print("response for logging out ${response.statusCode}");
+    print("response for logging out ${response.data}");
     return unit;
   }
 }

@@ -9,7 +9,6 @@ class Endpoints {
   static const resetPassword = "/api/password-resets";
   static const verifyPassOTP = '/api/password-resets/verify';
   static const changeToNewPassword = "/api/password-resets";
-
   // ! =================== Products ====================
   static const getAllProducts =
       '/api/Products'; // note: also for get detaild product bt Id

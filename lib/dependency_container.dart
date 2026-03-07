@@ -5,6 +5,7 @@ import 'package:friut_hub/features/auth/data/sources/remote/auth_remote_data_sou
 import 'package:friut_hub/features/auth/domain/repo/auth_repo.dart';
 import 'package:friut_hub/features/auth/domain/usecases/change_to_new_pass_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/login_user_usecase.dart';
+import 'package:friut_hub/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/register_user_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/send_email_confirm_code_usecase.dart';
@@ -138,6 +139,9 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<LoginUserUsecase>(
     LoginUserUsecase(authRepo: sl<AuthRepo>()),
   );
+  sl.registerSingleton<LogoutUsecase>(
+    LogoutUsecase(authRepo: sl<AuthRepo>()),
+  );
 
   //! ============= Products =============
   sl.registerSingleton<GetAllProductsUsecase>(
@@ -186,7 +190,7 @@ Future<void> initilaizedDependencies() async {
     ),
   );
   sl.registerFactory<LoginBloc>(
-    () => LoginBloc(loginUserUsecase: sl<LoginUserUsecase>()),
+    () => LoginBloc(loginUserUsecase: sl<LoginUserUsecase>(), logoutUsecase: sl<LogoutUsecase>()),
   );
   sl.registerFactory<ForgetPassBloc>(
     () => ForgetPassBloc(

@@ -24,7 +24,9 @@ class _PasswordFieldState extends State<PasswordField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 0.0,
+      ), // default for forgetpass is 20
       child: TextFormField(
         style: AppTextStyles.bodyBaseBold.copyWith(
           color: Colors.black,
@@ -53,7 +55,7 @@ class _PasswordFieldState extends State<PasswordField> {
             color: AppColors.grayscale400,
             fontWeight: FontWeight.bold,
           ),
-          // ✅ Show/hide icon
+
           suffixIcon: IconButton(
             icon: Icon(
               _obscureText ? Icons.visibility_off : Icons.visibility,

@@ -18,6 +18,8 @@ class MainDashboard extends StatefulWidget {
 
 class _MainDashboardState extends State<MainDashboard> {
   late String userName;
+  late String userEmail;
+
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -29,6 +31,7 @@ class _MainDashboardState extends State<MainDashboard> {
   @override
   void initState() {
     userName = widget.userData['fullName'];
+    userEmail = widget.userData['email'];
     context.read<ProductsBloc>().add(GetAllProductsEvent());
     super.initState();
   }
@@ -44,7 +47,7 @@ class _MainDashboardState extends State<MainDashboard> {
           HomePage(userFullName: userName),
           ProductsPage(),
           MyCartPage(),
-          ProfilePage(),
+          ProfilePage(userFullName: userName, userEmail: userEmail),
         ],
       ),
 

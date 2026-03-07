@@ -23,6 +23,9 @@ abstract class AuthRepo {
     String email,
     String otp,
   );
-  Future<Either<Failure, Unit>> changeTONewPassword(String resetToken, String newPassword);
-
+  Future<Either<Failure, Unit>> changeTONewPassword(
+    String resetToken,
+    String newPassword,
+  );
+  Future<Either<Failure, Unit>> logOut();
 }

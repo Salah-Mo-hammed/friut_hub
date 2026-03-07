@@ -182,4 +182,25 @@ class AuthRepoImpl implements AuthRepo {
     }
     
   }
+  
+  @override
+  Future<Either<Failure, Unit>> logOut() async{
+ try {
+      final response = await authRemoteDataSource.logout(
+      );
+      return Right(response);
+    } on DioException catch (e) {
+      print("STATUS CODE: ${e.response?.statusCode}");
+      print("RESPONSE DATA: ${e.response?.data}");
+      print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
+
+      return Left(Failure.unknown(message: e.toString()));
+    } catch (e) {
+      return Left(
+        Failure.unknown(
+          message: "AuthRepoImpl Exceoption => ${e.toString()}",
+        ),
+      );
+    }
+  }
 }
