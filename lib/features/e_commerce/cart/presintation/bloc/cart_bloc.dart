@@ -40,7 +40,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
     result.fold(
       (failure) {
-        emit(CartError(message: failure.message));
+        emit(CartError(
+          message: failure.message));
       },
       (unit) {
         emit(CartInitial());
@@ -56,7 +57,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final result = await getCartProductsUsecase.call();
     result.fold(
       (failure) {
-        emit(CartError(message: failure.message));
+        emit(CartError(
+                    statusCode: failure.statusCode,
+          message: failure.message));
       },
       (items) {
         emit(CartroductsLoaded(cartItems: items));

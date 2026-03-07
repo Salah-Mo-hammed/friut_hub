@@ -116,9 +116,11 @@ class Failure extends Equatable {
   }
 
   factory Failure.unknown({
+    int? statusCode=444,
     String message = "Unexpected error occurred",
   }) {
     return Failure(
+      statusCode: statusCode,
       message: message,
       type: FailureType.unknown,
     );

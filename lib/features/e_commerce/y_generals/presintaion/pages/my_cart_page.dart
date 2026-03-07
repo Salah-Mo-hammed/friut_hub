@@ -49,9 +49,13 @@ class _MyCartPageState extends State<MyCartPage> {
             });
           }
           if (state is CartError) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.message)));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  "${state.message}\n temp CartError snackbar",
+                ),
+              ),
+            );
           }
         },
         builder: (context, state) {
@@ -132,7 +136,7 @@ class _MyCartPageState extends State<MyCartPage> {
                       () => Navigator.pushNamed(
                         context,
                         CheckoutPage.routeName,
-                        arguments: state.cartItems.totalPrice
+                        arguments: state.cartItems.totalPrice,
                       ),
                   content: Text(
                     "الدفع ${state.cartItems.totalPrice.toStringAsFixed(0)} جنيه",
@@ -144,7 +148,12 @@ class _MyCartPageState extends State<MyCartPage> {
           }
 
           if (state is CartError) {
-            return Center(child: Text(state.message));
+            if (state.statusCode == 404) {
+              return Center(
+                child: Text(" error code 404 السلة فارغة"),
+              );
+            }
+            return Text(state.message);
           }
 
           return Text("$state");

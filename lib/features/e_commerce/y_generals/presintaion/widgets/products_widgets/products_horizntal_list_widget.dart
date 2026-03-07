@@ -19,13 +19,13 @@ class ProductsHorizntalList extends StatefulWidget {
 class _ProductsHorizntalListState
     extends State<ProductsHorizntalList> {
   List localCategoryImages = [
-    Assets.svgFruits,
-    Assets.svgVegetables,
-    Assets.svgJuice,
+    Assets.svgFruits, //0 صح
+    Assets.svgVegetables, //1 صح
     Assets.svgDairy,
     Assets.svgBread,
     Assets.svgSeeds,
     Assets.svgHerb,
+    Assets.svgJuice,
   ];
   @override
   void initState() {

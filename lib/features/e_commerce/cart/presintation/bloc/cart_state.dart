@@ -14,9 +14,8 @@ class CartLoading extends CartState {}
 
 class CartError extends CartState {
   String message;
-  CartError({
-    required this.message,
-  });
+  int? statusCode;
+  CartError({required this.message,  this.statusCode});
 }
 
 class CartroductsLoaded extends CartState {

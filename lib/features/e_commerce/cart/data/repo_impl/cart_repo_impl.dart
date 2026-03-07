@@ -9,14 +9,15 @@ import 'package:friut_hub/features/e_commerce/cart/domain/repo/cart_repo.dart';
 
 class CartRepoImpl implements CartRepo {
   CartRemoteDataSource cartRemoteDataSource;
-  CartRepoImpl({
-    required this.cartRemoteDataSource,
-  });
-  
+  CartRepoImpl({required this.cartRemoteDataSource});
+
   @override
-  Future<Either<Failure, Unit>> addToCart(int productId,int quantity) async{
+  Future<Either<Failure, Unit>> addToCart(
+    int productId,
+    int quantity,
+  ) async {
     try {
-       await cartRemoteDataSource.addToCart(productId,quantity);
+      await cartRemoteDataSource.addToCart(productId, quantity);
       return Right(unit);
     } on DioException catch (e) {
       print("STATUS CODE: ${e.response?.statusCode}");
@@ -31,20 +32,19 @@ class CartRepoImpl implements CartRepo {
         ),
       );
     }
-    
   }
 
   @override
-  Future<Either<Failure, CartEntity>> getCartProducts() async{
-     try {
-       final items=await cartRemoteDataSource.getCartProducts();
+  Future<Either<Failure, CartEntity>> getCartProducts() async {
+    try {
+      final items = await cartRemoteDataSource.getCartProducts();
       return Right(items);
     } on DioException catch (e) {
       print("STATUS CODE: ${e.response?.statusCode}");
       print("RESPONSE DATA: ${e.response?.data}");
       print("RESPONSE TYPE: ${e.response?.data.runtimeType}");
 
-      return Left(Failure.unknown(message: e.toString()));
+      return Left(Failure.unknown(message: e.toString(),statusCode: e.response!.statusCode));
     } catch (e) {
       return Left(
         Failure.unknown(
@@ -52,13 +52,18 @@ class CartRepoImpl implements CartRepo {
         ),
       );
     }
-    
   }
-  
+
   @override
-  Future<Either<Failure, Unit>> updateProductQuantityInCart(int productId, int quantity) async{
-   try {
-       await cartRemoteDataSource.updateProductQuantityInCart(productId,quantity);
+  Future<Either<Failure, Unit>> updateProductQuantityInCart(
+    int productId,
+    int quantity,
+  ) async {
+    try {
+      await cartRemoteDataSource.updateProductQuantityInCart(
+        productId,
+        quantity,
+      );
       return Right(unit);
     } on DioException catch (e) {
       print("STATUS CODE: ${e.response?.statusCode}");
@@ -74,11 +79,11 @@ class CartRepoImpl implements CartRepo {
       );
     }
   }
-  
+
   @override
-  Future<Either<Failure, Unit>> removeFromCart(int productId) async{
-        try {
-       await cartRemoteDataSource.removeFromCart(productId);
+  Future<Either<Failure, Unit>> removeFromCart(int productId) async {
+    try {
+      await cartRemoteDataSource.removeFromCart(productId);
       return Right(unit);
     } on DioException catch (e) {
       print("STATUS CODE: ${e.response?.statusCode}");
@@ -93,6 +98,5 @@ class CartRepoImpl implements CartRepo {
         ),
       );
     }
-    
   }
 }

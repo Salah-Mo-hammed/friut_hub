@@ -17,7 +17,7 @@ class ProductDsWithDio implements ProductRemoteDataSource {
   @override
   Future<List<ProductModel>> getAllProducts() async {
     final response = await dio.get(Endpoints.getAllProducts);
-    print("status code for getting products: ${response.statusCode}");
+    print("status code for getAllProducts: ${response.statusCode}");
     print("getting the prodcuts ${response.data}");
 
     final List<ProductModel> products =
@@ -48,7 +48,7 @@ class ProductDsWithDio implements ProductRemoteDataSource {
       Endpoints.getAllProducts,
       queryParameters: {"Search": searchQuery},
     );
-    print("status code for getting products: ${response.statusCode}");
+    print("status code for searchProducts: ${response.statusCode}");
     print("getting the prodcuts ${response.data}");
 
     final List<ProductModel> products =

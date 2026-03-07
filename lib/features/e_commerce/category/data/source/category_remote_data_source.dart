@@ -19,7 +19,7 @@ class CategoryDsWithDio implements CategoryRemoteDataSource {
   @override
   Future<List<CategoryModel>> getAllCategories() async {
     final response = await dio.get(Endpoints.getAllCategories);
-    print("status code for getting products: ${response.statusCode}");
+    print("status code for getAllCategories : ${response.statusCode}");
     print("getting the prodcuts ${response.data}");
     final List<CategoryModel> categories =
         (response.data as List<dynamic>)
