@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
+import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/profile_widgets/expandable_order_item.dart';
+import 'package:friut_hub/generated/l10n.dart';
 
 class MyRequestsPage extends StatelessWidget {
   static const routeName = "MyRequestsPage";
@@ -12,17 +15,31 @@ class MyRequestsPage extends StatelessWidget {
       appBar: MyAppBar(appBarTitle: "طلباتي"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: const [
-            ExpandableOrderItem(),
-            SizedBox(height: 10),
-            ExpandableOrderItem(),
-            SizedBox(height: 10),
-            ExpandableOrderItem(),
-          ],
+        child: BlocConsumer<OrderBloc, OrderState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+          builder: (context, state) {
+            if (state is OrderLoading) {
+              return CircularProgressIndicator();
+            } else if (state is GotUserOrders) {
+              // ExpandableOrderItem(),
+              // SizedBox(height: 10),
+              return ListView.builder(
+                itemCount: state.orders.length,
+                itemBuilder:
+                    (context, index) => ExpandableOrderItem(
+                      orderEntity: state.orders[index],
+                    ),
+              );
+            }
+            if (state is OrderInitial) {
+              context.read<OrderBloc>().add(GetUserOrdersEvent());
+            }
+            return Text("$state");
+          },
         ),
       ),
     );
   }
 }
-

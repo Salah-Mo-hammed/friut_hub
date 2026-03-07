@@ -8,6 +8,7 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
+import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/about_us_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/favoutires_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/language_page.dart';
@@ -99,7 +100,10 @@ class ProfilePage extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       PersonalProfilePage.routeName,
-                      arguments: {'email':userEmail,'name':userFullName},
+                      arguments: {
+                        'email': userEmail,
+                        'name': userFullName,
+                      },
                     );
                   },
                 ),
@@ -115,6 +119,10 @@ class ProfilePage extends StatelessWidget {
                   imageAsset: Assets.svgBox,
                   title: 'طلباتي',
                   onPressed: () {
+                    //! get all orders
+                    context.read<OrderBloc>().add(
+                      GetUserOrdersEvent(),
+                    );
                     Navigator.pushNamed(
                       context,
                       MyRequestsPage.routeName,

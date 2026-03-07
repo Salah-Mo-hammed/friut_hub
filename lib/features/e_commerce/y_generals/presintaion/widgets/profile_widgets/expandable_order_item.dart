@@ -1,11 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:friut_hub/features/e_commerce/order/domain/entities/order_entity.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/entites/trackong_step_entity.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/checkout_widgets/track_order_container.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/profile_widgets/order_tracking_timeline.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class ExpandableOrderItem extends StatefulWidget {
-  const ExpandableOrderItem({super.key});
+  OrderEntity orderEntity;
+  ExpandableOrderItem({super.key, required this.orderEntity});
 
   @override
   State<ExpandableOrderItem> createState() =>
@@ -22,17 +26,20 @@ class _ExpandableOrderItemState extends State<ExpandableOrderItem>
       width: double.infinity,
       decoration: const BoxDecoration(color: Color(0xFFF2F3F3)),
       child: Column(
+
         children: [
           Stack(
             children: [
               TrackOrderContainer(
                 isSecondContainer: false,
-                h1: "طلب رقم: 1234567#",
+                h1: "طلب رقم: ${widget.orderEntity.orderId}#",
                 subH1: "تم الطلب :22 مارس ,2024",
                 assetIcon: Assets.svgTrackOrder2,
+                h2: widget.orderEntity.items.length.toString(),
+                price: widget.orderEntity.totalPrice.toString(),
               ),
               Positioned(
-                right: 10,
+                left: 10,
                 top: 20,
                 child: GestureDetector(
                   onTap: () {

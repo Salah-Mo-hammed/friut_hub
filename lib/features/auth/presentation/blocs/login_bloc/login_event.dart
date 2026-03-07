@@ -12,7 +12,12 @@ class LoginSubmittedEvent extends LoginEvent {
   String password;
   LoginSubmittedEvent({required this.email, required this.password});
 }
-class LogoutEvent extends LoginEvent {
 
+class LogoutEvent extends LoginEvent {
   const LogoutEvent();
+}
+
+class UpdateNameEvent extends LoginEvent {
+  final String newName;
+  const UpdateNameEvent({required this.newName});
 }

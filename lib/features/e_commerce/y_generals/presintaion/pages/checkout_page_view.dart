@@ -179,7 +179,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 CheckoutRevisionPage(
                   onNext: nextStep,
                   totalPrice: widget.totalPrice,
-                  deliveryPrice: selectedChargeWay == 0 ? 10 : 40,
+                  deliveryPrice: selectedChargeWay == 0 ? 40 : 10,
                   selectedPaymentMethod: selectedPaymentMethod,
                   fullNameController: fullNameController,
                   adressController: adressController,

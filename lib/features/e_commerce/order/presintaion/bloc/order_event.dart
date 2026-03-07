@@ -14,3 +14,8 @@ class CreateOrderEvent extends OrderEvent {
     required this.orderParams,
   });
 }
+
+class GetUserOrdersEvent extends OrderEvent {
+
+  const GetUserOrdersEvent();
+}

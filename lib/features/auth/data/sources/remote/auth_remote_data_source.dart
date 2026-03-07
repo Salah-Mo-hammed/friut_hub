@@ -29,6 +29,9 @@ abstract class AuthRemoteDataSource {
     String newPassword,
   );
   Future<Unit> logout();
+  Future<Unit> updateName(String newName);
+
+  
 }
 
 class AuthDsWithDio implements AuthRemoteDataSource {
@@ -192,6 +195,14 @@ class AuthDsWithDio implements AuthRemoteDataSource {
 
     print("response for logging out ${response.statusCode}");
     print("response for logging out ${response.data}");
+    return unit;
+  }
+   @override
+  Future<Unit> updateName(String newName) async {
+    final response = await dio.patch(Endpoints.updateUserName,data: {"fullName":newName});
+
+    print("response for updateName ${response.statusCode}");
+    print("response for updateName ${response.data}");
     return unit;
   }
 }

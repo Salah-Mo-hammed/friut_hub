@@ -27,5 +27,9 @@ abstract class AuthRepo {
     String resetToken,
     String newPassword,
   );
+
   Future<Either<Failure, Unit>> logOut();
+  Future<Either<Failure, Unit>> updateUserName(String newName);
+
 }
+

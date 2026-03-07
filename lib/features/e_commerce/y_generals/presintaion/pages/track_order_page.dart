@@ -1,10 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
+import 'package:friut_hub/features/e_commerce/order/domain/entities/order_entity.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/checkout_widgets/track_order_container.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class TrackOrderPage extends StatelessWidget {
-  const TrackOrderPage({super.key});
+  // OrderEntity orderEntity;
+  TrackOrderPage({
+    super.key,
+    // required this.orderEntity,
+  });
   static const routeName = 'TrackOrder';
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class TrackOrderPage extends StatelessWidget {
             ), //Color(0x7FF2F3F3)
             child: TrackOrderContainer(
               isSecondContainer: false,
-              h1: "طلب رقم: 1234567#",
+              h1: "طلب رقم: {orderEntity.orderId}#",
               subH1: "تم الطلب :22 مارس ,2024",
               assetIcon: Assets.svgTrackOrder1,
             ),

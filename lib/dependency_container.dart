@@ -9,6 +9,7 @@ import 'package:friut_hub/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/register_user_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/send_email_confirm_code_usecase.dart';
+import 'package:friut_hub/features/auth/domain/usecases/update_user_name_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/verify_email_usecase.dart';
 import 'package:friut_hub/features/auth/domain/usecases/verify_pass_otp_usecase.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
@@ -29,6 +30,7 @@ import 'package:friut_hub/features/e_commerce/order/data/repo_impl/order_repo_im
 import 'package:friut_hub/features/e_commerce/order/data/source/order_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/order/domain/repo/order_repo.dart';
 import 'package:friut_hub/features/e_commerce/order/domain/usecase/create_order_usecase.dart';
+import 'package:friut_hub/features/e_commerce/order/domain/usecase/get_users_order_usecase.dart';
 import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/data/repo_impl/product_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/products/data/source/product_remote_data_source.dart';
@@ -142,6 +144,11 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<LogoutUsecase>(
     LogoutUsecase(authRepo: sl<AuthRepo>()),
   );
+  sl.registerSingleton<UpdateUserNameUsecase>(
+    UpdateUserNameUsecase(authRepo: sl<AuthRepo>()),
+  );
+
+  
 
   //! ============= Products =============
   sl.registerSingleton<GetAllProductsUsecase>(
@@ -179,6 +186,12 @@ Future<void> initilaizedDependencies() async {
     CreateOrderUsecase(orderRepo: sl<OrderRepo>()),
   );
 
+  sl.registerSingleton<GetUserOrdersUsecase>(
+    GetUserOrdersUsecase(orderRepo: sl<OrderRepo>()),
+  );
+
+  
+
   //! blocs
   //! ============= AUTH =============
   sl.registerFactory<SignupBloc>(
@@ -190,7 +203,7 @@ Future<void> initilaizedDependencies() async {
     ),
   );
   sl.registerFactory<LoginBloc>(
-    () => LoginBloc(loginUserUsecase: sl<LoginUserUsecase>(), logoutUsecase: sl<LogoutUsecase>()),
+    () => LoginBloc(loginUserUsecase: sl<LoginUserUsecase>(), logoutUsecase: sl<LogoutUsecase>(), updateUserNameUsecase: sl<UpdateUserNameUsecase>()),
   );
   sl.registerFactory<ForgetPassBloc>(
     () => ForgetPassBloc(
@@ -232,6 +245,6 @@ Future<void> initilaizedDependencies() async {
 
   //! ============= Order =============
   sl.registerFactory<OrderBloc>(
-    () => OrderBloc(createOrderUsecase: sl<CreateOrderUsecase>()),
+    () => OrderBloc(createOrderUsecase: sl<CreateOrderUsecase>(), getUserOrdersUsecase: sl<GetUserOrdersUsecase>()),
   );
 }
