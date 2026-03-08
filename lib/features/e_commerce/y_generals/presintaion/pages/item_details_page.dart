@@ -6,6 +6,7 @@ import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/favourite_icon_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/product_details_widgets/item_details_row_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/product_details_widgets/item_quantity_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/product_details_widgets/product_name_and_price_widget.dart';
@@ -80,12 +81,18 @@ class ItemDetailsPage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  // ! Column item name nnd price
-                                  ProductNameAndPrice(
-                                    productName: product.name,
-                                    productPrice:
-                                        product.price.toString(),
+                                  Row(
+                                    children: [
+                                      favourite_icon_widget(),
+                                      SizedBox(width: 10),
+                                      ProductNameAndPrice(
+                                        productName: product.name,
+                                        productPrice:
+                                            product.price.toString(),
+                                      ),
+                                    ],
                                   ),
+                                  // ! Column item name nnd price
 
                                   // ! for increase ,decrease ,and number of items
                                   ItemQuantityWidget(

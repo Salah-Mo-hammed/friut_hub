@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/item_details_page.dart';
