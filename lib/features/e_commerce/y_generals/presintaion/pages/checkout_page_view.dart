@@ -77,6 +77,21 @@ class _CheckoutPageState extends State<CheckoutPage> {
     }
   }
 
+  void doubleStep() {
+    if (currentStep < 3) {
+      setState(() => currentStep++);
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.easeInOut,
+      );
+      setState(() => currentStep++);
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   void prevStep(int pageIndex) {
     setState(() => currentStep = pageIndex);
     _pageController.animateToPage(
@@ -160,21 +175,25 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   cityController: cityController,
                   apartmentController: apartmentController,
                   mobileController: mobileController,
-                  onNext: nextStep,
+                  onNext:
+                      selectedChargeWay == 0 ? doubleStep : nextStep,
                 ),
 
                 //! third page (Payment Method Page)
-                CheckOutPaymentPage(
-                  onNext: nextStep,
-                  cardOwnerName: cardOwnerName,
-                  cardNumber: cardNumber,
-                  cardEXpireDate: cardEXpireDate,
-                  cardCVV: cardCVV,
-                  selectedPaymentMethod: selectedPaymentMethod,
-                  onPaymentMethodChanged: _onPaymentMethodChanged,
-                  onUseCardAsDefaultChanged:
-                      _onUseCardAsDefaultChanged,
-                ),
+                if (selectedChargeWay == 1) ...[
+                  CheckOutPaymentPage(
+                    onNext: nextStep,
+                    cardOwnerName: cardOwnerName,
+                    cardNumber: cardNumber,
+                    cardEXpireDate: cardEXpireDate,
+                    cardCVV: cardCVV,
+                    selectedPaymentMethod: selectedPaymentMethod,
+                    onPaymentMethodChanged: _onPaymentMethodChanged,
+                    onUseCardAsDefaultChanged:
+                        _onUseCardAsDefaultChanged,
+                  ),
+                ],
+
                 //! Forth page (Charge Page)
                 CheckoutRevisionPage(
                   onNext: nextStep,

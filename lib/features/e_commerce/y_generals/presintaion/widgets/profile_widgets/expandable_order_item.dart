@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:friut_hub/features/e_commerce/order/domain/entities/order_entity.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/entites/trackong_step_entity.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/track_order_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/checkout_widgets/track_order_container.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/profile_widgets/order_tracking_timeline.dart';
 import 'package:friut_hub/generated/assets.dart';
@@ -22,82 +23,86 @@ class _ExpandableOrderItemState extends State<ExpandableOrderItem>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(color: Color(0xFFF2F3F3)),
-      child: Column(
-
-        children: [
-          Stack(
-            children: [
-              TrackOrderContainer(
-                isSecondContainer: false,
-                h1: "طلب رقم: ${widget.orderEntity.orderId}#",
-                subH1: "تم الطلب :22 مارس ,2024",
-                assetIcon: Assets.svgTrackOrder2,
-                h2: widget.orderEntity.items.length.toString(),
-                price: widget.orderEntity.totalPrice.toString(),
-              ),
-              Positioned(
-                left: 10,
-                top: 20,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isExpanded = !isExpanded;
-                    });
-                  },
-                  child: AnimatedRotation(
-                    turns: isExpanded ? 0.5 : 0,
-                    duration: const Duration(milliseconds: 300),
-                    child: const Icon(
-                      Icons.keyboard_arrow_down_sharp,
-                      size: 28,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, TrackOrderPage.routeName,arguments:widget.orderEntity);
+      },
+      child: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(color: Color(0xFFF2F3F3)),
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                TrackOrderContainer(
+                  isSecondContainer: false,
+                  h1: "طلب رقم: ${widget.orderEntity.orderId}#",
+                  subH1: "تم الطلب :22 مارس ,2024",
+                  assetIcon: Assets.svgTrackOrder2,
+                  h2: widget.orderEntity.items.length.toString(),
+                  price: widget.orderEntity.totalPrice.toString(),
+                ),
+                Positioned(
+                  left: 10,
+                  top: 20,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isExpanded = !isExpanded;
+                      });
+                    },
+                    child: AnimatedRotation(
+                      turns: isExpanded ? 0.5 : 0,
+                      duration: const Duration(milliseconds: 300),
+                      child: const Icon(
+                        Icons.keyboard_arrow_down_sharp,
+                        size: 28,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
 
-          /// التفاصيل
-          AnimatedSize(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-            child:
-                isExpanded
-                    ? OrderTrackingTimeline(
-                      steps: [
-                        TrackingStep(
-                          title: "تتبع الطلب",
-                          date: "22 مارس ,2024",
-                          isCompleted: true,
-                        ),
-                        TrackingStep(
-                          title: "قبول الطلب",
-                          date: "22 مارس ,2024",
-                          isCompleted: true,
-                        ),
-                        TrackingStep(
-                          title: "تم شحن الطلب",
-                          date: "22 مارس ,2024",
-                          isCompleted: true,
-                        ),
-                        TrackingStep(
-                          title: "خرج للتوصيل",
-                          date: "قيد الانتظار",
-                          isCompleted: false,
-                        ),
-                        TrackingStep(
-                          title: "تم التسليم",
-                          date: "",
-                          isCompleted: false,
-                        ),
-                      ],
-                    )
-                    : const SizedBox(),
-          ),
-        ],
+            /// التفاصيل
+            AnimatedSize(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child:
+                  isExpanded
+                      ? OrderTrackingTimeline(
+                        steps: [
+                          TrackingStep(
+                            title: "تتبع الطلب",
+                            date: "22 مارس ,2024",
+                            isCompleted: true,
+                          ),
+                          TrackingStep(
+                            title: "قبول الطلب",
+                            date: "22 مارس ,2024",
+                            isCompleted: true,
+                          ),
+                          TrackingStep(
+                            title: "تم شحن الطلب",
+                            date: "22 مارس ,2024",
+                            isCompleted: true,
+                          ),
+                          TrackingStep(
+                            title: "خرج للتوصيل",
+                            date: "قيد الانتظار",
+                            isCompleted: false,
+                          ),
+                          TrackingStep(
+                            title: "تم التسليم",
+                            date: "",
+                            isCompleted: false,
+                          ),
+                        ],
+                      )
+                      : const SizedBox(),
+            ),
+          ],
+        ),
       ),
     );
   }

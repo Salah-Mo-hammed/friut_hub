@@ -6,6 +6,7 @@ import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/pass_recovery_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/polices_page.dart';
 import 'package:friut_hub/features/auth/presentation/pages/reset_pass_page.dart';
+import 'package:friut_hub/features/e_commerce/order/domain/entities/order_entity.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/about_us_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/best_sellings_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/checkout_page_view.dart';
@@ -58,7 +59,13 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
 
     case PersonalProfilePage.routeName:
       final args = settings.arguments as Map<String, dynamic>;
-      return MaterialPageRoute(builder: (_) => PersonalProfilePage(userName: args['name'], useremail: args['email'],));
+      return MaterialPageRoute(
+        builder:
+            (_) => PersonalProfilePage(
+              userName: args['name'],
+              useremail: args['email'],
+            ),
+      );
 
     case MyRequestsPage.routeName:
       return MaterialPageRoute(builder: (_) => MyRequestsPage());
@@ -110,7 +117,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case DonePayPage.routeName:
       return MaterialPageRoute(builder: (_) => DonePayPage());
     case TrackOrderPage.routeName:
-      return MaterialPageRoute(builder: (_) => TrackOrderPage());
+      final args = settings.arguments as OrderEntity;
+      return MaterialPageRoute(builder: (_) => TrackOrderPage(orderEntity: args,));
     // ! this must change later
     default:
       return MaterialPageRoute(builder: (context) => SplashPage());

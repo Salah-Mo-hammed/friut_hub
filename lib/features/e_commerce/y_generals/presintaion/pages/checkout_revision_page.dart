@@ -154,51 +154,57 @@ class CheckoutRevisionPage extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            "يرجي تأكيد  طلبك",
-            style: AppTextStyles.bodySmallBold.copyWith(fontSize: 15),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
 
-            child: RevisionSecondContainer(
-              onTap: () => onGoToPage(1),
-              title: "وسيلة الدفع",
-              widget3: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    cardNumber.text.toString(),
-                    style: AppTextStyles.bodyBase.copyWith(
-                      color: AppColors.grayscale500,
-                    ),
-                  ),
-                  Container(
-                    height: 43,
-                    width: 67,
-                    decoration: ShapeDecoration(
-                      color: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          width: 1,
-                          strokeAlign: BorderSide.strokeAlignOutside,
-                          color: const Color(0xFFD6DCE5),
-                        ),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset(
-                        cards[selectedPaymentMethod],
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                ],
+          if (deliveryPrice == 10) ...[
+            Text(
+              "يرجي تأكيد  طلبك",
+              style: AppTextStyles.bodySmallBold.copyWith(
+                fontSize: 15,
               ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+
+              child: RevisionSecondContainer(
+                onTap: () => onGoToPage(1),
+                title: "وسيلة الدفع",
+                widget3: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      cardNumber.text.toString(),
+                      style: AppTextStyles.bodyBase.copyWith(
+                        color: AppColors.grayscale500,
+                      ),
+                    ),
+                    Container(
+                      height: 43,
+                      width: 67,
+                      decoration: ShapeDecoration(
+                        color: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            width: 1,
+                            strokeAlign:
+                                BorderSide.strokeAlignOutside,
+                            color: const Color(0xFFD6DCE5),
+                          ),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset(
+                          cards[selectedPaymentMethod],
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
 
           Padding(
             padding: const EdgeInsets.all(12.0),
@@ -243,7 +249,6 @@ class CheckoutRevisionPage extends StatelessWidget {
               context.read<OrderBloc>().add(
                 CreateOrderEvent(orderParams: orderParams),
               );
-              
             },
             content: Text(
               "تأكيد الطلب",
