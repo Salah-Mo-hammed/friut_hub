@@ -7,6 +7,7 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/item_
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/add_icon.dart';
 import 'package:friut_hub/features/e_commerce/products/domain/entities/product_entity.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/favourite_icon_widget.dart';
 import 'package:friut_hub/generated/assets.dart';
 
 class CustomItemCardWidget extends StatelessWidget {
@@ -19,6 +20,11 @@ class CustomItemCardWidget extends StatelessWidget {
       decoration: BoxDecoration(color: Colors.white),
       child: Stack(
         children: [
+          Positioned(
+            top: 20,
+            right: 20,
+            child: favourite_icon_widget(),
+          ),
           Positioned(
             top: 20,
             right: 40,
