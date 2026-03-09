@@ -23,7 +23,7 @@ class CustomItemCardWidget extends StatelessWidget {
           Positioned(
             top: 20,
             right: 20,
-            child: favourite_icon_widget(),
+            child: FavouriteIconWidget(product: product,),
           ),
           Positioned(
             top: 20,

@@ -83,7 +83,7 @@ class ItemDetailsPage extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      favourite_icon_widget(),
+                                      FavouriteIconWidget( product:state.product,),
                                       SizedBox(width: 10),
                                       ProductNameAndPrice(
                                         productName: product.name,

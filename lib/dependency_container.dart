@@ -26,6 +26,14 @@ import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.d
 import 'package:friut_hub/features/e_commerce/category/data/repo_impls/category_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/category/data/source/category_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/category/domain/repo/category_repo.dart';
+import 'package:friut_hub/features/e_commerce/favorites/data/repo_impl/favorites_repo_impl.dart';
+import 'package:friut_hub/features/e_commerce/favorites/data/source/local/favorites_local_data_source.dart';
+import 'package:friut_hub/features/e_commerce/favorites/data/source/remote/favorites_remote_data_source.dart';
+import 'package:friut_hub/features/e_commerce/favorites/domain/repo/favorites_repo.dart';
+import 'package:friut_hub/features/e_commerce/favorites/domain/usecases/add_to_favorites_usecase.dart';
+import 'package:friut_hub/features/e_commerce/favorites/domain/usecases/get_all_favorites_usecase.dart';
+import 'package:friut_hub/features/e_commerce/favorites/domain/usecases/remove_from_favorites_usecase.dart';
+import 'package:friut_hub/features/e_commerce/favorites/presintation/bloc/favorites_bloc.dart';
 import 'package:friut_hub/features/e_commerce/order/data/repo_impl/order_repo_impl.dart';
 import 'package:friut_hub/features/e_commerce/order/data/source/order_remote_data_source.dart';
 import 'package:friut_hub/features/e_commerce/order/domain/repo/order_repo.dart';
@@ -49,10 +57,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 GetIt sl = GetIt.instance;
 
 Future<void> initilaizedDependencies() async {
+
+  //!  Shared Preferences
   final prefs = await SharedPreferences.getInstance();
   sl.registerSingleton<SharedPreferences>(prefs);
 
-  // Dio with interceptor
+
+  //!  Dio with interceptor
   final dio = Dio(
     BaseOptions(
       baseUrl: Endpoints.baseUrl,
@@ -78,7 +89,7 @@ Future<void> initilaizedDependencies() async {
 
   sl.registerSingleton<Dio>(dio);
 
-  //! data-> data sources
+  //! data-> Remote data sources
 
   sl.registerSingleton<AuthRemoteDataSource>(
     AuthDsWithDio(dio: sl<Dio>()),
@@ -95,6 +106,17 @@ Future<void> initilaizedDependencies() async {
   sl.registerSingleton<OrderRemoteDataSource>(
     OrderDsWithDio(dio: sl<Dio>()),
   );
+
+  sl.registerSingleton<FavoritesRemoteDataSource>(
+    FavoritesDsWithDio(dio: sl<Dio>()),
+  );
+
+  //! data-> local data sources
+
+final favoriteLocalDs = FavoritesWithSqfLite();
+await favoriteLocalDs.initDb();
+sl.registerSingleton<FavoritesLocalDataSource>(favoriteLocalDs);
+
 
   //! domain-> repo
   sl.registerSingleton<AuthRepo>(
@@ -116,6 +138,9 @@ Future<void> initilaizedDependencies() async {
 
   sl.registerSingleton<OrderRepo>(
     OrderRepoImpl(orderRemoteDataSource: sl<OrderRemoteDataSource>()),
+  );
+  sl.registerSingleton<FavoritesRepo>(
+    FavoritesRepoImpl(favoritesRemoteDataSource: sl<FavoritesRemoteDataSource>(), favoritesLocalDataSource: sl<FavoritesLocalDataSource>()),
   );
 
   //! domain-> usecases
@@ -190,7 +215,17 @@ Future<void> initilaizedDependencies() async {
     GetUserOrdersUsecase(orderRepo: sl<OrderRepo>()),
   );
 
-  
+  //! ============= Favorites =============
+    sl.registerSingleton<GetAllFavoritesUsecase>(
+    GetAllFavoritesUsecase(favoritesRepo: sl<FavoritesRepo>()),
+  );
+
+    sl.registerSingleton<AddToFavoritesUsecase>(
+    AddToFavoritesUsecase(favoritesRepo: sl<FavoritesRepo>()),
+  );
+    sl.registerSingleton<RemoveFromFavoritesUsecase>(
+    RemoveFromFavoritesUsecase(favoritesRepo: sl<FavoritesRepo>()),
+  );
 
   //! blocs
   //! ============= AUTH =============
@@ -247,4 +282,11 @@ Future<void> initilaizedDependencies() async {
   sl.registerFactory<OrderBloc>(
     () => OrderBloc(createOrderUsecase: sl<CreateOrderUsecase>(), getUserOrdersUsecase: sl<GetUserOrdersUsecase>()),
   );
+
+  //! ============= Favorites =============
+  sl.registerFactory<FavoritesBloc>(
+    () => FavoritesBloc(getAllFavoritesUsecase: sl<GetAllFavoritesUsecase>(), addToFavoritesUsecase: sl<AddToFavoritesUsecase>(), removeFromFavoritesUsecase: sl<RemoveFromFavoritesUsecase>()),
+  );
+
+  
 }

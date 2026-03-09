@@ -15,4 +15,18 @@ class ProductModel extends ProductEntity {
       imageUrl: json['imageUrl'],
     );
   }
+
+  factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
+  id: map['id'],
+  name: map['name'],
+  price: map['price'],
+  imageUrl: map['imageUrl'],
+);
+
+Map<String, dynamic> toMap() => {
+  'id': id,
+  'name': name,
+  'price': price,
+  'imageUrl': imageUrl,
+};
 }

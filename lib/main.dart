@@ -9,6 +9,7 @@ import 'package:friut_hub/features/auth/presentation/blocs/signup_bloc/signup_bl
 import 'package:friut_hub/features/auth/presentation/pages/login_page.dart';
 import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/category/presintation/bloc/category_bloc.dart';
+import 'package:friut_hub/features/e_commerce/favorites/presintation/bloc/favorites_bloc.dart';
 import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/product_details_bloc/product_details_bloc.dart';
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<CartBloc>()),
         //! ============ Order ============
         BlocProvider(create: (_) => sl<OrderBloc>()),
+        //! ============ Favorites ============
+        BlocProvider(create: (_) => sl<FavoritesBloc>()),
+      
       ],
       child: MaterialApp(
         locale: Locale('ar'),

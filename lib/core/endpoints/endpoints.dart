@@ -22,4 +22,9 @@ class Endpoints {
   // ! =================== Orders ====================
   static const createOrder = "/api/Orders";
   static const getUserOrders = "/api/Orders/my";
+
+  // ! =================== favorites ====================
+
+  static const getAllFavourits = "/api/favorites";
+
 }
