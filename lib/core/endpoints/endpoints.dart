@@ -1,5 +1,16 @@
 class Endpoints {
   static const baseUrl = "http://127.0.0.1:8080";
+
+  static String getImageUrl(String imageUrl) {
+    final parts = imageUrl.split('/');
+    final fileName = parts.last;
+    final folder = parts[parts.length - 2]; // 'products'
+
+    final url = "$baseUrl/api/Images/$folder/$fileName";
+    print("🖼️ trying: $url");
+    return url;
+  }
+
   // ! =================== Auth ====================
   static const registerUser = "/api/Users";
   static const emailConfirmation = "/api/email-confirmations";
@@ -26,5 +37,4 @@ class Endpoints {
   // ! =================== favorites ====================
 
   static const getAllFavourits = "/api/favorites";
-
 }

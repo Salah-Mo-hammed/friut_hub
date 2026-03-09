@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
+import 'package:friut_hub/core/endpoints/endpoints.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/item_details_page.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/add_icon.dart';
@@ -23,15 +24,24 @@ class CustomItemCardWidget extends StatelessWidget {
           Positioned(
             top: 20,
             right: 20,
-            child: FavouriteIconWidget(product: product,),
+            child: FavouriteIconWidget(product: product),
           ),
           Positioned(
             top: 20,
             right: 40,
-            child: Image.asset(
+            child: Image.network(
+              Endpoints.getImageUrl(product.imageUrl),
               height: 120,
               width: 120,
-              Assets.pngFruitBasketAmico1Splash1,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) {
+                print("❌ image error: $error");
+                return Image.asset(
+                  height: 120,
+                  width: 120,
+                  Assets.pngFruitBasketAmico1Splash1, // fallback
+                );
+              },
             ),
           ),
           // ! same problem

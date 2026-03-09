@@ -50,6 +50,14 @@ class Assets {
   /// assets/png/discountImage1.png
   static const String pngDiscountImage1 = "assets/png/discountImage1.png";
 
+  /// Assets for pngDiscountImage1Png
+  /// assets/png/discount_image_1_png.png
+  static const String pngDiscountImage1Png = "assets/png/discount_image_1_png.png";
+
+  /// Assets for pngDiscountImage2Png
+  /// assets/png/discount_image_2_png.png
+  static const String pngDiscountImage2Png = "assets/png/discount_image_2_png.png";
+
   /// Assets for pngFreepikCirclesInject5Onboarding
   /// assets/png/freepik--Circles--inject-5_onboarding.png
   static const String pngFreepikCirclesInject5Onboarding = "assets/png/freepik--Circles--inject-5_onboarding.png";
@@ -169,6 +177,26 @@ class Assets {
   /// Assets for svgDairy
   /// assets/svg/dairy.svg
   static const String svgDairy = "assets/svg/dairy.svg";
+
+  /// Assets for svgDiscountDarkGreenCircle2
+  /// assets/svg/discount_dark_green_circle2.svg
+  static const String svgDiscountDarkGreenCircle2 = "assets/svg/discount_dark_green_circle2.svg";
+
+  /// Assets for svgDiscountImage1
+  /// assets/svg/discount_image1.svg
+  static const String svgDiscountImage1 = "assets/svg/discount_image1.svg";
+
+  /// Assets for svgDiscountImage2
+  /// assets/svg/discount_image2.svg
+  static const String svgDiscountImage2 = "assets/svg/discount_image2.svg";
+
+  /// Assets for svgDiscountLightGreenCircle1
+  /// assets/svg/discount_light_green_circle1.svg
+  static const String svgDiscountLightGreenCircle1 = "assets/svg/discount_light_green_circle1.svg";
+
+  /// Assets for svgDiscountOrangeCircle3
+  /// assets/svg/discount_orange_circle3.svg
+  static const String svgDiscountOrangeCircle3 = "assets/svg/discount_orange_circle3.svg";
 
   /// Assets for svgEmptyWallet
   /// assets/svg/empty-wallet.svg

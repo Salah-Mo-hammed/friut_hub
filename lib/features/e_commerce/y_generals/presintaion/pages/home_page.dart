@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
+import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/discounts_container_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/skeletonizer_product_grid.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/best_selling_bar_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/custom_item_card_widget.dart';
@@ -15,13 +16,17 @@ import 'package:friut_hub/generated/assets.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatelessWidget {
- final String userFullName;
+  final String userFullName;
 
-  // bool noSearchResult = false;
   final discountImages = [
-    Assets.pngDiscountImage1,
-    Assets.pngDicountImage2,
-    Assets.pngDicountImage3,
+    Assets.pngDiscountImage1Png,
+    Assets.pngDiscountImage2Png,
+    Assets.pngDiscountImage1Png,
+  ];
+  final discountCircles = [
+    Assets.svgDiscountLightGreenCircle1,
+    Assets.svgDiscountDarkGreenCircle2,
+    Assets.svgDiscountOrangeCircle3,
   ];
 
   HomePage({super.key, required this.userFullName});
@@ -104,8 +109,9 @@ class HomePage extends StatelessWidget {
                             ),
 
                             itemBuilder: (context, index) {
-                              return DiscountBanner(
-                                discountImage: discountImages[index],
+                              return DiscountsContainerWidget(
+                                image: discountImages[index],
+                                circleImage: discountCircles[index],
                               );
                             },
                           ),

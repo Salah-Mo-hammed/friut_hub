@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:friut_hub/core/endpoints/endpoints.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
@@ -54,13 +55,25 @@ class ItemDetailsPage extends StatelessWidget {
                   right: 0,
                   left: 0,
                   child: Center(
-                    child: Image.asset(
-                      Assets.pngFruitBasketAmico1Splash1,
+                    child: Image.network(
+                      Endpoints.getImageUrl(product.imageUrl),
+                      height: 300,
+                      width: 300,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        print("❌ image error: $error");
+                        return Image.asset(
+                          height: 300,
+                          width: 300,
+                          Assets
+                              .pngFruitBasketAmico1Splash1, // fallback
+                        );
+                      },
                     ),
                   ),
                 ),
                 // Back button
-                Positioned(top: 55, right: 30, child: BackButton()),
+                Positioned(top: 20, right: 30, child: BackButton()),
 
                 // rest components: column
                 Positioned.fill(
@@ -83,7 +96,9 @@ class ItemDetailsPage extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      FavouriteIconWidget( product:state.product,),
+                                      FavouriteIconWidget(
+                                        product: state.product,
+                                      ),
                                       SizedBox(width: 10),
                                       ProductNameAndPrice(
                                         productName: product.name,
