@@ -61,7 +61,7 @@ class ItemDetailsPage extends StatelessWidget {
                       width: 300,
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
-                        print("❌ image error: $error");
+                        print(" image error: $error");
                         return Image.asset(
                           height: 300,
                           width: 300,
@@ -72,10 +72,9 @@ class ItemDetailsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Back button
+
                 Positioned(top: 20, right: 30, child: BackButton()),
 
-                // rest components: column
                 Positioned.fill(
                   top: 430,
                   // left: 0,

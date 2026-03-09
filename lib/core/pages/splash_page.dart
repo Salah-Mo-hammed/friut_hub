@@ -21,19 +21,19 @@ class SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    // Step 1: show circles after 0.5 sec
+    // show circles after 0.5 sec
     Future.delayed(const Duration(milliseconds: 500), () {
       setState(() => _circlesOpacity = 1.0);
 
-      // Step 2: show plant after 2 seconds
+      // show plant after 2 seconds
       Future.delayed(const Duration(seconds: 2), () {
         setState(() => _plantOpacity = 1.0);
 
-        // Step 3: show logo after 2 more seconds
+        // show logo after 2 more seconds
         Future.delayed(const Duration(seconds: 2), () {
           setState(() => _logoOpacity = 1.0); // fade in logo
 
-          // Step 4: keep logo visible for 3 seconds
+          // keep logo visible for 3 seconds
           Future.delayed(const Duration(seconds: 3), () {
             setState(() {
               _logoOpacity = 0.0;
@@ -41,10 +41,10 @@ class SplashPageState extends State<SplashPage> {
               _plantOpacity = 0.0;
             }); // fade out logo
 
-            // Step 5: wait for fade-out duration (1 second) then navigate
+            // wait for fade-out duration (1 second) then navigate
             Future.delayed(const Duration(seconds: 1), () {
 
-              // _moveOn();
+              _moveOn();
             });
           });
         });

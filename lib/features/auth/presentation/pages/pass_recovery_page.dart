@@ -180,9 +180,6 @@ class PasswoedRecoveryPage extends StatelessWidget {
               MyButton(
                 onTap: () async {
                   if (_formKey.currentState!.validate()) {
-                    // ! get _foucsenode and call event verifyemail
-                    // ! and while checking that, show circular endicator as snackbar or what ever ,
-                    //! is success go back to  loginpage ,if no , stay and show that it's wrong verifications
 
                     final otpCode =
                         _checkControllers

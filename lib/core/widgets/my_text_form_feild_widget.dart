@@ -59,7 +59,7 @@ class _BuildTextFormFeildState extends State<BuildTextFormFeild> {
           color: AppColors.grayscale400,
           fontWeight: FontWeight.bold,
         ),
-        // ✅ Show/hide icon
+        // Show/hide icon
         suffixIcon:
             widget.obscureText
                 ? IconButton(
@@ -72,7 +72,7 @@ class _BuildTextFormFeildState extends State<BuildTextFormFeild> {
                   onPressed: () {
                     setState(() {
                       widget.obscureText =
-                          !widget.obscureText; // toggle visibility
+                          !widget.obscureText;
                     });
                   },
                 )

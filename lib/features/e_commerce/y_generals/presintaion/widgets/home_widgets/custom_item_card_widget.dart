@@ -35,19 +35,15 @@ class CustomItemCardWidget extends StatelessWidget {
               width: 120,
               fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) {
-                print("❌ image error: $error");
+                print(" image error: $error");
                 return Image.asset(
                   height: 120,
                   width: 120,
-                  Assets.pngFruitBasketAmico1Splash1, // fallback
+                  Assets.pngFruitBasketAmico1Splash1,
                 );
               },
             ),
           ),
-          // ! same problem
-          // Center(
-          // child: SvgPicture.asset(Assets.svgFarawlla),
-          // ),
           Positioned(
             bottom: 20,
             right: 10,

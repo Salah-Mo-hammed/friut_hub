@@ -66,7 +66,6 @@ class ResetPasswordPage extends StatelessWidget {
                 // ! if success , show small page with Congrats
 
                 if (_formKey.currentState!.validate()) {
-                  // All fields are valid → ready for backend
                   print(
                     '\x1B[32mEmail: ${passwordController.text}\x1B[0m',
                   );

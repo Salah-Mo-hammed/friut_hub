@@ -44,7 +44,6 @@ class FilterBottomSheetButton extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 11.h(context)),
-                    // : السعر
                     Row(
                       children: [
                         SvgPicture.asset(Assets.svgTag),
@@ -115,22 +114,6 @@ class FilterBottomSheetButton extends StatelessWidget {
             );
           },
         );
-        // showDialog(
-        //   context: context,
-        //   builder: (context) {
-        //     return AlertDialog(
-        //       icon: Icon(Icons.accessibility_sharp),
-        //       title: Text('Accessibility'),
-        //       content: Text('This is an alert dialog'),
-        //       actions: [
-        //         TextButton(
-        //           onPressed: () => Navigator.pop(context),
-        //           child: Text('OK'),
-        //         ),
-        //       ],
-        //     );
-        //   },
-        // );
       },
     );
   }

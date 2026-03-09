@@ -21,14 +21,12 @@ class OnBoardingWidget extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          // Use a Stack only for positioned elements (orange + logo)
           SizedBox(
             height: 475,
             width: double.infinity,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                // Orange shape
                 Positioned.fill(
                   child: FadeInDownBig(
                     duration: const Duration(seconds: 1),
@@ -68,7 +66,6 @@ class OnBoardingWidget extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // Text below logo
           FadeIn(
             duration: const Duration(seconds: 2),
             delay: const Duration(milliseconds: 3500),
@@ -125,7 +122,6 @@ class OnBoardingWidget extends StatelessWidget {
           ),
           const SizedBox(height: 90),
 
-          // Continue button
           if (!isOnBoarding1)
             FadeIn(
               duration: const Duration(seconds: 2),

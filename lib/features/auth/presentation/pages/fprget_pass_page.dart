@@ -49,7 +49,6 @@ class ForgetPasswordPage extends StatelessWidget {
             MyButton(
               onTap: () {
                 if (_formKey.currentState!.validate()) {
-                  // All fields are valid → ready for backend
                   print(
                     '\x1B[32mEmail: ${emailController.text}\x1B[0m',
                   );

@@ -20,9 +20,7 @@ class PersonalInfoTextFeild extends StatelessWidget {
     return TextField(
       style: AppTextStyles.bodyBaseBold.copyWith(color: Colors.black),
       controller: controller,
-      // validator: widget.validator,
-      // obscureText: widget.obscureText,
-      // keyboardType: widget.keyboardType,
+
       autofillHints:
       // widget.obscureText
       // ? [AutofillHints.password]
@@ -50,7 +48,7 @@ class PersonalInfoTextFeild extends StatelessWidget {
           color: AppColors.grayscale400,
           fontWeight: FontWeight.bold,
         ),
-        // ✅ Show/hide icon
+        // Show/hide icon
         suffixIcon: IconButton(
           icon: Icon(
             isPassword ? Icons.visibility : Icons.edit_outlined,

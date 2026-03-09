@@ -37,7 +37,6 @@ class ProfilePage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // SizedBox(height: 70.h(context)),
               Center(
                 child: Text(
                   "حسابي",
@@ -248,7 +247,7 @@ class ProfilePage extends StatelessWidget {
             onTap: () {
               showDialog(
                 context: context,
-                barrierDismissible: true, // لو عايز يقفل لما يضغط بره
+                barrierDismissible: true, //if you want to close of pressed naywhere out the container
                 builder: (context) {
                   return Dialog(
                     shape: RoundedRectangleBorder(

@@ -23,8 +23,6 @@ class MyRequestsPage extends StatelessWidget {
             if (state is OrderLoading) {
               return CircularProgressIndicator();
             } else if (state is GotUserOrders) {
-              // ExpandableOrderItem(),
-              // SizedBox(height: 10),
               return ListView.builder(
                 itemCount: state.orders.length,
                 itemBuilder:

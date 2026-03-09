@@ -33,7 +33,7 @@ class _CheckOutChargePageState extends State<CheckOutChargePage> {
               widget.onChargeWayChanged(0);
             });
           },
-          child: choosePaymentOnCharge(
+          child: ChoosePaymentOnCharge(
             paymentMethod: "الدفع عند الاستلام",
             price: "40 جنيه",
             choosen: selectedIndex == 0,
@@ -47,7 +47,7 @@ class _CheckOutChargePageState extends State<CheckOutChargePage> {
               widget.onChargeWayChanged(1);
             });
           },
-          child: choosePaymentOnCharge(
+          child: ChoosePaymentOnCharge(
             paymentMethod: "الدفع بPayPal",
             price: "10 جنيه",
             choosen: selectedIndex == 1,

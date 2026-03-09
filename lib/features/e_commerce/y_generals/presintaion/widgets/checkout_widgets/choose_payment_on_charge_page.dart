@@ -5,11 +5,11 @@ import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/generated/assets.dart';
 
-class choosePaymentOnCharge extends StatelessWidget {
+class ChoosePaymentOnCharge extends StatelessWidget {
   final String paymentMethod;
   final String price;
   bool choosen;
-  choosePaymentOnCharge({
+  ChoosePaymentOnCharge({
     super.key,
     required this.paymentMethod,
     required this.price,

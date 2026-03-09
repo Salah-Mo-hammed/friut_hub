@@ -195,7 +195,6 @@ class PersonalProfilePage extends StatelessWidget {
                     );
                   }
                 }
-                //Navigator.pop(context);
               },
               content: Text(
                 "حفظ التغييرات",

@@ -5,7 +5,6 @@ import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/add_icon.dart';
 import 'package:friut_hub/generated/assets.dart';
 
-// Mirrors CustomItemCardWidget exactly — same layout, fake data
 class SkeletonProductCard extends StatelessWidget {
   const SkeletonProductCard({super.key});
 

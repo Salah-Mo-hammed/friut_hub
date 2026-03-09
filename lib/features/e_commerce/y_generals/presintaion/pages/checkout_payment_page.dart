@@ -14,7 +14,7 @@ class CheckOutPaymentPage extends StatefulWidget {
   final TextEditingController cardNumber;
   final TextEditingController cardEXpireDate;
   final TextEditingController cardCVV;
-  final ValueChanged<int> onPaymentMethodChanged; // 👈
+  final ValueChanged<int> onPaymentMethodChanged;
   final ValueChanged<bool> onUseCardAsDefaultChanged;
   int selectedPaymentMethod;
   CheckOutPaymentPage({

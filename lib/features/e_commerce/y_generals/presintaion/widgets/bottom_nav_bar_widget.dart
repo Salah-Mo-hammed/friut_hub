@@ -37,13 +37,7 @@ class FancyBottomNavBar extends StatelessWidget {
           ),
         ],
       ),
-      //const BoxDecoration(
-      //   color: Color(0xFFFFFFFF),
-      //   borderRadius: BorderRadius.only(
-      //     topLeft: Radius.circular(10),
-      //     topRight: Radius.circular(10),
-      //   ),
-      // ),
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(bottomNavBarItems.length, (index) {

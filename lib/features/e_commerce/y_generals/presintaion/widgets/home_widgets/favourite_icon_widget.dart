@@ -19,10 +19,7 @@ class _FavouriteIconWidgetState extends State<FavouriteIconWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<FavoritesBloc, FavoritesState>(
       listener: (context, state) {
-        // if (state is FavoritesActionSuccess) {
-        //   // re-fetch to get updated list → triggers GotAllFavorites → isFav recalculates
-        //   context.read<FavoritesBloc>().add(GetAllFavoritesEvent());
-        // }
+
         if (state is FavoritesError) {
           ScaffoldMessenger.of(
             context,
