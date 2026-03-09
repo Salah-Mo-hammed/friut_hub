@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         //! ============ Order ============
         BlocProvider(create: (_) => sl<OrderBloc>()),
         //! ============ Favorites ============
-        BlocProvider(create: (_) => sl<FavoritesBloc>()),
+        BlocProvider(create: (_) => sl<FavoritesBloc>()..add(GetAllFavoritesEvent())),
       
       ],
       child: MaterialApp(

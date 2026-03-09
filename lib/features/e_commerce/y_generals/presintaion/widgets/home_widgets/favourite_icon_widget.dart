@@ -7,13 +7,11 @@ import 'package:friut_hub/generated/assets.dart';
 
 class FavouriteIconWidget extends StatefulWidget {
   final ProductEntity product;
-  const FavouriteIconWidget({
-    super.key,
-    required this.product,
-  });
+  const FavouriteIconWidget({super.key, required this.product});
 
   @override
-  State<FavouriteIconWidget> createState() => _FavouriteIconWidgetState();
+  State<FavouriteIconWidget> createState() =>
+      _FavouriteIconWidgetState();
 }
 
 class _FavouriteIconWidgetState extends State<FavouriteIconWidget> {
@@ -21,22 +19,30 @@ class _FavouriteIconWidgetState extends State<FavouriteIconWidget> {
   Widget build(BuildContext context) {
     return BlocConsumer<FavoritesBloc, FavoritesState>(
       listener: (context, state) {
+        // if (state is FavoritesActionSuccess) {
+        //   // re-fetch to get updated list → triggers GotAllFavorites → isFav recalculates
+        //   context.read<FavoritesBloc>().add(GetAllFavoritesEvent());
+        // }
         if (state is FavoritesError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       builder: (context, state) {
         // check if this product is in favorites
-        final isFav = state is GotAllFavorites &&
+        final isFav =
+            state is GotAllFavorites &&
             state.products.any((p) => p.id == widget.product.id);
 
         return GestureDetector(
           onTap: () {
             if (isFav) {
+              setState(() {});
               context.read<FavoritesBloc>().add(
-                RemoveFromFavoritesEvent(productId: widget.product.id),
+                RemoveFromFavoritesEvent(
+                  productId: widget.product.id,
+                ),
               );
             } else {
               context.read<FavoritesBloc>().add(

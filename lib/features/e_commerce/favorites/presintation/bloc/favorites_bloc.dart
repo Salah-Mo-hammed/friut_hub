@@ -32,14 +32,14 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     emit(FavoritesLoading());
 
     final result = await getAllFavoritesUsecase.call();
-    result.fold((faliure) {
-
-    emit(FavoritesError(message: faliure.message));
-
-    }, (favoriteProducts) {
-    emit(GotAllFavorites(products: favoriteProducts));
-
-    });
+    result.fold(
+      (faliure) {
+        emit(FavoritesError(message: faliure.message));
+      },
+      (favoriteProducts) {
+        emit(GotAllFavorites(products: favoriteProducts));
+      },
+    );
   }
 
   FutureOr<void> _onAddToFavorites(
@@ -49,13 +49,25 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     emit(FavoritesLoading());
 
     final result = await addToFavoritesUsecase.call(event.productId);
-    result.fold((faliure) {
-    emit(FavoritesError(message: faliure.message));
-
-    }, (unit) {
-    emit(FavoritesActionSuccess());
-
-    });
+    await result.fold(
+      (failure) async => emit(
+        FavoritesError(
+          message: "error in addin to favorite ${failure.message}",
+        ),
+      ),
+      (unit) async {
+        final updated = await getAllFavoritesUsecase.call();
+        updated.fold(
+          (failure) => emit(
+            FavoritesError(
+              message:
+                  "error in getting  favorites ${failure.message}",
+            ),
+          ),
+          (products) => emit(GotAllFavorites(products: products)),
+        );
+      },
+    );
   }
 
   FutureOr<void> _onRemoveFromFavorites(
@@ -64,13 +76,28 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   ) async {
     emit(FavoritesLoading());
 
-    final result = await removeFromFavoritesUsecase.call(event.productId);
-    result.fold((faliure) {
-    emit(FavoritesError(message: faliure.message));
-
-    }, (unit) {
-    emit(FavoritesActionSuccess());
-
-    });
+    final result = await removeFromFavoritesUsecase.call(
+      event.productId,
+    );
+    await result.fold(
+      (failure) async => emit(
+        FavoritesError(
+          message:
+              "error in removing from favorite ${failure.message}",
+        ),
+      ),
+      (unit) async {
+        final updated = await getAllFavoritesUsecase.call();
+        updated.fold(
+          (failure) => emit(
+            FavoritesError(
+              message:
+                  "error in getting  favorites ${failure.message}",
+            ),
+          ),
+          (products) => emit(GotAllFavorites(products: products)),
+        );
+      },
+    );
   }
 }

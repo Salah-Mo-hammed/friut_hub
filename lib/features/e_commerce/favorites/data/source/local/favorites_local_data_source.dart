@@ -47,12 +47,16 @@ class FavoritesWithSqfLite implements FavoritesLocalDataSource {
   @override
   Future<List<ProductModel>> fetchAllFavoritesFromLocal() async {
     final maps = await _db!.query('favorites');
+      print(" LOCAL favorites count: ${maps.length}");
+  print(" LOCAL favorites: $maps");
     return maps.map((map) => ProductModel.fromMap(map)).toList();
   }
 
   @override
   Future<Unit> insertToFavorites(ProductModel favoriteProduct) async {
     await _db!.insert('favorites', favoriteProduct.toMap());
+      print("INSERTED to local: ${favoriteProduct.name}");
+
     return unit;
   }
 
@@ -63,6 +67,8 @@ class FavoritesWithSqfLite implements FavoritesLocalDataSource {
       where: "id = ?",
       whereArgs: [productId],
     );
+      print(" DELETED from local: $productId");
+
     return unit;
   }
 
@@ -78,6 +84,8 @@ class FavoritesWithSqfLite implements FavoritesLocalDataSource {
       );
     }
     await batch.commit(noResult: true);
+      print("SYNCED local with ${products.length} products");
+
     return unit;
   }
 
