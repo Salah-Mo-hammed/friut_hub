@@ -2,6 +2,7 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:friut_hub/core/pages/splash_page.dart';
 import 'package:friut_hub/dependency_container.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/forget_pass_bloc/forget_pass_bloc.dart';
 import 'package:friut_hub/features/auth/presentation/blocs/login_bloc/login_bloc.dart';
@@ -16,7 +17,6 @@ import 'package:friut_hub/features/e_commerce/products/presintation/blocs/produc
 import 'package:friut_hub/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:friut_hub/core/helpers/on_geenerate_routes.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,8 +55,10 @@ class MyApp extends StatelessWidget {
         //! ============ Order ============
         BlocProvider(create: (_) => sl<OrderBloc>()),
         //! ============ Favorites ============
-        BlocProvider(create: (_) => sl<FavoritesBloc>()..add(GetAllFavoritesEvent())),
-      
+        BlocProvider(
+          create:
+              (_) => sl<FavoritesBloc>()..add(GetAllFavoritesEvent()),
+        ),
       ],
       child: MaterialApp(
         locale: Locale('ar'),
@@ -70,7 +72,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales,
         onGenerateRoute: onGenerateRoutes,
 
-        initialRoute: LoginPage.routeName,
+        initialRoute: SplashPage.routeName,
         builder:
             (context, child) => Directionality(
               textDirection: TextDirection.rtl,

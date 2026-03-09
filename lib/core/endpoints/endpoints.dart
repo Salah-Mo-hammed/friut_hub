@@ -7,7 +7,7 @@ class Endpoints {
     final folder = parts[parts.length - 2]; // 'products'
 
     final url = "$baseUrl/api/Images/$folder/$fileName";
-    print("🖼️ trying: $url");
+    print("trying: $url");
     return url;
   }
 
