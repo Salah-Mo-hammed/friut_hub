@@ -2,7 +2,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:friut_hub/core/errors/error.dart';
 import 'package:friut_hub/features/e_commerce/favorites/domain/repo/favorites_repo.dart';
-import 'package:friut_hub/features/e_commerce/products/domain/entities/product_entity.dart';
 
 class AddToFavoritesUsecase {
   FavoritesRepo favoritesRepo;

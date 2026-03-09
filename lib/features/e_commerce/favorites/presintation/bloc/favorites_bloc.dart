@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:friut_hub/features/e_commerce/cart/domain/usecases/remove_frpm_cart_usecase.dart';
 import 'package:friut_hub/features/e_commerce/favorites/domain/usecases/add_to_favorites_usecase.dart';
 import 'package:friut_hub/features/e_commerce/favorites/domain/usecases/get_all_favorites_usecase.dart';
 import 'package:friut_hub/features/e_commerce/favorites/domain/usecases/remove_from_favorites_usecase.dart';

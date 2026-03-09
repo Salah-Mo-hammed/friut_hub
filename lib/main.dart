@@ -17,7 +17,6 @@ import 'package:friut_hub/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:friut_hub/core/helpers/on_geenerate_routes.dart';
 
-// My Final Version
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

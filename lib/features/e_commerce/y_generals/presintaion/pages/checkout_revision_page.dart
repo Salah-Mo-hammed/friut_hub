@@ -5,7 +5,6 @@ import 'package:friut_hub/core/colors/app_colors.dart';
 import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
 import 'package:friut_hub/core/widgets/my_button_widget.dart';
-import 'package:friut_hub/features/e_commerce/cart/presintation/bloc/cart_bloc.dart';
 import 'package:friut_hub/features/e_commerce/order/domain/entities/create_order_param.dart';
 import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/done_pay_page.dart';

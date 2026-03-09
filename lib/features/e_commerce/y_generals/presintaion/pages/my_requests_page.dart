@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:friut_hub/core/widgets/app_bar_widget.dart';
 import 'package:friut_hub/features/e_commerce/order/presintaion/bloc/order_bloc.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/profile_widgets/expandable_order_item.dart';
-import 'package:friut_hub/generated/l10n.dart';
 
 class MyRequestsPage extends StatelessWidget {
   static const routeName = "MyRequestsPage";

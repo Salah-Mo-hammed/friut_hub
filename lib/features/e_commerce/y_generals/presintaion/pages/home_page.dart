@@ -9,7 +9,6 @@ import 'package:friut_hub/features/e_commerce/y_generals/presintaion/pages/skele
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/best_selling_bar_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/custom_item_card_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/custom_search_bar_widget.dart';
-import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/discount_banner_widget.dart';
 import 'package:friut_hub/features/e_commerce/y_generals/presintaion/widgets/home_widgets/main_dash_app_bar.dart';
 import 'package:friut_hub/features/e_commerce/products/presintation/blocs/products_bloc/products_bloc.dart';
 import 'package:friut_hub/generated/assets.dart';

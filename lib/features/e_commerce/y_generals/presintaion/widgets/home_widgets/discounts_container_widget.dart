@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:friut_hub/core/colors/app_colors.dart';
-import 'package:friut_hub/core/extentions/num_extenstions.dart';
 import 'package:friut_hub/core/fonts/fonts_class.dart';
-import 'package:friut_hub/generated/assets.dart';
 
 class DiscountsContainerWidget extends StatelessWidget {
   final String image;
